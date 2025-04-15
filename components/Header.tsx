@@ -3,7 +3,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center lg:pt-2 lg:pb-5">
+    <header className="flex justify-between items-center lg:pt-2 lg:pb-5 container">
       <div className="flex gap-12 items-center">
         <Image src="/svg/lofofrntr.svg" width={170} height={60} alt="logo" />
         <div className="flex justify-between items-center gap-12">
