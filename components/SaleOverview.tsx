@@ -4,9 +4,10 @@ import React from "react";
 const SaleOverview = () => {
   return (
     <section className=" bg-olive">
-      <div className="max-w-[95rem] flex mx-auto items-center justify-between">
-        <div className="flex flex-col gap-3">
+      <div className="container flex  items-center justify-between">
+        <div className="flex flex-col gap-4">
           <h1 className="text-8xl font-bold">Sale</h1>
+          <p>Incredible deals. Top-of-the-line design for less.</p>
           <button className="bg-black px-8 py-4 rounded-md text-white">
             See our big sale
           </button>
