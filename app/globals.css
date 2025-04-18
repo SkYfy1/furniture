@@ -8,8 +8,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-olive: rgb(240, 239, 235);
+  --color-green: rgb(226, 236, 233);
+  --color-orange: rgb(255, 241, 230);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-mont: var(--font-montserrat);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +31,20 @@ body {
 
 @layer components {
   .root-container {
-    @apply min-h-screen w-screen bg-white;
+    @apply min-h-screen w-full bg-white;
+  }
+
+  .container {
+    @apply max-w-[95rem] mx-auto;
+  }
+}
+
+@layer utilities {
+  .grid-cols-custom {
+    grid-template-columns: minmax(15px, 1fr) repeat(3, minmax(0, 510px)) minmax(
+        15px,
+        1fr
+      );
+    grid-auto-rows: minmax(300px, auto);
   }
 }
