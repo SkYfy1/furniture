@@ -3,7 +3,7 @@ import React from "react";
 
 const SaleOverview = () => {
   return (
-    <section className=" bg-olive">
+    <section className=" bg-olive col-span-5">
       <div className="container flex  items-center justify-between">
         <div className="flex flex-col gap-4">
           <h1 className="text-8xl font-bold">Sale</h1>

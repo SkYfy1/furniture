@@ -3,12 +3,12 @@ import React from "react";
 
 const Product = () => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full pb-10">
       <Image
-        src="/main/monstera-minia_4.jpeg"
-        className="w-full rounded-md"
-        height={300}
-        width={400}
+        src="/main/drracaena_5.jpeg"
+        className="rounded-md"
+        height={400}
+        width={304}
         alt="product-image"
       />
       <div className="px-1 py-0.5">
