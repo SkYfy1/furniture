@@ -1,4 +1,5 @@
 import CardSection from "@/components/CardSection";
+import MotionList from "@/components/MotionList";
 import Product from "@/components/Product";
 import SaleOverview from "@/components/SaleOverview";
 
@@ -14,23 +15,25 @@ export default function Home() {
           </h1>
           <p>Our plants are sure to brighten up your home (and your future).</p>
         </div>
-        <div className="flex gap-3 w-full justify-between">
+        <MotionList>
           <Product />
           <Product />
           <Product />
           <Product />
           <Product />
-        </div>
+        </MotionList>
       </section>
       <section className="w-full bg-green-50 pt-24 col-span-5">
         <div className="container pb-10">
           <h1 className="text-3xl font-bold">Outlet</h1>
           <p>Enjoy discounts on the following:</p>
         </div>
-        <div className="flex gap-3 w-full container">
-          <Product />
-          <Product />
-          <Product />
+        <div className="container">
+          <MotionList className="gap-3 justify-start">
+            <Product />
+            <Product />
+            <Product />
+          </MotionList>
         </div>
       </section>
     </>
