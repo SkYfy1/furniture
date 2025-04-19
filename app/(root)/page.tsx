@@ -4,7 +4,7 @@ import SaleOverview from "@/components/SaleOverview";
 
 export default function Home() {
   return (
-    <div className="grid-cols-custom grid gap-5 gap-y-5 my-5">
+    <>
       <SaleOverview />
       <CardSection />
       <section className="pt-24 col-start-2 col-end-5 h-full w-full flex-col flex gap-8">
@@ -33,6 +33,6 @@ export default function Home() {
           <Product />
         </div>
       </section>
-    </div>
+    </>
   );
 }
