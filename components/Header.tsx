@@ -5,7 +5,7 @@ import FlyOut from "./FlyOut";
 
 const Header = () => {
   return (
-    <header className="lg:pt-4 lg:pb-5 fixed top-0 left-0 w-full bg-white">
+    <header className="lg:pt-4 lg:pb-5 fixed top-0 left-0 w-full bg-white z-50">
       <div className="container flex justify-between items-center">
         <div className="flex gap-12 items-center">
           <Image src="/svg/lofofrntr.svg" width={180} height={60} alt="logo" />
