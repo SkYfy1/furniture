@@ -17,10 +17,10 @@ const Footer = () => {
       <div className="flex gap-2 items-center mt-20 pt-2 border-t border-gray-200">
         <div className="flex justify-between w-full">
           <p>
-            Only for <span className="underline text-lg">Education</span>
+            Only for <span className="underline lg:text-lg">Education</span>
           </p>
           <p>
-            UX/UI by <span className="text-lg">FRNTR</span>@ 2023
+            UX/UI by <span className="lg:text-lg">FRNTR</span>@ 2023
           </p>
         </div>
       </div>
