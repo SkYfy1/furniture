@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const SaleOverview = () => {
+const SaleOverview: React.FC = () => {
   return (
     <section className=" bg-olive col-span-5 p-10 pb-0 lg:pb-10">
       <div className="container flex lg:flex-row flex-col  items-center justify-between">

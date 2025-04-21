@@ -1,9 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const CardSection = () => {
-  // [grid-auto-rows:minmax(678px,_780px)]
-  //   grid-rows-[678px_789px] auto-rows-[minmax(678px,_780px)]
+const CardSection: React.FC = () => {
   return (
     <>
       <div className="flex gap-4 flex-col lg:flex-row bg-orange col-start-2 col-end-5 pt-20 pl-10">

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import React from "react";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="w-full col-span-5 px-6 pt-36 pb-5 flex flex-col gap-4">
       <Image src="/svg/lofofrntr.svg" width={180} height={60} alt="logo" />

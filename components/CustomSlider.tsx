@@ -4,7 +4,7 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useState } from "react";
 
-const CustomSlider = () => {
+const CustomSlider: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -20,6 +20,7 @@ const CustomSlider = () => {
   const [range, setRange] = useState(getInitialRange);
   const [showSlider, setShowSlider] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateParams = useCallback(
     debounce((values: number[]) => {
       const params = new URLSearchParams(searchParams);

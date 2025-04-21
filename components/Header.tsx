@@ -5,7 +5,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import FlyOut from "./FlyOut";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <header className="lg:pt-4 lg:pb-5 py-4 px-5 lg:px-0 fixed top-0 left-0 w-full bg-white z-50">

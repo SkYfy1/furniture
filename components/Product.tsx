@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Product = () => {
+const Product: React.FC = () => {
   return (
     <div className="flex flex-col h-full pb-10 min-h-[351] min-w-fit lg:min-w-0">
       <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative">
