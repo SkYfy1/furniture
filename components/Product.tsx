@@ -3,8 +3,8 @@ import React from "react";
 
 const Product = () => {
   return (
-    <div className="flex flex-col h-full pb-10 min-h-[351] min-w-1/2 lg:min-w-0">
-      <div className="lg:size-[200] 2xl:size-[300] size-[160] sm:size-[170] md:size-[350] relative">
+    <div className="flex flex-col h-full pb-10 min-h-[351] min-w-fit lg:min-w-0">
+      <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative">
         <Image
           src="/main/drracaena_5.jpeg"
           className="rounded-md object-cover"
@@ -21,3 +21,5 @@ const Product = () => {
 };
 
 export default Product;
+
+// size-[160] sm:size-[170] md:size-[350] lg:h-[300] lg:w-[180]
