@@ -7,6 +7,13 @@ import FlyOut from "./FlyOut";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  const handleClose = (e: React.MouseEvent<HTMLElement>) => {
+    if ((e.target as HTMLElement).tagName === "A") {
+      setShowMenu(false);
+    }
+  };
+
   return (
     <header className="lg:pt-4 lg:pb-5 py-4 px-5 lg:px-0 fixed top-0 left-0 w-full bg-white z-50">
       <div className="container flex justify-between items-center">
@@ -102,7 +109,10 @@ const Header: React.FC = () => {
                 alt="search-icon"
               />
             </div>
-            <ul className="flex flex-col gap-12 items-start">
+            <ul
+              className="flex flex-col gap-12 items-start"
+              onClick={handleClose}
+            >
               <li>
                 <Link href="/shop">Shop</Link>
               </li>
