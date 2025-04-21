@@ -19,12 +19,12 @@ const Header: React.FC = () => {
       <div className="container flex justify-between items-center">
         <div className="flex gap-12 items-center">
           <Image src="/svg/lofofrntr.svg" width={180} height={60} alt="logo" />
-          <div className="justify-between items-center gap-12 hidden md:flex">
+          <div className="justify-between items-center gap-12 hidden lg:flex">
             <div className="relative">
               <input
                 type="text"
                 placeholder="Names, categories..."
-                className="bg-gray-50 rounded-full pl-6 pr-22 py-2 focus:outline-1"
+                className="bg-gray-50 rounded-full pl-6 pr-4 xl:pr-22 py-2 focus:outline-1"
               />
               <Image
                 className="absolute top-1/2 right-3 -translate-y-1/2"
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
                 alt="search-icon"
               />
             </div>
-            <ul className="flex gap-12 items-center">
+            <ul className="flex xl:gap-12 gap-4 items-center">
               <li>
                 <Link href="/shop">Shop</Link>
               </li>
