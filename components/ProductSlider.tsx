@@ -3,10 +3,12 @@ import MotionList from "./MotionList";
 import Product from "./Product";
 import CustomLink from "./CustomLink";
 
-const ProductSlider: React.FC<{ title: string; text: string }> = ({
-  title,
-  text,
-}) => {
+interface Props {
+  title: string;
+  text: string;
+}
+
+const ProductSlider: React.FC<Props> = ({ title, text }) => {
   return (
     <section className="container border-t border-gray-200 pt-18 lg:pb-32 px-4 lg:px-0">
       <div className="flex flex-col md:flex-row justify-between items-center pb-10">
