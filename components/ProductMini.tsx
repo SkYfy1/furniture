@@ -4,7 +4,7 @@ import React from "react";
 const ProductMini = () => {
   return (
     <div className="flex gap-4 h-full min-h-fit justify-between min-w-fit lg:min-w-0 py-3 px-2 mt-0 border-b">
-      <div className="h-[100] w-[80] relative">
+      <div className="h-[100] w-[80] lg:h-[180] lg:w-[150] relative">
         <Image
           src="/main/drracaena_5.jpeg"
           className="rounded-md object-cover"
