@@ -11,7 +11,7 @@ const Page: React.FC = () => {
       </div>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <Link
-          href="/stories/japandi-interior-design-stylee"
+          href="/stories/japandi-interior-design-style"
           className="min-h-full bg-gray pl-10 pt-15 lg:pl-0 lg:pt-0 flex flex-col rounded-md border border-transparent hover:border-black cursor-pointer"
         >
           <div className="flex flex-col gap-2 lg:pt-20 lg:pl-10 pr-10 lg:pr-0">
