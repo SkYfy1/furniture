@@ -9,7 +9,7 @@ const Page = () => {
   return (
     <div className="stories-container">
       <div>
-        <div className="w-full h-[400] lg:h-[600] relative">
+        <div className="w-full h-[400] lg:h-[1000] relative">
           <Image
             src="/main/darkColors.jpeg"
             fill
@@ -31,7 +31,7 @@ const Page = () => {
             visually pleasing and effective than even-numbered collections.
             Arrange your plants in groups of 3, 5, 7, 9, and so on."
         />
-        <div className="w-full h-[260] lg:h-[300] relative col-span-2">
+        <div className="w-full h-[260] lg:h-[650] relative col-span-2">
           <Image
             src="/main/alocasia.jpeg"
             fill
@@ -40,18 +40,18 @@ const Page = () => {
           />
         </div>
         <TipSection
-          className="mt-10 mb-20"
+          className="mb-20"
           title="Use Decorative Pots"
           paragraph="Combine pots with different materials and colors for an electric finish. Use pots with similar finishes for an elegant look."
         />
         <ImageGallery />
         <TipSection
-          className="mt-10 mb-20"
+          className="mb-20"
           title="Houseplant Care"
           paragraph="Group plants with other plants that share the same needs in terms of sunlight, water, climate, and so on."
         />
         <div className="flex gap-2 flex-col">
-          <div className="w-full h-[238] lg:h-[300] relative col-span-2">
+          <div className="w-full h-[238] lg:h-[650] relative col-span-2">
             <Image
               src="/main/alocasia.jpeg"
               fill
@@ -59,7 +59,7 @@ const Page = () => {
               alt="category-image"
             />
           </div>
-          <div className="w-full h-[238] lg:h-[300] relative">
+          <div className="w-full h-[238] lg:h-[650] relative">
             <Image
               src="/main/sofa.jpeg"
               fill

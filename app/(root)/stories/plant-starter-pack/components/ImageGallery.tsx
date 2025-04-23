@@ -4,7 +4,7 @@ import React from "react";
 const ImageGallery: React.FC<{ rows?: number }> = ({ rows }) => {
   return (
     <div className="grid grid-cols-2 gap-2">
-      <div className="w-full h-[238] lg:h-[300] relative col-span-2">
+      <div className="w-full h-[238] lg:h-[600] relative col-span-2">
         <Image
           src="/main/alocasia.jpeg"
           fill
@@ -12,7 +12,7 @@ const ImageGallery: React.FC<{ rows?: number }> = ({ rows }) => {
           alt="category-image"
         />
       </div>
-      <div className="w-full h-[238] lg:h-[300] relative">
+      <div className="w-full h-[238] lg:h-[650] relative">
         <Image
           src="/main/sofa.jpeg"
           fill
@@ -20,7 +20,7 @@ const ImageGallery: React.FC<{ rows?: number }> = ({ rows }) => {
           alt="category-image"
         />
       </div>
-      <div className="w-full h-[238] lg:h-[300] relative">
+      <div className="w-full h-[238] lg:h-[650] relative">
         <Image
           src="/main/alocasia.jpeg"
           fill
@@ -30,7 +30,7 @@ const ImageGallery: React.FC<{ rows?: number }> = ({ rows }) => {
       </div>
 
       {rows === 4 && (
-        <div className="w-full h-[400] lg:h-[300] relative col-span-2">
+        <div className="w-full h-[400] lg:h-[1000] relative col-span-2">
           <Image
             src="/main/alocasia.jpeg"
             fill

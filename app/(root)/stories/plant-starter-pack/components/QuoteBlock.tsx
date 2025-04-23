@@ -3,7 +3,7 @@ import React from "react";
 const QuoteBlock: React.FC = () => {
   return (
     <blockquote
-      className="my-12 italic font-medium before:content-[open-quote] before:text-6xl flex gap-4"
+      className="my-12 lg:my-16 italic text-base lg:text-xl font-medium before:content-[open-quote] before:text-6xl flex gap-4"
       cite="https://furniture.superfast.store/en/stories/plant-starter-pack"
     >
       <p>
