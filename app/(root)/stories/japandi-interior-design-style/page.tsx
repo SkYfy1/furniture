@@ -23,7 +23,7 @@ const Page = () => {
         </div>
         <div className="w-full h-[238] lg:h-[650] relative">
           <Image
-            src="/main/sofa.jpeg"
+            src="/main/chairs-rug.jpeg"
             fill
             className="object-cover rounded-md"
             alt="category-image"
@@ -34,13 +34,13 @@ const Page = () => {
           title="What Is Japandi Design?"
           paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
         />
-        <ImageGallery />
+        <ImageGallery images={["japandi-i", "japandi-i", "japandi-inter"]} />
         <TipSection
           className="lg:w-3/4 p-0 pb-8 lg:p-8"
           title="Headline"
           paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
         />
-        <ImageGallery />
+        <ImageGallery images={["chairs-rug", "japandi-inter", "japandi-i"]} />
       </div>
       <div className="container mt-24 px-6">
         <h1 className="font-semibold">Featured products</h1>

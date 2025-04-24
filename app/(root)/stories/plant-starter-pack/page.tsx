@@ -11,7 +11,7 @@ const Page = () => {
       <div>
         <div className="w-full h-[400] lg:h-[1000] relative">
           <Image
-            src="/main/darkColors.jpeg"
+            src="/main/plant-starter-pack_4.jpeg"
             fill
             className="object-cover rounded-md"
             alt="category-image"
@@ -23,7 +23,15 @@ const Page = () => {
             widths and heights together. They’ll look more natural and fresh."
         />
         <QuoteBlock />
-        <ImageGallery rows={4} />
+        <ImageGallery
+          rows={4}
+          images={[
+            "earth.webp",
+            "laptop.webp",
+            "corner.webp",
+            "plant-starter-pack_4.jpeg",
+          ]}
+        />
         <TipSection
           className="mt-10 mb-20"
           title="Arrange Plants In Odd-Numbered Groups"
@@ -33,7 +41,7 @@ const Page = () => {
         />
         <div className="w-full h-[260] lg:h-[650] relative col-span-2">
           <Image
-            src="/main/alocasia.jpeg"
+            src="/main/corner.webp"
             fill
             className="object-cover rounded-md"
             alt="category-image"
@@ -44,7 +52,9 @@ const Page = () => {
           title="Use Decorative Pots"
           paragraph="Combine pots with different materials and colors for an electric finish. Use pots with similar finishes for an elegant look."
         />
-        <ImageGallery />
+        <ImageGallery
+          images={["fill.webp", "plants.webp", "housedecor.webp"]}
+        />
         <TipSection
           className="mb-20"
           title="Houseplant Care"
@@ -53,7 +63,7 @@ const Page = () => {
         <div className="flex gap-2 flex-col">
           <div className="w-full h-[238] lg:h-[650] relative col-span-2">
             <Image
-              src="/main/alocasia.jpeg"
+              src="/main/big-sale-banner_3.jpeg"
               fill
               className="object-cover rounded-md"
               alt="category-image"
@@ -61,7 +71,7 @@ const Page = () => {
           </div>
           <div className="w-full h-[238] lg:h-[650] relative">
             <Image
-              src="/main/sofa.jpeg"
+              src="/main/corner.webp"
               fill
               className="object-cover rounded-md"
               alt="category-image"
