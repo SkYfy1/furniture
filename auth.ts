@@ -1,0 +1,59 @@
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import { compare } from "bcryptjs";
+import { db } from "./db/drizzle";
+import { usersTable } from "./db/schema";
+import { eq } from "drizzle-orm";
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  session: {
+    strategy: "jwt",
+  },
+  pages: {
+    signIn: "/app/orders",
+  },
+  providers: [
+    Credentials({
+      authorize: async (credentials) => {
+        if (!credentials.email || !credentials.password) return null;
+
+        // Check if the user exists
+        const user = await db
+          .select()
+          .from(usersTable)
+          .where(eq(usersTable.email, credentials.email.toString()));
+
+        if (user.length === 0) return null;
+
+        const isValid = compare(
+          credentials.password.toString(),
+          user[0].password
+        );
+
+        if (!isValid) return null;
+
+        return {
+          id: user[0].id.toString(),
+          email: user[0].email.toString(),
+          name: user[0].name.toString(),
+        } as User;
+      },
+    }),
+  ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.email = user.email;
+        token.id = user.id;
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (session.user) {
+        session.user.email = token.email as string;
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  },
+});
