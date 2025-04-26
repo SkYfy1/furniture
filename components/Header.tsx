@@ -54,12 +54,16 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-2 lg:gap-3 items-center">
-          <Image
-            src="/svg/userIcon.svg"
-            width={32}
-            height={32}
-            alt="user icon"
-          />
+          <Link href="/orders">
+            <>
+              <Image
+                src="/svg/userIcon.svg"
+                width={32}
+                height={32}
+                alt="user icon"
+              />
+            </>
+          </Link>
           <Image
             src="/svg/basketIcon.svg"
             width={32}
