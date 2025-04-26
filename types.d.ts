@@ -1,5 +1,11 @@
 interface User {
+  id: string;
   name: string;
   email: string;
-  id: string;
+}
+
+interface AuthCredentials {
+  name: string;
+  email: string;
+  password: string;
 }
