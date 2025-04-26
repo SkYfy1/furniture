@@ -10,7 +10,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   pages: {
-    signIn: "/app/orders",
+    signIn: "/sign-in",
   },
   providers: [
     Credentials({
@@ -25,7 +25,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (user.length === 0) return null;
 
-        const isValid = compare(
+        const isValid = await compare(
           credentials.password.toString(),
           user[0].password
         );
