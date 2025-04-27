@@ -1,0 +1,459 @@
+[
+    {
+        "name": "iPhone 15 Pro",
+        "description": "High-quality iphone 15 pro. Perfect for your needs.",
+        "price": 162,
+        "category": "Phones",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/phone-pink.jpeg",
+        "dimensions": {
+            "width": "70mm",
+            "height": "126mm",
+            "depth": "7mm",
+            "weight": "168g"
+        },
+        "discount": 12,
+        "discountedPrice": 142,
+        "tags": [
+            "kitchen",
+            "outdoors"
+        ]
+    },
+    {
+        "name": "Samsung Galaxy S23",
+        "description": "High-quality samsung galaxy s23. Perfect for your needs.",
+        "price": 284,
+        "category": "Phones",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/phone-pink.jpeg",
+        "dimensions": {
+            "width": "69mm",
+            "height": "130mm",
+            "depth": "10mm",
+            "weight": "170g"
+        },
+        "discount": 24,
+        "discountedPrice": 215,
+        "tags": []
+    },
+    {
+        "name": "Google Pixel 8",
+        "description": "High-quality google pixel 8. Perfect for your needs.",
+        "price": 354,
+        "category": "Phones",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/phone-pink.jpeg",
+        "dimensions": {
+            "width": "71mm",
+            "height": "135mm",
+            "depth": "6mm",
+            "weight": "186g"
+        },
+        "discount": 14,
+        "discountedPrice": 304,
+        "tags": []
+    },
+    {
+        "name": "Xiaomi Mi 13",
+        "description": "High-quality xiaomi mi 13. Perfect for your needs.",
+        "price": 52,
+        "category": "Phones",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/phone-green.jpeg",
+        "dimensions": {
+            "width": "69mm",
+            "height": "133mm",
+            "depth": "9mm",
+            "weight": "189g"
+        },
+        "discount": 29,
+        "discountedPrice": 36,
+        "tags": [
+            "4-for-3"
+        ]
+    },
+    {
+        "name": "OnePlus 11",
+        "description": "High-quality oneplus 11. Perfect for your needs.",
+        "price": 461,
+        "category": "Phones",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/phone-green.jpeg",
+        "dimensions": {
+            "width": "65mm",
+            "height": "135mm",
+            "depth": "10mm",
+            "weight": "196g"
+        },
+        "discount": null,
+        "discountedPrice": 461,
+        "tags": [
+            "3-for-2",
+            "outdoors"
+        ]
+    },
+    {
+        "name": "Rose Bouquet",
+        "description": "High-quality rose bouquet. Perfect for your needs.",
+        "price": 478,
+        "category": "Flowers",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/pink-and-yellow-lily.jpeg",
+        "dimensions": {
+            "width": "39cm",
+            "height": "53cm",
+            "depth": "23cm",
+            "weight": "1kg"
+        },
+        "discount": null,
+        "discountedPrice": 478,
+        "tags": [
+            "outdoors",
+            "4-for-3"
+        ]
+    },
+    {
+        "name": "Tulips",
+        "description": "High-quality tulips. Perfect for your needs.",
+        "price": 232,
+        "category": "Flowers",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sulfur-cosmos.jpeg",
+        "dimensions": {
+            "width": "25cm",
+            "height": "57cm",
+            "depth": "21cm",
+            "weight": "2kg"
+        },
+        "discount": null,
+        "discountedPrice": 232,
+        "tags": []
+    },
+    {
+        "name": "Daisies",
+        "description": "High-quality daisies. Perfect for your needs.",
+        "price": 385,
+        "category": "Flowers",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/orange-tulips.jpeg",
+        "dimensions": {
+            "width": "21cm",
+            "height": "55cm",
+            "depth": "31cm",
+            "weight": "2kg"
+        },
+        "discount": 11,
+        "discountedPrice": 342,
+        "tags": [
+            "living-room"
+        ]
+    },
+    {
+        "name": "Orchids",
+        "description": "High-quality orchids. Perfect for your needs.",
+        "price": 459,
+        "category": "Flowers",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/pink-and-yellow-lily.jpeg",
+        "dimensions": {
+            "width": "29cm",
+            "height": "56cm",
+            "depth": "22cm",
+            "weight": "2kg"
+        },
+        "discount": 24,
+        "discountedPrice": 348,
+        "tags": [
+            "kitchen"
+        ]
+    },
+    {
+        "name": "Peonies",
+        "description": "High-quality peonies. Perfect for your needs.",
+        "price": 245,
+        "category": "Flowers",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/pink-and-yellow-lily.jpeg",
+        "dimensions": {
+            "width": "35cm",
+            "height": "50cm",
+            "depth": "27cm",
+            "weight": "2kg"
+        },
+        "discount": null,
+        "discountedPrice": 245,
+        "tags": []
+    },
+    {
+        "name": "Knife Set",
+        "description": "High-quality knife set. Perfect for your needs.",
+        "price": 79,
+        "category": "Kitchen",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/blender%20(1).jpeg",
+        "dimensions": {
+            "width": "25cm",
+            "height": "11cm",
+            "depth": "24cm",
+            "weight": "3kg"
+        },
+        "discount": null,
+        "discountedPrice": 79,
+        "tags": [
+            "outdoors",
+            "living-room"
+        ]
+    },
+    {
+        "name": "Frying Pan",
+        "description": "High-quality frying pan. Perfect for your needs.",
+        "price": 274,
+        "category": "Kitchen",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/blender.jpeg",
+        "dimensions": {
+            "width": "39cm",
+            "height": "13cm",
+            "depth": "22cm",
+            "weight": "1kg"
+        },
+        "discount": null,
+        "discountedPrice": 274,
+        "tags": [
+            "kitchen"
+        ]
+    },
+    {
+        "name": "Cooking Pot",
+        "description": "High-quality cooking pot. Perfect for your needs.",
+        "price": 304,
+        "category": "Kitchen",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/blender.jpeg",
+        "dimensions": {
+            "width": "24cm",
+            "height": "24cm",
+            "depth": "14cm",
+            "weight": "1kg"
+        },
+        "discount": 25,
+        "discountedPrice": 228,
+        "tags": [
+            "vegan",
+            "3-for-2"
+        ]
+    },
+    {
+        "name": "Mixer",
+        "description": "High-quality mixer. Perfect for your needs.",
+        "price": 128,
+        "category": "Kitchen",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/blender%20(2).jpeg",
+        "dimensions": {
+            "width": "36cm",
+            "height": "23cm",
+            "depth": "29cm",
+            "weight": "3kg"
+        },
+        "discount": null,
+        "discountedPrice": 128,
+        "tags": [
+            "eco-friendly"
+        ]
+    },
+    {
+        "name": "Blender",
+        "description": "High-quality blender. Perfect for your needs.",
+        "price": 429,
+        "category": "Kitchen",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/blender%20(2).jpeg",
+        "dimensions": {
+            "width": "32cm",
+            "height": "23cm",
+            "depth": "27cm",
+            "weight": "3kg"
+        },
+        "discount": 27,
+        "discountedPrice": 313,
+        "tags": [
+            "new-arrival",
+            "outdoors"
+        ]
+    },
+    {
+        "name": "Comfort Sofa",
+        "description": "High-quality comfort sofa. Perfect for your needs.",
+        "price": 167,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-2.jpeg",
+        "dimensions": {
+            "width": "223cm",
+            "height": "98cm",
+            "depth": "111cm",
+            "weight": "50kg"
+        },
+        "discount": 7,
+        "discountedPrice": 155,
+        "tags": [
+            "3-for-2",
+            "vegan"
+        ]
+    },
+    {
+        "name": "Loft Sofa",
+        "description": "High-quality loft sofa. Perfect for your needs.",
+        "price": 324,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-2.jpeg",
+        "dimensions": {
+            "width": "199cm",
+            "height": "88cm",
+            "depth": "85cm",
+            "weight": "53kg"
+        },
+        "discount": null,
+        "discountedPrice": 324,
+        "tags": []
+    },
+    {
+        "name": "Minimalism Sofa",
+        "description": "High-quality minimalism sofa. Perfect for your needs.",
+        "price": 488,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-1.jpeg",
+        "dimensions": {
+            "width": "216cm",
+            "height": "83cm",
+            "depth": "123cm",
+            "weight": "56kg"
+        },
+        "discount": null,
+        "discountedPrice": 488,
+        "tags": []
+    },
+    {
+        "name": "Relax Sofa",
+        "description": "High-quality relax sofa. Perfect for your needs.",
+        "price": 265,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-1.jpeg",
+        "dimensions": {
+            "width": "202cm",
+            "height": "97cm",
+            "depth": "105cm",
+            "weight": "51kg"
+        },
+        "discount": null,
+        "discountedPrice": 265,
+        "tags": [
+            "vegan",
+            "kitchen"
+        ]
+    },
+    {
+        "name": "Classic Sofa",
+        "description": "High-quality classic sofa. Perfect for your needs.",
+        "price": 507,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-2.jpeg",
+        "dimensions": {
+            "width": "193cm",
+            "height": "88cm",
+            "depth": "119cm",
+            "weight": "58kg"
+        },
+        "discount": 15,
+        "discountedPrice": 430,
+        "tags": []
+    },
+    {
+        "name": "Cat Sofa",
+        "description": "High-quality cat sofa. Perfect for your needs.",
+        "price": 537,
+        "category": "Sofas",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/sofa-2.jpeg",
+        "dimensions": {
+            "width": "185cm",
+            "height": "78cm",
+            "depth": "122cm",
+            "weight": "62kg"
+        },
+        "discount": null,
+        "discountedPrice": 537,
+        "tags": [
+            "new-arrival"
+        ]
+    },
+    {
+        "name": "Ficus",
+        "description": "High-quality ficus. Perfect for your needs.",
+        "price": 244,
+        "category": "Plants",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/monstera-minia_4.jpeg",
+        "dimensions": {
+            "width": "22cm",
+            "height": "96cm",
+            "depth": "25cm",
+            "weight": "1kg"
+        },
+        "discount": 11,
+        "discountedPrice": 217,
+        "tags": [
+            "outdoors",
+            "living-room"
+        ]
+    },
+    {
+        "name": "Cactus",
+        "description": "High-quality cactus. Perfect for your needs.",
+        "price": 417,
+        "category": "Plants",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/plant17_4.jpeg",
+        "dimensions": {
+            "width": "33cm",
+            "height": "54cm",
+            "depth": "22cm",
+            "weight": "4kg"
+        },
+        "discount": 16,
+        "discountedPrice": 350,
+        "tags": []
+    },
+    {
+        "name": "Monstera",
+        "description": "High-quality monstera. Perfect for your needs.",
+        "price": 206,
+        "category": "Plants",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/philodendron-birkin_5.jpeg",
+        "dimensions": {
+            "width": "49cm",
+            "height": "62cm",
+            "depth": "30cm",
+            "weight": "3kg"
+        },
+        "discount": 26,
+        "discountedPrice": 152,
+        "tags": []
+    },
+    {
+        "name": "Fern",
+        "description": "High-quality fern. Perfect for your needs.",
+        "price": 365,
+        "category": "Plants",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/monstera-minia_4.jpeg",
+        "dimensions": {
+            "width": "20cm",
+            "height": "48cm",
+            "depth": "21cm",
+            "weight": "2kg"
+        },
+        "discount": null,
+        "discountedPrice": 365,
+        "tags": []
+    },
+    {
+        "name": "Orchid Plant",
+        "description": "High-quality orchid plant. Perfect for your needs.",
+        "price": 117,
+        "category": "Plants",
+        "imageUrl": "https://qgbvgmxttrpojnczyfdn.supabase.co/storage/v1/object/public/images/philodendron-birkin_5.jpeg",
+        "dimensions": {
+            "width": "36cm",
+            "height": "95cm",
+            "depth": "29cm",
+            "weight": "3kg"
+        },
+        "discount": null,
+        "discountedPrice": 117,
+        "tags": [
+            "4-for-3"
+        ]
+    }
+]
