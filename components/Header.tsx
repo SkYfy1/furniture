@@ -18,7 +18,14 @@ const Header: React.FC = () => {
     <header className="lg:pt-4 lg:pb-5 py-4 px-5 lg:px-0 fixed top-0 left-0 w-full bg-white z-50">
       <div className="container flex justify-between items-center">
         <div className="flex gap-12 items-center">
-          <Image src="/svg/lofofrntr.svg" width={180} height={60} alt="logo" />
+          <Link href="/">
+            <Image
+              src="/svg/lofofrntr.svg"
+              width={170}
+              height={20}
+              alt="logo"
+            />
+          </Link>
           <div className="justify-between items-center gap-12 hidden lg:flex">
             <div className="relative">
               <input
@@ -35,10 +42,10 @@ const Header: React.FC = () => {
               />
             </div>
             <ul className="flex xl:gap-12 gap-4 items-center">
-              <li>
+              <li className="cursor-pointer hover:underline">
                 <Link href="/shop">Shop</Link>
               </li>
-              <li>
+              <li className="cursor-pointer hover:underline">
                 <Link href="/stories">Stories</Link>
               </li>
               <FlyOut title="promotions" links={["3-for-2", "4-for-3"]} />
@@ -54,22 +61,22 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-2 lg:gap-3 items-center">
-          <Link href="/orders">
-            <>
-              <Image
-                src="/svg/userIcon.svg"
-                width={32}
-                height={32}
-                alt="user icon"
-              />
-            </>
+          <Link href="/orders" className="hover:bg-gray p-2">
+            <Image
+              src="/svg/userIcon.svg"
+              width={32}
+              height={32}
+              alt="user icon"
+            />
           </Link>
-          <Image
-            src="/svg/basketIcon.svg"
-            width={32}
-            height={32}
-            alt="basket"
-          />
+          <Link href="/cart" className="hover:bg-gray p-2">
+            <Image
+              src="/svg/basketIcon.svg"
+              width={32}
+              height={32}
+              alt="basket"
+            />
+          </Link>
           <select name="En" id="En" className="p-0.5 pr-2 border-2 rounded-sm">
             <option value="En">En</option>
             <option value="Fr">Fr</option>
