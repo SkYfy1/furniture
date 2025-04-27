@@ -28,6 +28,7 @@ export const signInWithCredentials = async (
 
     return { success: true };
   } catch (error) {
+    console.log(error);
     return { success: false, message: "Signin exists" };
   }
 };
@@ -57,6 +58,7 @@ export const signUp = async (credentials: AuthCredentials) => {
 
     return { success: true };
   } catch (error) {
+    console.log(error);
     return { success: false, message: "Signup exists" };
   }
 };
