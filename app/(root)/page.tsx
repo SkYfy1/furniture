@@ -2,8 +2,29 @@ import CardSection from "@/components/CardSection";
 import MotionList from "@/components/MotionList";
 import Product from "@/components/Product";
 import SaleOverview from "@/components/SaleOverview";
+import { db } from "@/db/drizzle";
+import { productsTable } from "@/db/schema";
+import { eq, or } from "drizzle-orm";
 
-export default function Home() {
+export default async function Home() {
+  const plants = await db
+    .select()
+    .from(productsTable)
+    .where(eq(productsTable.category, "Plants"));
+
+  const outlet = await db
+    .selectDistinctOn([productsTable.category])
+    .from(productsTable)
+    .where(
+      or(
+        eq(productsTable.category, "Plants"),
+        eq(productsTable.category, "Flowers"),
+        eq(productsTable.category, "Phones")
+      )
+    )
+    .limit(5)
+    .orderBy(productsTable.category);
+
   return (
     <div className="grid-cols-custom grid gap-5 gap-y-5 my-5">
       <SaleOverview />
@@ -18,11 +39,9 @@ export default function Home() {
           </p>
         </div>
         <MotionList>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {plants.map((plant) => (
+            <Product key={plant.id} data={plant} />
+          ))}
         </MotionList>
       </section>
       <section className="w-full bg-green-50 pt-24 col-span-5 px-8 lg:px-0">
@@ -32,9 +51,9 @@ export default function Home() {
         </div>
         <div className="container">
           <MotionList className="gap-3 justify-start">
-            <Product />
-            <Product />
-            <Product />
+            {outlet.map((product) => (
+              <Product key={product.id} data={product} />
+            ))}
           </MotionList>
         </div>
       </section>
