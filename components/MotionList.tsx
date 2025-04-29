@@ -21,39 +21,20 @@ const MotionList: React.FC<Props> = ({ children, className }) => {
   }, []);
 
   return (
-    <div ref={ref} className="w-full overflow-hidden">
+    <motion.div ref={ref} className="w-full overflow-hidden">
       <motion.div
         initial={false}
         drag="x"
         dragConstraints={{
-          left: -width,
+          left: -width * 1.2,
           right: 0,
         }}
         className={cn("flex gap-3 w-full justify-between", className)}
       >
         {children}
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
 export default MotionList;
-
-{
-  /* <button
-        className="absolute right-0 top-1/2 z-20 -translate-y-full bg-white rounded-full p-3 border-gray-500"
-        onClick={() =>
-          ref.current?.scrollTo(
-            ref.current.scrollLeft + ref.current.offsetWidth,
-            0
-          )
-        }
-      >
-        <Image
-          src="/svg/b9f50123-f337-49a6-b90e-bb3fdf52bbab.svg"
-          height={20}
-          width={20}
-          alt="arrow"
-        />
-      </button> */
-}
