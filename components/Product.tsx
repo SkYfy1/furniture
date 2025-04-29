@@ -6,7 +6,7 @@ const Product: React.FC<{ data: Product }> = ({ data }) => {
   return (
     <Link
       href={`/shop/${data.category.toLowerCase()}/${data.id}`}
-      className="flex flex-col h-full pb-10 min-h-[351] min-w-fit lg:min-w-0"
+      className="flex flex-col h-full pb-10 min-h-[351] min-w-fit 2xl:min-w-[300] "
     >
       <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative">
         {data.discount && (
@@ -16,7 +16,7 @@ const Product: React.FC<{ data: Product }> = ({ data }) => {
         )}
         <Image
           src={data.imageUrl}
-          className="rounded-md object-cover"
+          className="rounded-md object-cover pointer-events-none"
           fill
           alt="product-image"
         />
