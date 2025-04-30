@@ -15,6 +15,13 @@
       "when": 1745789471775,
       "tag": "0001_brainy_brother_voodoo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746050682911,
+      "tag": "0002_unknown_stranger",
+      "breakpoints": true
     }
   ]
 }

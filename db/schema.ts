@@ -32,4 +32,5 @@ export const productsTable = table("product_table", {
   discount: integer("discount"),
   discountedPrice: integer("discounted_price").notNull(),
   tags: text("tags").array(),
+  availableQuantity: integer("available_quantity").notNull().default(10),
 });
