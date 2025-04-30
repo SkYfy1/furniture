@@ -28,4 +28,5 @@ interface Product {
   discount: number | null;
   discountedPrice: number | null;
   tags: string[] | null;
+  availableQuantity: number;
 }
