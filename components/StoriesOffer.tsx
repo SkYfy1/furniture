@@ -1,10 +1,34 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import ProductMini from "./ProductMini";
 import { cn } from "@/lib/utils";
 
-const StoriesOffer = () => {
+const StoriesOffer: React.FC<{
+  products: Product[];
+  selected?: number | null;
+}> = ({ products }) => {
+  const [offerObjects, setOfferObjects] = useState(
+    products.map((el) => ({ id: el.id, quantity: 1 }))
+  );
+  const fullPrice = products.reduce((prev, cur) => {
+    const currentQuantity = offerObjects?.find(
+      (el) => el.id === cur.id
+    )?.quantity;
+    return (
+      prev +
+      (cur.discount! ? cur.discountedPrice! : cur.price) * currentQuantity!
+    );
+  }, 0);
+
+  const updateQuantity = (id: string, value: number) => {
+    setOfferObjects((prev) =>
+      prev.map((el) => (el.id === id ? { id, quantity: value } : el))
+    );
+  };
+
   return (
-    <div className="px-6 lg:w-full">
+    <div className="px-6 xl:max-w-[36%] lg:max-w-1/3">
       <h2 className="capitalize font-semibold text-3xl pb-2">Dark Colors</h2>
       <p className="border-b pb-3">
         Designing with dark colors can add depth and coziness to a small space.
@@ -12,12 +36,25 @@ const StoriesOffer = () => {
       </p>
       <div className="sticky top-20">
         <section className="mt-4">
-          <ProductMini />
-          <ProductMini />
-          <ProductMini />
+          {products.map((product) => {
+            const quantity = offerObjects.find(
+              (el) => el.id === product.id
+            )?.quantity;
+            console.log(quantity);
+            return (
+              <ProductMini
+                key={product.id}
+                data={product}
+                quantity={quantity!}
+                changeQuantity={updateQuantity}
+              />
+            );
+          })}
         </section>
         <div className="flex justify-between mt-5 pt-5 items-center">
-          <span className="text-2xl font-semibold text-green-900">€369.00</span>
+          <span className="text-2xl font-semibold text-green-900">
+            €{fullPrice}.00
+          </span>
           <div className="flex flex-col lg:flex-row gap-1.5">
             <button
               className={cn(
