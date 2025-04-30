@@ -4,8 +4,16 @@ import React from "react";
 import QuoteBlock from "./components/QuoteBlock";
 import ImageGallery from "./components/ImageGallery";
 import TipSection from "@/components/TipSection";
+import { db } from "@/db/drizzle";
+import { productsTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
-const Page = () => {
+const Page = async () => {
+  const products = await db
+    .select()
+    .from(productsTable)
+    .where(eq(productsTable.category, "Plants"))
+    .limit(3);
   return (
     <div className="stories-container">
       <div>
@@ -79,7 +87,7 @@ const Page = () => {
           </div>
         </div>
       </div>
-      <StoriesOffer />
+      <StoriesOffer products={products} />
     </div>
   );
 };
