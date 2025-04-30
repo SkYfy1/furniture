@@ -3,8 +3,11 @@ import Image from "next/image";
 import React from "react";
 import ImageGallery from "../plant-starter-pack/components/ImageGallery";
 import Product from "@/components/Product";
+import { db } from "@/db/drizzle";
+import { productsTable } from "@/db/schema";
 
-const Page = () => {
+const Page = async () => {
+  const products = await db.select().from(productsTable).limit(10);
   return (
     <>
       <div className="mt-20 lg:mt-36 max-w-[95rem] mx-auto px-6 lg:pr-96">
@@ -34,25 +37,24 @@ const Page = () => {
           title="What Is Japandi Design?"
           paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
         />
-        <ImageGallery images={["japandi-i", "japandi-i", "japandi-inter"]} />
+        <ImageGallery
+          images={["japandi-i.jpeg", "japandi-i.jpeg", "japandi-inter.jpeg"]}
+        />
         <TipSection
           className="lg:w-3/4 p-0 pb-8 lg:p-8"
           title="Headline"
           paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
         />
-        <ImageGallery images={["chairs-rug", "japandi-inter", "japandi-i"]} />
+        <ImageGallery
+          images={["chairs-rug.jpeg", "japandi-inter.jpeg", "japandi-i.jpeg"]}
+        />
       </div>
       <div className="container mt-24 px-6">
         <h1 className="font-semibold">Featured products</h1>
         <div className="grid grid-cols-2 mt-5 lg:gap-12 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {products.map((product) => (
+            <Product key={product.id} data={product} />
+          ))}
         </div>
       </div>
     </>
