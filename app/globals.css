@@ -7,6 +7,7 @@
   --color-foreground: var(--foreground);
   --color-olive: rgb(240, 239, 235);
   --color-gray: #f5f5f5;
+  --color-green-price: rgb(60, 88, 63);
   --color-green: rgb(226, 236, 233);
   --color-orange: rgb(255, 241, 230);
   --font-sans: var(--font-geist-sans);
