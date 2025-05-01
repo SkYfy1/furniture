@@ -9,10 +9,11 @@ import {
   FieldError,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { ZodType } from "zod";
 import { useRouter } from "next/navigation";
 import CustomInput from "./CustomInput";
+import Image from "next/image";
 
 interface Props<T extends FieldValues> {
   type: "SIGN_UP" | "SIGN_IN";
@@ -28,6 +29,7 @@ const AuthForm = <T extends FieldValues>({
   submitHandler,
 }: Props<T>) => {
   const router = useRouter();
+  const [showPass, setShowPass] = useState(false);
 
   const {
     register,
@@ -48,7 +50,10 @@ const AuthForm = <T extends FieldValues>({
     }
   };
   return (
-    <form onSubmit={handleSubmit(submitForm)} className="flex flex-col gap-4">
+    <form
+      onSubmit={handleSubmit(submitForm)}
+      className="flex flex-col gap-4 relative"
+    >
       <CustomInput<T>
         register={register}
         error={errors.email as FieldError}
@@ -65,6 +70,15 @@ const AuthForm = <T extends FieldValues>({
         register={register}
         error={errors.password as FieldError}
         name={"password" as Path<T>}
+        showPass={showPass}
+      />
+      <Image
+        onClick={() => setShowPass((prev) => !prev)}
+        className="absolute bottom-19 right-3"
+        src={showPass ? "/svg/eye-hide.svg" : "/svg/eye-show.svg"}
+        width={18}
+        height={18}
+        alt="Show password icon"
       />
       <button
         className="w-full bg-black text-white py-2 rounded-sm"
