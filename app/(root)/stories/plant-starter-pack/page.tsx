@@ -16,8 +16,8 @@ const Page = async () => {
     .limit(3);
   return (
     <div className="stories-container">
-      <div>
-        <div className="w-full h-[400] lg:h-[1000] relative">
+      <div className="lg:w-7/12">
+        <div className="w-full h-[400] md:h-[600] lg:h-[700] xl:h-[800] relative">
           <Image
             src="/main/plant-starter-pack_4.jpeg"
             fill

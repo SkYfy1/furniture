@@ -14,8 +14,8 @@ const Page: React.FC = async () => {
     .limit(3);
   return (
     <div className="stories-container relative">
-      <div className="rounded-md">
-        <div className="w-full h-[295] lg:h-[600] relative">
+      <div className="lg:w-7/12">
+        <div className="w-full h-[295] md:h-[430] xl:h-[550] 2xl:h-[700] relative">
           <Image
             src="/main/darkColors.jpeg"
             fill

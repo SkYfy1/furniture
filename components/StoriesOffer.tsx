@@ -28,7 +28,7 @@ const StoriesOffer: React.FC<{
   };
 
   return (
-    <div className="px-6 xl:max-w-[36%] lg:max-w-1/3">
+    <div className="px-6 w-full lg:w-5/12">
       <h2 className="capitalize font-semibold text-3xl pb-2">Dark Colors</h2>
       <p className="border-b pb-3">
         Designing with dark colors can add depth and coziness to a small space.
