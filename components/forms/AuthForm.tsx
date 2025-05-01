@@ -6,11 +6,13 @@ import {
   useForm,
   SubmitHandler,
   Path,
+  FieldError,
 } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { ZodType } from "zod";
 import { useRouter } from "next/navigation";
+import CustomInput from "./CustomInput";
 
 interface Props<T extends FieldValues> {
   type: "SIGN_UP" | "SIGN_IN";
@@ -46,31 +48,30 @@ const AuthForm = <T extends FieldValues>({
     }
   };
   return (
-    <form
-      onSubmit={handleSubmit(submitForm)}
-      className="flex flex-col gap-3 w-1/3"
-    >
-      <input
-        className="bg-gray"
-        type="text"
-        {...register("email" as Path<T>)}
+    <form onSubmit={handleSubmit(submitForm)} className="flex flex-col gap-4">
+      <CustomInput<T>
+        register={register}
+        error={errors.email as FieldError}
+        name={"email" as Path<T>}
       />
-      {errors.email && <span>errors.email.message</span>}
       {type === "SIGN_UP" && (
-        <input
-          className="bg-gray"
-          type="text"
-          {...register("name" as Path<T>)}
+        <CustomInput<T>
+          register={register}
+          error={errors.name as FieldError}
+          name={"name" as Path<T>}
         />
       )}
-      {errors.name && <span>errors.name.message</span>}
-      <input
-        className="bg-gray"
-        type="text"
-        {...register("password" as Path<T>)}
+      <CustomInput<T>
+        register={register}
+        error={errors.password as FieldError}
+        name={"password" as Path<T>}
       />
-      {errors.password && <span>errors.password.message</span>}
-      <button type="submit">Submit</button>
+      <button
+        className="w-full bg-black text-white py-2 rounded-sm"
+        type="submit"
+      >
+        Submit
+      </button>
     </form>
   );
 };
