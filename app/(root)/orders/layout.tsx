@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import LogOut from "@/components/LogOut";
 import React from "react";
 
 const Layout: React.FC<{
@@ -9,7 +10,10 @@ const Layout: React.FC<{
 
   return (
     <div className="container pt-12 min-h-screen">
-      <h1 className="text-2xl font-semibold">Your orders</h1>
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-semibold">Your orders</h1>
+        {session?.user && <LogOut />}
+      </div>
       {session?.user ? orders : authorization}
     </div>
   );
