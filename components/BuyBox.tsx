@@ -68,7 +68,10 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
             <p className="font-semibold">Online</p>
             <div className="size-2.5 rounded-full bg-green-price"></div>
           </div>
-          <p>20+ in stock</p>
+          <p>
+            {product.availableQuantity < 20 ? product.availableQuantity : "20+"}{" "}
+            in stock
+          </p>
         </div>
       </div>
     </section>
