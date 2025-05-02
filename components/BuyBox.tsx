@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import BuyButtons from "./BuyButtons";
 
 const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
   return (
@@ -19,8 +19,8 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
           ))}
         </div>
         <div>
-          <h1 className="text-3xl font-bold mb-2">Sulfur Cosmos</h1>
-          <h2 className="text-sm">Sulfur Cosmos</h2>
+          <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+          <h2 className="text-sm">{product.name}</h2>
         </div>
         <div>
           {product.discount ? (
@@ -41,22 +41,17 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
             <span className="font-semibold text-sm">€{product.price}.00</span>
           )}
         </div>
-        <div className="flex flex-col lg:flex-row gap-1.5 mb-3">
-          <button
-            className={cn(
-              "lg:text-lg font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black w-full cursor-pointer duration-300 border border-black"
-            )}
-          >
-            Add to cart
-          </button>
-          <button
-            className={cn(
-              "lg:text-lg font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black w-full cursor-pointer duration-300 border border-black"
-            )}
-          >
-            Buy with ///
-          </button>
-        </div>
+        <BuyButtons
+          payload={{
+            id: product.id,
+            name: product.name,
+            newPrice: product.discountedPrice ?? product.price,
+            oldPrice: product.price,
+            discount: product.discount ?? 0,
+            quantity: 1,
+            image: product.imageUrl,
+          }}
+        />
         <div className="border-t py-4 flex justify-between items-center text-sm">
           <div className="flex gap-2 items-center">
             <Image
