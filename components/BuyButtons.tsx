@@ -15,7 +15,6 @@ const BuyButtons: React.FC<Props> = ({ payload }) => {
     <div className="flex flex-col lg:flex-row gap-1.5 mb-3">
       <button
         onClick={() => {
-          console.log("dad");
           dispatch(addItem(payload));
         }}
         className={cn(
