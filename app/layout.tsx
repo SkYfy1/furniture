@@ -3,6 +3,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import StoreProvider from "./StoreProvider";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -23,7 +24,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} antialiased`}>
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <StoreProvider>
+          <SessionProvider session={session}>{children}</SessionProvider>
+        </StoreProvider>
       </body>
     </html>
   );
