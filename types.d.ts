@@ -30,3 +30,13 @@ interface Product {
   tags: string[] | null;
   availableQuantity: number;
 }
+
+interface CartItem {
+  id: string;
+  name: string;
+  newPrice: number;
+  oldPrice: number;
+  discount: number;
+  quantity: number;
+  image: string;
+}
