@@ -3,7 +3,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="container px-72 pt-14">
+    <div className="container px-12 xl:px-72 pt-14">
       <h1 className="text-xl font-semibold mb-4">Cart</h1>
       <Cart />
     </div>
