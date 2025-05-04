@@ -10,6 +10,8 @@ import {
 
 export const ROLE_ENUM = pgEnum("role", ["user", "admin"]);
 
+export const SIZE_ENUM = pgEnum("size", ["small", "medium", "large"]);
+
 export const usersTable = table("user_table", {
   id: uuid("id").primaryKey().defaultRandom().unique(),
   name: text("name").notNull(),
@@ -32,5 +34,20 @@ export const productsTable = table("product_table", {
   discount: integer("discount"),
   discountedPrice: integer("discounted_price").notNull(),
   tags: text("tags").array(),
+  availableQuantity: integer("available_quantity").notNull().default(10),
+});
+
+export const variantsTable = table("product_variants", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  productId: uuid("product_id")
+    .references(() => productsTable.id)
+    .notNull(),
+  sku: text("sku").notNull(),
+  size: SIZE_ENUM(),
+  color: text("color"),
+  price: integer("price").notNull(),
+  discount: integer("discount"),
+  discountedPrice: integer("discounted_price").notNull(),
+  imageUrl: text("imageUrl").notNull(),
   availableQuantity: integer("available_quantity").notNull().default(10),
 });
