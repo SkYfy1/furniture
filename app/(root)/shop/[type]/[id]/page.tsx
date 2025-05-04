@@ -22,7 +22,7 @@ const Page: React.FC<Props> = async ({ params }) => {
           <Image
             src={product.imageUrl}
             fill
-            className="object-cover"
+            className="object-contain"
             alt={`${product.name}-image`}
           />
         </div>
