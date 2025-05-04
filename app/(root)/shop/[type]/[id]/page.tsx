@@ -1,26 +1,33 @@
 import BuyBox from "@/components/BuyBox";
 import ProductDimensions from "@/components/ProductDimensions";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getProductById, getVariants } from "@/lib/data/products";
 import Image from "next/image";
 import React from "react";
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ sku: string }>;
 }
 
-const Page: React.FC<Props> = async ({ params }) => {
+const Page: React.FC<Props> = async ({ params, searchParams }) => {
   const id = (await params).id;
-  const product = (
-    await db.select().from(productsTable).where(eq(productsTable.id, id))
-  )[0];
+  const searchPars = (await searchParams).sku;
+  const [product, variants] = await Promise.all([
+    getProductById(id),
+    getVariants(id),
+  ]);
+
+  const defaultSku =
+    searchPars ?? variants[Math.floor(variants.length / 2)]?.sku;
+
+  const selectedItem = variants.find((variant) => variant.sku === defaultSku);
+
   return (
     <div className="stories-container mt-0">
       <div className="w-full">
         <div className="w-full h-[600] max-h-[1400] relative">
           <Image
-            src={product.imageUrl}
+            src={selectedItem?.imageUrl ?? product.imageUrl}
             fill
             className="object-contain"
             alt={`${product.name}-image`}
@@ -31,7 +38,11 @@ const Page: React.FC<Props> = async ({ params }) => {
           <h2 className="font-semibold">You might also be interested in</h2>
         </div>
       </div>
-      <BuyBox product={product} />
+      <BuyBox
+        product={product}
+        variants={variants}
+        selected={selectedItem as Variant}
+      />
     </div>
   );
 };
