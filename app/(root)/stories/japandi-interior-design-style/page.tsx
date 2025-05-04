@@ -10,7 +10,7 @@ const Page = async () => {
   const products = await db.select().from(productsTable).limit(10);
   return (
     <>
-      <div className="mt-20 lg:mt-36 max-w-[95rem] mx-auto px-6 lg:pr-96">
+      <div className="mt-8 md:mt-20 lg:mt-24 max-w-[95rem] mx-auto px-6 lg:pr-96">
         <span className=" text-sm mb-3 block">February 21, 2025</span>
         <div className="max-w-[1000]">
           <h1 className="text-5xl font-semibold mb-2">

@@ -26,7 +26,7 @@ export default async function Home() {
     .orderBy(productsTable.category);
 
   return (
-    <div className="grid-cols-custom grid gap-5 gap-y-5 my-5">
+    <div className="grid-cols-custom grid lg:gap-4 lg:gap-y-5 gap-1 lg:my-5">
       <SaleOverview />
       <CardSection />
       <section className="lg:pt-24 pt-20 col-start-2 col-end-5 h-full w-full flex-col flex gap-8">

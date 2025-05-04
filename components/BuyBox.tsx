@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import BuyButtons from "./BuyButtons";
+import { cn } from "@/lib/utils";
 
 const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
   return (
@@ -18,7 +19,7 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
             </Link>
           ))}
         </div>
-        <div>
+        <div className={cn(product.tags?.length === 0 && "mt-4 md:mt-0")}>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
           <h2 className="text-sm">{product.name}</h2>
         </div>

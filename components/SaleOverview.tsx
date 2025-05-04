@@ -3,7 +3,7 @@ import React from "react";
 
 const SaleOverview: React.FC = () => {
   return (
-    <section className=" bg-olive col-span-5 p-10 pb-0 lg:pb-10">
+    <section className=" bg-olive col-span-5 p-10 mt-8 lg:pt-0 lg:mt-0 pb-0 lg:pb-10">
       <div className="container flex lg:flex-row flex-col  items-center justify-between">
         <div className="flex flex-col gap-4">
           <h1 className="text-8xl font-bold">Sale</h1>
@@ -15,6 +15,7 @@ const SaleOverview: React.FC = () => {
         <div className="w-full px-2 lg:mt-0 mt-14">
           <Image
             src="/main/big-sale-banner_3.jpeg"
+            className="lg:float-right"
             width={800}
             height={800}
             alt="banner"

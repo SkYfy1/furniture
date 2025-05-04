@@ -58,7 +58,7 @@
   }
 
   .stories-container {
-    @apply mt-20 lg:mt-36 max-w-[95rem] mx-auto px-6 gap-10 flex flex-col-reverse lg:flex-row;
+    @apply mt-10 md:mt-20 lg:mt-24 max-w-[95rem] mx-auto px-6 gap-10 flex flex-col-reverse lg:flex-row;
   }
 }
 

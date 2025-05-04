@@ -16,8 +16,7 @@ const Page: React.FC<Props> = async ({ params }) => {
     await db.select().from(productsTable).where(eq(productsTable.id, id))
   )[0];
   return (
-    // <div className="flex flex-col-reverse lg:flex-row gap-20 px-6 mt-20 container relative">
-    <div className="stories-container">
+    <div className="stories-container mt-0">
       <div className="w-full">
         <div className="w-full h-[600] max-h-[1400] relative">
           <Image
