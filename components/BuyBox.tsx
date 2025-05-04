@@ -3,8 +3,25 @@ import Link from "next/link";
 import React from "react";
 import BuyButtons from "./BuyButtons";
 import { cn } from "@/lib/utils";
+import VariantButton from "./VariantButton";
 
-const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
+interface Props {
+  product: Product;
+  selected: Variant;
+  variants: Variant[];
+}
+
+const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
+  const source = selected ?? product;
+  const payload = {
+    id: selected ? selected.productId : product.id,
+    name: product.name,
+    newPrice: source.discountedPrice ?? source.price,
+    oldPrice: source.price,
+    discount: source.discount ?? 0,
+    quantity: 1,
+    image: source.imageUrl,
+  };
   return (
     <section className="lg:w-2/3">
       <div className="sticky top-22 flex flex-col gap-4">
@@ -21,20 +38,37 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
         </div>
         <div className={cn(product.tags?.length === 0 && "mt-4 md:mt-0")}>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-          <h2 className="text-sm">{product.name}</h2>
+          <h2 className="text-sm">{product.description}</h2>
         </div>
+        {variants.length > 1 && (
+          <div className="flex gap-2 pb-2 border-b-3">
+            {variants?.map((variant) => (
+              <VariantButton
+                key={variant.id}
+                url={variant.imageUrl}
+                sku={variant.sku}
+                size={variant.size}
+                color={variant.color}
+              />
+            ))}
+          </div>
+        )}
         <div>
           {product.discount ? (
             <>
               <span className="font-semibold text-[12px] line-through text-sm">
-                €{product.price}.00
+                €{selected ? selected.price : product.price}.00
               </span>
               <div className="flex gap-2 items-center font-semibold">
                 <div className="text-green-price text-2xl">
-                  €{product.discountedPrice}.00
+                  €
+                  {selected
+                    ? selected.discountedPrice
+                    : product.discountedPrice}
+                  .00
                 </div>
                 <div className="text-sm bg-gray px-2 py-1 rounder-md">
-                  {product.discount}%
+                  {selected ? selected.discount : product.discount}%
                 </div>
               </div>
             </>
@@ -42,17 +76,7 @@ const BuyBox: React.FC<{ product: Product }> = ({ product }) => {
             <span className="font-semibold text-sm">€{product.price}.00</span>
           )}
         </div>
-        <BuyButtons
-          payload={{
-            id: product.id,
-            name: product.name,
-            newPrice: product.discountedPrice ?? product.price,
-            oldPrice: product.price,
-            discount: product.discount ?? 0,
-            quantity: 1,
-            image: product.imageUrl,
-          }}
-        />
+        <BuyButtons payload={payload} />
         <div className="border-t py-4 flex justify-between items-center text-sm">
           <div className="flex gap-2 items-center">
             <Image
