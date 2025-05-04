@@ -1,7 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 import { config } from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
-import { productsTable } from "./schema";
+import { productsTable, variantsTable } from "./schema";
 
 config({ path: ".env.local" });
 
@@ -73,6 +73,7 @@ const getAllProducts = async () => {
     const variants = [];
 
     const sizes = ["small", "medium", "large"] as const;
+
     for (const product of products) {
       const category = product.category.toLowerCase();
       //
@@ -108,7 +109,7 @@ const getAllProducts = async () => {
         //   category === "phones" ? productColors : productColors[product.name];
         for (const color of colors) {
           const { price, discount, discountedPrice } = getPriceBySize(
-            "meduim",
+            "medium",
             product.price,
             product.discount
           );
@@ -142,7 +143,7 @@ const getAllProducts = async () => {
 
         for (const color of colors) {
           const { price, discount, discountedPrice } = getPriceBySize(
-            "meduim",
+            "medium",
             product.price,
             product.discount
           );
@@ -156,13 +157,16 @@ const getAllProducts = async () => {
             discount: discount,
             discountedPrice: discountedPrice,
             availableQuantity: product.availableQuantity,
-            imageURL: productImages[color as keyof typeof productImages],
+            imageUrl: productImages[color as keyof typeof productImages],
           });
         }
       }
     }
+
     //
-    console.log(variants);
+    for (const variant of variants) {
+      await db.insert(variantsTable).values(variant);
+    }
   } catch (error) {
     console.log(error);
   }
