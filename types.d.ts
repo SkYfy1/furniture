@@ -1,3 +1,5 @@
+type size = "small" | "medium" | "large";
+
 interface User {
   id: string;
   name: string;
@@ -39,4 +41,17 @@ interface CartItem {
   discount: number;
   quantity: number;
   image: string;
+}
+
+interface Variant {
+  id: string;
+  productId: string;
+  sku: string;
+  size: size | null;
+  color: string | null;
+  price: number;
+  discount: number | null;
+  discountedPrice: number | null;
+  availableQuantity: number;
+  imageUrl: string;
 }
