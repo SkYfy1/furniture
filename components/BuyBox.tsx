@@ -1,9 +1,9 @@
-import Link from "next/link";
 import React from "react";
 import BuyButtons from "./BuyButtons";
 import { cn } from "@/lib/utils";
 import VariantButton from "./VariantButton";
 import ProductStockStatus from "./ProductStockStatus";
+import ProductTags from "./ProductTags";
 
 interface Props {
   product: Product;
@@ -25,17 +25,7 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
   return (
     <section className="lg:w-2/3">
       <div className="sticky top-22 flex flex-col gap-4">
-        <div className="flex gap-2 text-sm">
-          {product.tags?.map((tag) => (
-            <Link
-              href={`/${tag}`}
-              className="bg-gray px-2 py-1 rounded-md font-semibold"
-              key={tag}
-            >
-              {tag}
-            </Link>
-          ))}
-        </div>
+        <ProductTags tags={product.tags} />
         <div className={cn(product.tags?.length === 0 && "mt-4 md:mt-0")}>
           <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
           <h2 className="text-sm">{product.description}</h2>
