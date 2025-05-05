@@ -70,7 +70,7 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
         </div>
         <BuyButtons payload={payload} />
         <ProductStockStatus
-          quantity={selected.availableQuantity ?? product.availableQuantity}
+          quantity={selected?.availableQuantity ?? product.availableQuantity}
         />
       </div>
     </section>
