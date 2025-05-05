@@ -2,9 +2,7 @@ import React from "react";
 import MotionList from "./MotionList";
 import Product from "./Product";
 import CustomLink from "./CustomLink";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getProductsByCategory } from "@/lib/data/products";
 
 interface Props {
   category: string;
@@ -12,10 +10,7 @@ interface Props {
 }
 
 const ProductSlider: React.FC<Props> = async ({ category, description }) => {
-  const products = await db
-    .select()
-    .from(productsTable)
-    .where(eq(productsTable.category, category));
+  const products = await getProductsByCategory(category);
 
   return (
     <section className="container border-t border-gray-200 pt-18 lg:pb-32 px-4 md:px-10 2xl:px-0">

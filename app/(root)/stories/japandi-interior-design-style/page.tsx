@@ -3,11 +3,10 @@ import Image from "next/image";
 import React from "react";
 import ImageGallery from "../plant-starter-pack/components/ImageGallery";
 import Product from "@/components/Product";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
+import { getFewProducts } from "@/lib/data/products";
 
 const Page = async () => {
-  const products = await db.select().from(productsTable).limit(10);
+  const products = await getFewProducts();
   return (
     <>
       <div className="mt-8 md:mt-20 lg:mt-24 max-w-[95rem] mx-auto px-6 lg:pr-96">

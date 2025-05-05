@@ -1,7 +1,5 @@
 import ProductsGridSection from "@/components/ProductsGridSection";
-import { db } from "@/db/drizzle";
-import { hasValueInArray } from "@/db/helpers";
-import { productsTable } from "@/db/schema";
+import { getProductsWithTag } from "@/lib/data/products";
 import React from "react";
 
 interface Props {
@@ -10,11 +8,7 @@ interface Props {
 
 const Page: React.FC<Props> = async ({ params }) => {
   const room = (await params).room;
-  const products = await db
-    .select()
-    .from(productsTable)
-    .where(hasValueInArray(productsTable.tags, "room"))
-    .execute({ room });
+  const products = await getProductsWithTag(room);
 
   return <ProductsGridSection title={room} products={products} />;
 };

@@ -1,17 +1,11 @@
 import StoriesOffer from "@/components/StoriesOffer";
 import TipSection from "@/components/TipSection";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getLimitedProducts } from "@/lib/data/products";
 import Image from "next/image";
 import React from "react";
 
 const Page: React.FC = async () => {
-  const products = await db
-    .select()
-    .from(productsTable)
-    .where(eq(productsTable.category, "Plants"))
-    .limit(3);
+  const products = await getLimitedProducts("Plants", 3);
   return (
     <div className="stories-container relative">
       <div className="lg:w-7/12">

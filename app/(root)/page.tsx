@@ -2,28 +2,16 @@ import CardSection from "@/components/CardSection";
 import MotionList from "@/components/MotionList";
 import Product from "@/components/Product";
 import SaleOverview from "@/components/SaleOverview";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
-import { eq, or } from "drizzle-orm";
+import {
+  getOneProductFromThreeCategories,
+  getProductsByCategory,
+} from "@/lib/data/products";
 
 export default async function Home() {
-  const plants = await db
-    .select()
-    .from(productsTable)
-    .where(eq(productsTable.category, "Plants"));
-
-  const outlet = await db
-    .selectDistinctOn([productsTable.category])
-    .from(productsTable)
-    .where(
-      or(
-        eq(productsTable.category, "Plants"),
-        eq(productsTable.category, "Flowers"),
-        eq(productsTable.category, "Phones")
-      )
-    )
-    .limit(5)
-    .orderBy(productsTable.category);
+  const [plants, outlet] = await Promise.all([
+    getProductsByCategory("Plants"),
+    getOneProductFromThreeCategories(),
+  ]);
 
   return (
     <div className="grid-cols-custom grid lg:gap-4 lg:gap-y-5 gap-1 lg:my-5">
