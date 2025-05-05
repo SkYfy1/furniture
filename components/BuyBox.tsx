@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import BuyButtons from "./BuyButtons";
 import { cn } from "@/lib/utils";
 import VariantButton from "./VariantButton";
+import ProductStockStatus from "./ProductStockStatus";
 
 interface Props {
   product: Product;
@@ -73,26 +73,15 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
               </div>
             </>
           ) : (
-            <span className="font-semibold text-sm">€{product.price}.00</span>
+            <span className="font-semibold text-sm">
+              €{selected ? selected.price : product.price}.00
+            </span>
           )}
         </div>
         <BuyButtons payload={payload} />
-        <div className="border-t py-4 flex justify-between items-center text-sm">
-          <div className="flex gap-2 items-center">
-            <Image
-              src="/svg/stockIcon.svg"
-              height={18}
-              width={18}
-              alt="stock-icon"
-            />
-            <p className="font-semibold">Online</p>
-            <div className="size-2.5 rounded-full bg-green-price"></div>
-          </div>
-          <p>
-            {product.availableQuantity < 20 ? product.availableQuantity : "20+"}{" "}
-            in stock
-          </p>
-        </div>
+        <ProductStockStatus
+          quantity={selected.availableQuantity ?? product.availableQuantity}
+        />
       </div>
     </section>
   );
