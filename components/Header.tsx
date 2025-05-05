@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import FlyOut from "./FlyOut";
+import { FlyOutLinks } from "@/constants";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -48,15 +49,9 @@ const Header: React.FC = () => {
               <li className="cursor-pointer hover:underline">
                 <Link href="/stories">Stories</Link>
               </li>
-              <FlyOut title="promotions" links={["3-for-2", "4-for-3"]} />
-              <FlyOut
-                title="rooms"
-                links={["kitchen", "living-room", "outdoors", "furniture"]}
-              />
-              <FlyOut
-                title="specials"
-                links={["eco-friendly", "vegan", "new-arrival"]}
-              />
+              {FlyOutLinks.map((link) => (
+                <FlyOut key={link.title} title={link.title} links={link.tags} />
+              ))}
             </ul>
           </div>
         </div>
