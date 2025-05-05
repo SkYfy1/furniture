@@ -21,3 +21,9 @@ export const categories = [
   },
   { name: "Phones", desc: "Just phones.", route: "/shop/phones" },
 ];
+
+export const FlyOutLinks = [
+  { title: "promotions", tags: ["eco-friendly", "vegan", "new-arrival"] },
+  { title: "rooms", tags: ["kitchen", "living-room", "outdoors", "furniture"] },
+  { title: "specials", tags: ["3-for-2", "4-for-3"] },
+];
