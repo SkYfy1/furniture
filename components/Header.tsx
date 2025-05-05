@@ -5,9 +5,11 @@ import Link from "next/link";
 import React, { useState } from "react";
 import FlyOut from "./FlyOut";
 import { FlyOutLinks } from "@/constants";
+import { useAppSelector } from "@/lib/hooks";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const cartSize = useAppSelector((state) => state.cart.items.length);
 
   const handleClose = (e: React.MouseEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).tagName === "A") {
@@ -64,13 +66,18 @@ const Header: React.FC = () => {
               alt="user icon"
             />
           </Link>
-          <Link href="/cart" className="hover:bg-gray p-2">
+          <Link href="/cart" className="hover:bg-gray p-2 relative">
             <Image
               src="/svg/basketIcon.svg"
               width={32}
               height={32}
               alt="basket"
             />
+            {cartSize > 0 && (
+              <span className="absolute top-1.5 right-1 text-xs size-4 text-center text-white bg-red-600 rounded-full">
+                {cartSize}
+              </span>
+            )}
           </Link>
           <select name="En" id="En" className="p-0.5 pr-2 border-2 rounded-sm">
             <option value="En">En</option>
