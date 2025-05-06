@@ -12,6 +12,16 @@ export const getVariants = async (id: string) => {
   return variants;
 };
 
+export const getVariantsJoin = async (category: string) => {
+  const variants = await db
+    .select({ variants: variantsTable })
+    .from(variantsTable)
+    .innerJoin(productsTable, eq(variantsTable.productId, productsTable.id))
+    .where(eq(productsTable.category, category));
+
+  return variants.map((el) => el.variants);
+};
+
 export const getProductById = async (id: string) => {
   const product = await db
     .select()
