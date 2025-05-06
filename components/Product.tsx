@@ -1,11 +1,21 @@
+import { isVariant } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Product: React.FC<{ data: Product }> = ({ data }) => {
+interface Props {
+  data: Product | Variant;
+  category: string;
+  name: string;
+}
+
+const Product: React.FC<Props> = ({ data, category, name }) => {
+  const link = isVariant(data)
+    ? `/shop/${category.toLowerCase()}/${data.productId}?sku=${data.sku}`
+    : `/shop/${category.toLowerCase()}/${data.id}`;
   return (
     <Link
-      href={`/shop/${data.category.toLowerCase()}/${data.id}`}
+      href={link}
       className="flex flex-col h-full pb-10 min-h-[351] min-w-fit 2xl:min-w-[300] "
     >
       <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative">
@@ -22,7 +32,7 @@ const Product: React.FC<{ data: Product }> = ({ data }) => {
         />
       </div>
       <div className="px-1 py-0.5 mt-2">
-        <p>{data.name}</p>
+        <p>{name}</p>
         {data.discount ? (
           <>
             <span className="font-semibold text-[10px] line-through text-sm">
