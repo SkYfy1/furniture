@@ -6,6 +6,7 @@ import { useAppSelector } from "@/lib/hooks";
 import Coupon from "./Coupon";
 import CartSummary from "./CartSummary";
 import Link from "next/link";
+import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart.items);
@@ -14,8 +15,11 @@ const Cart = () => {
     setCoupon(text);
   }, []);
 
+  if (!cart.length) return <EmptyCart />;
+
   return (
-    <section className="flex flex-col gap-3">
+    <section className="flex flex-col gap-3 w-full">
+      <h1 className="text-xl font-semibold mb-4">Cart</h1>
       {cart?.map((item) => (
         <CartItem item={item} key={item.id} />
       ))}
