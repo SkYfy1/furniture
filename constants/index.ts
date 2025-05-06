@@ -27,3 +27,16 @@ export const FlyOutLinks = [
   { title: "rooms", tags: ["kitchen", "living-room", "outdoors", "furniture"] },
   { title: "specials", tags: ["3-for-2", "4-for-3"] },
 ];
+
+export const blackList = [
+  "s",
+  "l",
+  "m",
+  "red",
+  "pink",
+  "green",
+  "yellow",
+  "black",
+  "white",
+  "blue",
+];
