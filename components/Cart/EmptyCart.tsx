@@ -18,7 +18,7 @@ const EmptyCart = () => {
         <p className="text-sm mt-2.5">
           Try going back and find something beautiul before you come back
         </p>
-        <button className="px-4 py-2 bg-gray text-black rounded-sm text-sm mt-2">
+        <button className="px-4 py-2 bg-gray text-black rounded-sm text-sm mt-3">
           <Link href="/">Back</Link>
         </button>
       </div>
