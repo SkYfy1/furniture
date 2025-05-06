@@ -2,12 +2,14 @@ import React from "react";
 import Filters from "./Filters";
 import { Switch } from "./ui/switch";
 import Product from "./Product";
+import { filterSku, isVariant } from "@/lib/utils";
 
 interface Props {
   title: string;
   products: Product[];
   description?: string;
   showFilters?: boolean;
+  variants?: Variant[];
 }
 
 const ProductsGridSection: React.FC<Props> = ({
@@ -15,7 +17,9 @@ const ProductsGridSection: React.FC<Props> = ({
   products,
   description,
   showFilters,
+  variants,
 }) => {
+  const allProducts = [...products, ...variants!];
   return (
     <div className="container px-4 capitalize mb-10 mt-6">
       <h2 className="text-3xl font-bold py-3.5">{title}</h2>
@@ -31,8 +35,13 @@ const ProductsGridSection: React.FC<Props> = ({
         )}
       </div>
       <div className="grid grid-cols-2 mt-5 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {products.map((product) => (
-          <Product key={product.id} data={product} />
+        {allProducts.map((product) => (
+          <Product
+            key={product.id}
+            data={product}
+            category={title}
+            name={isVariant(product) ? filterSku(product.sku) : product.name}
+          />
         ))}
       </div>
     </div>

@@ -1,8 +1,6 @@
 import ProductsGridSection from "@/components/ProductsGridSection";
 import { categories } from "@/constants";
-import { db } from "@/db/drizzle";
-import { productsTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getProductsByCategory, getVariantsJoin } from "@/lib/data/products";
 import React from "react";
 
 interface Props {
@@ -16,10 +14,10 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
   const category = type.charAt(0).toUpperCase() + type.slice(1);
   const description = categories.find((el) => el.name === category)?.desc;
 
-  const products = await db
-    .select()
-    .from(productsTable)
-    .where(eq(productsTable.category, category));
+  const [products, variants] = await Promise.all([
+    getProductsByCategory(category),
+    getVariantsJoin(category),
+  ]);
 
   return (
     <>
@@ -28,6 +26,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
         description={description!}
         products={products}
         showFilters={true}
+        variants={variants}
       />
     </>
   );

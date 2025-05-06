@@ -28,7 +28,12 @@ export default async function Home() {
         </div>
         <MotionList>
           {plants.map((plant) => (
-            <Product key={plant.id} data={plant} />
+            <Product
+              name={plant.name}
+              category={plant.category}
+              key={plant.id}
+              data={plant}
+            />
           ))}
         </MotionList>
       </section>
@@ -40,7 +45,12 @@ export default async function Home() {
         <div className="container">
           <MotionList className="gap-3 justify-start">
             {outlet.map((product) => (
-              <Product key={product.id} data={product} />
+              <Product
+                name={product.name}
+                category={product.category}
+                key={product.id}
+                data={product}
+              />
             ))}
           </MotionList>
         </div>

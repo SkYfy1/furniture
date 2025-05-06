@@ -27,7 +27,12 @@ const ProductSlider: React.FC<Props> = async ({ category, description }) => {
       </div>
       <MotionList>
         {products.map((product) => (
-          <Product key={product.id} data={product} />
+          <Product
+            name={product.name}
+            category={product.category}
+            key={product.id}
+            data={product}
+          />
         ))}
       </MotionList>
     </section>
