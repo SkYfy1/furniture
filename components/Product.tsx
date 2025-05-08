@@ -5,14 +5,14 @@ import React from "react";
 
 interface Props {
   data: Product | Variant;
-  category: string;
+  category?: string;
   name: string;
 }
 
 const Product: React.FC<Props> = ({ data, category, name }) => {
   const link = isVariant(data)
-    ? `/shop/${category.toLowerCase()}/${data.productId}?sku=${data.sku}`
-    : `/shop/${category.toLowerCase()}/${data.id}`;
+    ? `/shop/${category!.toLowerCase()}/${data.productId}?sku=${data.sku}`
+    : `/shop/${data.category.toLowerCase()}/${data.id}`;
   return (
     <Link
       href={link}
