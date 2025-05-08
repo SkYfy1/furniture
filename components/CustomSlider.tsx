@@ -13,7 +13,7 @@ const CustomSlider: React.FC = () => {
     const min = Number(searchParams.get("min"));
     const max = Number(searchParams.get("max"));
 
-    if (max === 0) return [0, 40];
+    if (max === 0) return [20, 1000];
     return [min, max];
   };
 
@@ -53,7 +53,7 @@ const CustomSlider: React.FC = () => {
         />
       </div>
       {showSlider && (
-        <div className="pb-1.5 absolute top-0 left-0 w-full px-4 bg-inherit translate-y-1/3 xs:translate-y-1/2">
+        <div className="pb-1.5 absolute top-0 left-0 w-full px-4 bg-inherit translate-y-1/3 md:translate-y-1/2">
           <Slider
             sx={{
               width: "100%",
@@ -75,8 +75,8 @@ const CustomSlider: React.FC = () => {
             }}
             getAriaLabel={() => "Price Range"}
             value={range}
-            max={40}
-            min={1}
+            max={1000}
+            min={20}
             onChange={changeRangeValue}
             valueLabelDisplay="auto"
             disableSwap
