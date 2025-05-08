@@ -22,7 +22,7 @@ const Page = () => {
             <p className="text-sm">We`ll send you a magick link.</p>
           </div>
           <button
-            className="bg-black text-white py-2 px-4 rounded-sm"
+            className="bg-black text-white py-2 px-4 rounded-sm cursor-pointer"
             onClick={handleChangeForm}
           >
             {register ? "Sign Up" : "Sign In"}

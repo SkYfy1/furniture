@@ -74,14 +74,14 @@ const AuthForm = <T extends FieldValues>({
       />
       <Image
         onClick={() => setShowPass((prev) => !prev)}
-        className="absolute bottom-19 right-3"
+        className="absolute bottom-19 right-3 cursor-pointer"
         src={showPass ? "/svg/eye-hide.svg" : "/svg/eye-show.svg"}
         width={18}
         height={18}
         alt="Show password icon"
       />
       <button
-        className="w-full bg-black text-white py-2 rounded-sm"
+        className="w-full bg-black text-white py-2 rounded-sm cursor-pointer"
         type="submit"
       >
         Submit
