@@ -1,7 +1,7 @@
 import { db } from "@/db/drizzle";
 import { hasValueInArray } from "@/db/helpers";
 import { productsTable, variantsTable } from "@/db/schema";
-import { eq, or } from "drizzle-orm";
+import { and, asc, desc, eq, gt, lt, or } from "drizzle-orm";
 
 export const getVariants = async (id: string) => {
   const variants = await db
@@ -31,13 +31,53 @@ export const getProductById = async (id: string) => {
   return product[0];
 };
 
-export const getProductsByCategory = async (category: string) => {
-  const products = await db
+export const getProductsByCategory = async (
+  category: string,
+  filters?: { orderBy?: string; min?: number; max?: number }
+) => {
+  const products = db
     .select()
     .from(productsTable)
-    .where(eq(productsTable.category, category));
+    .where(
+      filters?.max
+        ? and(
+            eq(productsTable.category, category),
+            gt(productsTable.discountedPrice, filters?.min ?? 0),
+            lt(productsTable.discountedPrice, filters?.max ?? 1000)
+          )
+        : eq(productsTable.category, category)
 
-  return products;
+      // OR
+      // and(
+      //   eq(productsTable.category, category),
+      //   gt(productsTable.price, filters?.min ?? 0),
+      //   lt(productsTable.price, filters?.max ?? 1000)
+      // )
+    );
+  // .orderBy(
+  //   filters.orderBy === "PRICE_ASC"
+  //     ? asc(productsTable.price)
+  //     : filters?.orderBy === "PRICE_DESC"
+  //     ? desc(productsTable.price)
+  //     : filters?.orderBy === "NAME_DESC"
+  //     ? desc(productsTable.name)
+  //     : filters?.orderBy === "NAME_ASC"
+  //     ? asc(productsTable.name)
+  //     : asc(productsTable.id)
+  // );
+
+  switch (filters?.orderBy) {
+    case "PRICE_ASC":
+      return await products.orderBy(asc(productsTable.discountedPrice));
+    case "PRICE_DESC":
+      return await products.orderBy(desc(productsTable.discountedPrice));
+    case "NAME_ASC":
+      return await products.orderBy(asc(productsTable.name));
+    case "NAME_DESC":
+      return await products.orderBy(desc(productsTable.name));
+    default:
+      return await products.orderBy(asc(productsTable.discountedPrice));
+  }
 };
 
 export const getOneProductFromThreeCategories = async () => {
