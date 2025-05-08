@@ -41,10 +41,44 @@ export const cartSlice = createSlice({
         item.quantity -= 1;
       }
     },
+    addItemsKit: (state, action: PayloadAction<CartItem[]>) => {
+      action.payload.forEach((item) => {
+        const exists = state.items.find((el) => el.id === item.id);
+        if (exists) {
+          exists.quantity += item.quantity;
+          return;
+        }
+        state.items.push(item);
+      });
+
+      // Immutable
+
+      // const ids = action.payload.map((el) => el.id);
+
+      // const updated = state.items.map((item) => {
+      //   if (ids.includes(item.id)) {
+      //     const elem = action.payload.find((el) => el.id === item.id);
+      //     return { ...item, quantity: item.quantity + elem!.quantity };
+      //   }
+      //   return item;
+      // });
+
+      // const stateIds = state.items.map((el) => el.id);
+
+      // const notIn = action.payload.filter(
+      //   (item) => !stateIds.includes(item.id)
+      // );
+      // state.items = [...updated, ...notIn];
+    },
   },
 });
 
-export const { addItem, deleteItem, increaseQuantity, decreaseQuantity } =
-  cartSlice.actions;
+export const {
+  addItem,
+  deleteItem,
+  increaseQuantity,
+  decreaseQuantity,
+  addItemsKit,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
