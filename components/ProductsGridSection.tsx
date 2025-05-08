@@ -19,7 +19,7 @@ const ProductsGridSection: React.FC<Props> = ({
   showFilters,
   variants,
 }) => {
-  const allProducts = [...products, ...variants!];
+  const allProducts = [...products, ...(variants ?? [])];
   return (
     <div className="container px-4 capitalize mb-10 mt-6">
       <h2 className="text-3xl font-bold py-3.5">{title}</h2>
