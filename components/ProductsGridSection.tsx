@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Filters from "./Filters";
 import { Switch } from "./ui/switch";
 import Product from "./Product";
@@ -19,7 +21,10 @@ const ProductsGridSection: React.FC<Props> = ({
   showFilters,
   variants,
 }) => {
-  const allProducts = [...products, ...(variants ?? [])];
+  const [showVariants, setShowVariants] = useState(false);
+  const allProducts = showVariants
+    ? [...products, ...(variants ?? [])]
+    : [...products];
   return (
     <div className="container px-4 capitalize mb-10 mt-6">
       <h2 className="text-3xl font-bold py-3.5">{title}</h2>
@@ -30,7 +35,10 @@ const ProductsGridSection: React.FC<Props> = ({
         {showFilters && (
           <div className="flex gap-2.5 items-center">
             <span>Show variants</span>
-            <Switch />
+            <Switch
+              checked={showVariants}
+              onCheckedChange={() => setShowVariants((prev) => !prev)}
+            />
           </div>
         )}
       </div>
