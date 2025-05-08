@@ -3,27 +3,34 @@
 import React, { useState } from "react";
 import ProductMini from "./ProductMini";
 import { cn } from "@/lib/utils";
+import { useAppDispatch } from "@/lib/hooks";
+import { addItemsKit } from "@/lib/features/cartSlice";
 
 const StoriesOffer: React.FC<{
   products: Product[];
   selected?: number | null;
 }> = ({ products }) => {
-  const [offerObjects, setOfferObjects] = useState(
-    products.map((el) => ({ id: el.id, quantity: 1 }))
+  const dispatch = useAppDispatch();
+  const [offerObjects, setOfferObjects] = useState<CartItem[]>(
+    products.map((item) => ({
+      id: item.id,
+      name: item.name,
+      newPrice: item.discountedPrice ?? item.price,
+      oldPrice: item.price,
+      discount: item.discount ?? 0,
+      quantity: 1,
+      image: item.imageUrl,
+    }))
   );
-  const fullPrice = products.reduce((prev, cur) => {
-    const currentQuantity = offerObjects?.find(
-      (el) => el.id === cur.id
-    )?.quantity;
-    return (
-      prev +
-      (cur.discount! ? cur.discountedPrice! : cur.price) * currentQuantity!
-    );
+
+  const fullPrice = offerObjects.reduce((cur, acc) => {
+    if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
+    return cur + acc.newPrice * acc.quantity;
   }, 0);
 
   const updateQuantity = (id: string, value: number) => {
     setOfferObjects((prev) =>
-      prev.map((el) => (el.id === id ? { id, quantity: value } : el))
+      prev.map((el) => (el.id === id ? { ...el, quantity: value } : el))
     );
   };
 
@@ -40,7 +47,6 @@ const StoriesOffer: React.FC<{
             const quantity = offerObjects.find(
               (el) => el.id === product.id
             )?.quantity;
-            console.log(quantity);
             return (
               <ProductMini
                 key={product.id}
@@ -60,6 +66,7 @@ const StoriesOffer: React.FC<{
               className={cn(
                 "lg:text-lg font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black duration-150"
               )}
+              onClick={() => dispatch(addItemsKit(offerObjects))}
             >
               Add to cart
             </button>
