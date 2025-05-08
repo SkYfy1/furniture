@@ -36,7 +36,10 @@ const CartItem = ({ item }: { item: CartItem }) => {
                   €{item.oldPrice}.00
                 </span>
                 <div className="flex gap-2 items-center">
-                  <span>Savings: €{item.oldPrice - item.newPrice!}.00</span>
+                  <span>
+                    Savings: €{(item.oldPrice - item.newPrice!) * item.quantity}
+                    .00
+                  </span>
                   <div className="px-1 py-0.5 bg-gray-200 rounded-xs ">
                     {item.discount}%
                   </div>

@@ -17,6 +17,18 @@ const Cart = () => {
 
   if (!cart.length) return <EmptyCart />;
 
+  const totalPrice = cart.reduce((cur, acc) => {
+    if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
+    return cur + acc.newPrice * acc.quantity;
+  }, 0);
+
+  const totalDiscount = cart.reduce((cur, acc) => {
+    if (!acc.discount) return cur + 0;
+    return cur + (acc.oldPrice - acc.newPrice) * acc.quantity;
+  }, 0);
+
+  const tax = totalPrice > 1000 ? Math.floor((totalPrice * 12) / 100) : 0;
+
   return (
     <section className="flex flex-col gap-3 w-full">
       <h1 className="text-xl font-semibold mb-4">Cart</h1>
@@ -26,7 +38,11 @@ const Cart = () => {
       <div>
         <div className=" flex flex-col lg:flex-row gap-5 pl-2">
           <Coupon submitCoupon={handleAddCoupon} />
-          <CartSummary />
+          <CartSummary
+            summary={totalPrice}
+            discount={totalDiscount}
+            tax={tax}
+          />
         </div>
         <div className="flex justify-between font-semibold mt-10">
           <button className="px-4 py-3 bg-gray text-black rounded-sm text-sm">
