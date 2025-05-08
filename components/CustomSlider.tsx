@@ -53,7 +53,7 @@ const CustomSlider: React.FC = () => {
         />
       </div>
       {showSlider && (
-        <div className="pb-1.5 absolute top-0 left-0 w-full px-4 bg-inherit translate-y-1/3">
+        <div className="pb-1.5 absolute top-0 left-0 w-full px-4 bg-inherit translate-y-1/3 xs:translate-y-1/2">
           <Slider
             sx={{
               width: "100%",
