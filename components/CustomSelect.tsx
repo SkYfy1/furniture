@@ -24,9 +24,9 @@ const CustomSelect: React.FC = () => {
         id="orderBy"
         className="appearance-none w-full px-4 py-1.5 cursor-pointer"
       >
-        <option value={"PRICE_ACS"}>Price: Low to High</option>
+        <option value={"PRICE_ASC"}>Price: Low to High</option>
         <option value={"PRICE_DESC"}>Price: High to low</option>
-        <option value={"NAME_ACS"}>Name ascending</option>
+        <option value={"NAME_ASC"}>Name ascending</option>
         <option value={"NAME_DESC"}>Name descending</option>
       </select>
       <Image
