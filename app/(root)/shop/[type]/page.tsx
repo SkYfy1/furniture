@@ -1,6 +1,9 @@
 import ProductsGridSection from "@/components/ProductsGridSection";
 import { categories } from "@/constants";
-import { getProductsByCategory, getVariantsJoin } from "@/lib/data/products";
+import {
+  getFilteredVariants,
+  getProductsByCategory,
+} from "@/lib/data/products";
 import React from "react";
 
 interface Props {
@@ -16,7 +19,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
 
   const [products, variants] = await Promise.all([
     getProductsByCategory(category, filters),
-    getVariantsJoin(category),
+    getFilteredVariants(category, filters),
   ]);
 
   return (
@@ -25,8 +28,8 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
         title={type}
         description={description!}
         products={products}
-        showFilters={true}
         variants={variants}
+        showFilters={true}
       />
     </>
   );
