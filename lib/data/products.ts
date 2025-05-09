@@ -1,7 +1,8 @@
 import { db } from "@/db/drizzle";
 import { hasValueInArray } from "@/db/helpers";
 import { productsTable, variantsTable } from "@/db/schema";
-import { and, asc, desc, eq, gt, lt, or } from "drizzle-orm";
+import { and, asc, desc, eq, gte, lte, or, sql } from "drizzle-orm";
+import { blackList } from "@/constants";
 
 export const getVariants = async (id: string) => {
   const variants = await db
@@ -31,6 +32,51 @@ export const getProductById = async (id: string) => {
   return product[0];
 };
 
+export const getFilteredVariants = async (
+  category: string,
+  filters?: { orderBy?: string; min?: number; max?: number }
+) => {
+  const varQuery = await db
+    .select({ variants: variantsTable })
+    .from(variantsTable)
+    .innerJoin(productsTable, eq(variantsTable.productId, productsTable.id))
+    .where(eq(productsTable.category, category));
+
+  const variants = varQuery.map((el) => el.variants);
+
+  const result = [...variants]
+    .filter(
+      (item) =>
+        item.discountedPrice >= (filters?.min ?? 0) &&
+        item.discountedPrice <= (filters?.max ?? 1000)
+    )
+    .sort((a, b) => {
+      const name1 = a.sku
+        .split("-")
+        .filter((item) => !blackList.includes(item))
+        .join(" ");
+
+      const name2 = b.sku
+        .split("-")
+        .filter((item) => !blackList.includes(item))
+        .join(" ");
+
+      switch (filters?.orderBy) {
+        case "PRICE_ASC":
+          return a.discountedPrice - b.discountedPrice;
+        case "PRICE_DESC":
+          return b.discountedPrice - a.discountedPrice;
+        case "NAME_ASC":
+          return name1.localeCompare(name2);
+        case "NAME_DESC":
+          return name2.localeCompare(name1);
+        default:
+          return name1.localeCompare(name2);
+      }
+    });
+  return result;
+};
+
 export const getProductsByCategory = async (
   category: string,
   filters?: { orderBy?: string; min?: number; max?: number }
@@ -42,8 +88,8 @@ export const getProductsByCategory = async (
       filters?.max
         ? and(
             eq(productsTable.category, category),
-            gt(productsTable.discountedPrice, filters?.min ?? 0),
-            lt(productsTable.discountedPrice, filters?.max ?? 1000)
+            gte(productsTable.discountedPrice, filters?.min ?? 0),
+            lte(productsTable.discountedPrice, filters?.max ?? 1000)
           )
         : eq(productsTable.category, category)
 
@@ -72,11 +118,11 @@ export const getProductsByCategory = async (
     case "PRICE_DESC":
       return await products.orderBy(desc(productsTable.discountedPrice));
     case "NAME_ASC":
-      return await products.orderBy(asc(productsTable.name));
+      return await products.orderBy(sql`LOWER(${productsTable.name}) ASC`);
     case "NAME_DESC":
-      return await products.orderBy(desc(productsTable.name));
+      return await products.orderBy(sql`LOWER(${productsTable.name}) DESC`);
     default:
-      return await products.orderBy(asc(productsTable.discountedPrice));
+      return await products.orderBy(sql`LOWER(${productsTable.name}) ASC`);
   }
 };
 
