@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import FlyOut from "./FlyOut";
 import { FlyOutLinks } from "@/constants";
 import { useAppSelector } from "@/lib/hooks";
+import SearchProducts from "./SearchProducts";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,20 +31,7 @@ const Header: React.FC = () => {
             />
           </Link>
           <div className="justify-between items-center gap-12 hidden lg:flex">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Names, categories..."
-                className="bg-gray-50 rounded-full pl-6 pr-4 xl:pr-22 py-2 focus:outline-1"
-              />
-              <Image
-                className="absolute top-1/2 right-3 -translate-y-1/2"
-                src="/svg/searchIcon-6EQLXFJK.svg"
-                height={18}
-                width={18}
-                alt="search-icon"
-              />
-            </div>
+            <SearchProducts />
             <ul className="flex xl:gap-12 gap-4 items-center">
               <li className="cursor-pointer hover:underline">
                 <Link href="/shop">Shop</Link>
