@@ -1,4 +1,4 @@
-import ProductsGridSection from "@/components/ProductsGridSection";
+import Category from "@/components/Category";
 import { categories } from "@/constants";
 import {
   getFilteredVariants,
@@ -23,15 +23,12 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
   ]);
 
   return (
-    <>
-      <ProductsGridSection
-        title={type}
-        description={description!}
-        products={products}
-        variants={variants}
-        showFilters={true}
-      />
-    </>
+    <Category
+      title={type}
+      description={description as string}
+      products={products}
+      variants={variants}
+    />
   );
 };
 
