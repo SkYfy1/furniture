@@ -1,7 +1,7 @@
 import { db } from "@/db/drizzle";
 import { hasValueInArray } from "@/db/helpers";
 import { productsTable, variantsTable } from "@/db/schema";
-import { and, asc, desc, eq, gte, lte, or, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, ilike, lte, or, sql } from "drizzle-orm";
 import { blackList } from "@/constants";
 
 export const getVariants = async (id: string) => {
@@ -165,6 +165,15 @@ export const getProductsWithTag = async (tag: string) => {
 
 export const getFewProducts = async () => {
   const products = await db.select().from(productsTable).limit(10);
+
+  return products;
+};
+
+export const getQueryProduct = async (query: string) => {
+  const products = await db
+    .select()
+    .from(productsTable)
+    .where(ilike(productsTable.name, `%${query}%`));
 
   return products;
 };
