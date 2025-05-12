@@ -2,23 +2,22 @@ import { debounce } from "@/lib/utils";
 import { Slider } from "@mui/material";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const CustomSlider: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const getInitialRange = () => {
-    const min = Number(searchParams.get("min"));
-    const max = Number(searchParams.get("max"));
+  const min = searchParams.get("min") ?? 0;
+  const max = searchParams.get("max") ?? 1000;
 
-    if (max === 0) return [20, 1000];
-    return [min, max];
-  };
-
-  const [range, setRange] = useState(getInitialRange);
+  const [range, setRange] = useState([+min, +max]);
   const [showSlider, setShowSlider] = useState(false);
+
+  useEffect(() => {
+    setRange([+min, +max]);
+  }, [min, max]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateParams = useCallback(
@@ -31,12 +30,14 @@ const CustomSlider: React.FC = () => {
     }, 700),
     [pathname, searchParams]
   );
+
   const changeRangeValue = (e: Event, newValue: number[]) => {
     if (newValue) {
       setRange(newValue);
       updateParams(newValue);
     }
   };
+
   return (
     <div className="bg-gray-100 px-4 py-1.5 text-sm font-bold w-60 relative">
       <div
