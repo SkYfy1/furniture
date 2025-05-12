@@ -96,20 +96,7 @@ const Header: React.FC = () => {
       {showMenu && (
         <div className="absolute top-0 left-0 mt-15 h-screen w-full bg-white">
           <div className="justify-between items-start pl-10 gap-12 flex flex-col pt-12">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Names, categories..."
-                className="bg-gray-50 rounded-full pl-6 pr-22 py-2 focus:outline-1"
-              />
-              <Image
-                className="absolute top-1/2 right-3 -translate-y-1/2"
-                src="/svg/searchIcon-6EQLXFJK.svg"
-                height={18}
-                width={18}
-                alt="search-icon"
-              />
-            </div>
+            <SearchProducts />
             <ul
               className="flex flex-col gap-12 items-start"
               onClick={handleClose}

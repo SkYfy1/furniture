@@ -9,7 +9,7 @@ const ProductLink: React.FC<{ item: Product }> = ({ item }) => {
       className="flex gap-4 py-2 px-4 items-center justify-between border-t-1 first:border-t-0"
     >
       <div className="flex gap-3 items-center">
-        <div className="h-[70] w-[50] relative rounded-md">
+        <div className="h-[70] w-[60] relative rounded-md">
           <Image
             src={item.imageUrl}
             fill
