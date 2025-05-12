@@ -1,19 +1,13 @@
 import CardSection from "@/components/CardSection";
 import MotionList from "@/components/MotionList";
 import Product from "@/components/Product";
-import QueryProducts from "@/components/QueryProducts";
 import SaleOverview from "@/components/SaleOverview";
 import {
   getOneProductFromThreeCategories,
   getProductsByCategory,
 } from "@/lib/data/products";
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ query: string }>;
-}) {
-  const query = (await searchParams).query;
+export default async function Home() {
   const [plants, outlet] = await Promise.all([
     getProductsByCategory("Plants"),
     getOneProductFromThreeCategories(),
@@ -21,7 +15,6 @@ export default async function Home({
 
   return (
     <div className="grid-cols-custom grid lg:gap-4 lg:gap-y-5 gap-1 lg:my-5">
-      <QueryProducts query={query} />
       <SaleOverview />
       <CardSection />
       <section className="lg:pt-24 pt-20 col-start-2 col-end-5 h-full w-full flex-col flex gap-8">
