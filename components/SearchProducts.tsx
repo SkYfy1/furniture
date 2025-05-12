@@ -17,6 +17,7 @@ const SearchProducts: React.FC = () => {
     setText(query);
   }, [query]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateQuery = useCallback(
     debounce((term: string) => {
       const searchParams = new URLSearchParams(params);
