@@ -17,7 +17,7 @@ const QueryProducts: React.FC<{ query?: string }> = ({ query }) => {
       }
     };
 
-    timer = setTimeout(fetchProds, 100); // eslint-disable-line
+    timer = setTimeout(fetchProds, 300); // eslint-disable-line
 
     return () => {
       abort = true;

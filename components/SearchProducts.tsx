@@ -21,7 +21,7 @@ const SearchProducts: React.FC = () => {
       }
 
       replace(`${path}?${searchParams.toString()}`);
-    }, 300),
+    }, 700),
     [path, params]
   );
 
