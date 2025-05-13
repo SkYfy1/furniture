@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CardSection: React.FC = () => {
@@ -39,7 +40,10 @@ const CardSection: React.FC = () => {
           alt="laptop image"
         />
       </div>
-      <div className="lg:col-start-3 col-start-2 lg:col-end-3 col-span-3 min-h-full bg-olive pl-10 pt-15 lg:pl-0 lg:pt-0 flex flex-col rounded-md border border-transparent hover:border-black cursor-pointer">
+      <Link
+        href="/stories/japandi-interior-design-style"
+        className="lg:col-start-3 col-start-2 lg:col-end-3 col-span-3 min-h-full bg-olive pl-10 pt-15 lg:pl-0 lg:pt-0 flex flex-col rounded-md border border-transparent hover:border-black cursor-pointer"
+      >
         <div className="flex flex-col gap-2 lg:pt-20 lg:pl-10 pr-10 lg:pr-0">
           <h1 className="lg:text-2xl text-xl font-bold">
             Japandi Interior Design Stylee
@@ -57,8 +61,11 @@ const CardSection: React.FC = () => {
           width={500}
           alt="chairs"
         />
-      </div>
-      <div className="lg:col-start-4 col-start-2 col-span-3 lg:col-end-4 min-h-full bg-olive flex flex-col  rounded-md border border-transparent hover:border-black cursor-pointer">
+      </Link>
+      <Link
+        href="/stories/plant-starter-pack"
+        className="lg:col-start-4 col-start-2 col-span-3 lg:col-end-4 min-h-full bg-olive flex flex-col  rounded-md border border-transparent hover:border-black cursor-pointer"
+      >
         <div className="flex flex-col gap-2 pb-6 pt-15 px-8 lg:pt-20 lg:pl-10">
           <h1 className="text-2xl font-bold">Plant Starter Pack</h1>
           <p className="text-sm lg:text-base">
@@ -73,7 +80,7 @@ const CardSection: React.FC = () => {
           width={500}
           alt="plant"
         />
-      </div>
+      </Link>
     </>
   );
 };
