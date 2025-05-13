@@ -5,7 +5,7 @@ import Image from "next/image";
 import React from "react";
 
 const Page: React.FC = async () => {
-  const products = await getLimitedProducts("Plants", 3);
+  const products = await getLimitedProducts("Sofas", 3);
   return (
     <div className="stories-container relative">
       <div className="lg:w-7/12">
@@ -41,7 +41,11 @@ const Page: React.FC = async () => {
           </div>
         </div>
       </div>
-      <StoriesOffer products={products} />
+      <StoriesOffer
+        title="Dark Colors"
+        description="Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor."
+        products={products}
+      />
     </div>
   );
 };
