@@ -1,19 +1,33 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
 interface Props {
   data: Product;
   quantity: number;
+  selected?: string;
   changeQuantity: (id: string, value: number) => void;
 }
 
-const ProductMini: React.FC<Props> = ({ data, quantity, changeQuantity }) => {
+const ProductMini: React.FC<Props> = ({
+  data,
+  selected,
+  quantity,
+  changeQuantity,
+}) => {
   return (
-    <div className="flex gap-4 h-full min-h-fit justify-between min-w-fit lg:min-w-0 py-3 px-2 mt-0 border-b">
+    <div
+      className={cn(
+        "flex gap-4 h-full min-h-fit justify-between min-w-fit lg:min-w-0 py-3 px-2 mt-0 last:border-b-transparent",
+        selected === data.id
+          ? "border-black border rounded-md last:border-b-gray-500"
+          : "border border-b border-b-gray-200 border-x-transparent border-t-transparent"
+      )}
+    >
       <div className="h-[100] w-[80] lg:h-[180] lg:w-[150] relative">
         <Image
           src={data.imageUrl}
-          className="rounded-md object-cover"
+          className="rounded-md object-contain"
           fill
           alt="product-image"
         />

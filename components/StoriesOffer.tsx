@@ -6,10 +6,19 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/lib/hooks";
 import { addItemsKit } from "@/lib/features/cartSlice";
 
-const StoriesOffer: React.FC<{
+interface Props {
+  title: string;
+  description: string;
   products: Product[];
-  selected?: number | null;
-}> = ({ products }) => {
+  selected?: string;
+}
+
+const StoriesOffer: React.FC<Props> = ({
+  products,
+  title,
+  description,
+  selected,
+}) => {
   const dispatch = useAppDispatch();
   const [offerObjects, setOfferObjects] = useState<CartItem[]>(
     products.map((item) => ({
@@ -35,14 +44,11 @@ const StoriesOffer: React.FC<{
   };
 
   return (
-    <div className="px-6 w-full lg:w-5/12">
-      <h2 className="capitalize font-semibold text-3xl pb-2">Dark Colors</h2>
-      <p className="border-b pb-3">
-        Designing with dark colors can add depth and coziness to a small space.
-        Read our tips for using darker colors in your decor.
-      </p>
+    <div className="px-6 w-full lg:w-5/12 relative">
+      <h2 className="capitalize font-semibold text-3xl pb-2">{title}</h2>
+      <p className="pb-3">{description}</p>
       <div className="sticky top-20">
-        <section className="mt-4">
+        <section className="mt-2 border-y py-2">
           {products.map((product) => {
             const quantity = offerObjects.find(
               (el) => el.id === product.id
@@ -50,6 +56,7 @@ const StoriesOffer: React.FC<{
             return (
               <ProductMini
                 key={product.id}
+                selected={selected}
                 data={product}
                 quantity={quantity!}
                 changeQuantity={updateQuantity}
