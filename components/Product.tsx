@@ -26,7 +26,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
         )}
         <Image
           src={data.imageUrl}
-          className="rounded-md object-cover pointer-events-none"
+          className="rounded-md object-cover 2xl:object-contain pointer-events-none"
           fill
           alt="product-image"
         />
