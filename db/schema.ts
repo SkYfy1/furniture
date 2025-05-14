@@ -12,6 +12,39 @@ export const ROLE_ENUM = pgEnum("role", ["user", "admin"]);
 
 export const SIZE_ENUM = pgEnum("size", ["small", "medium", "large"]);
 
+export const ORDER_STATUS_ENUM = pgEnum("ORDER_STATUS", [
+  "CREATED",
+  "PROCESSING",
+  "FULLFILLED",
+  "REJECTED",
+]);
+
+export const DELIVERY_STATUS_ENUM = pgEnum("DELIVERY_STATUS", [
+  "PENDING",
+  "SENDED",
+  "WAITING",
+  "FULFILLED",
+  "REJECTED",
+]);
+
+export const SHIPPING_SERVICE_ENUM = pgEnum("SHIPPING_SERVICE", [
+  "NOVAPOST",
+  "MEEST",
+  "UKRPOSTA",
+]);
+
+export const PAYMENT_TYPE_ENUM = pgEnum("PAYMENT_TYPE", [
+  "CARD",
+  "CASH",
+  "CRYPTO",
+]);
+
+export const PAYMENT_STATUS_ENUM = pgEnum("PAYMENT_STATUS", [
+  "PENDING",
+  "PAID",
+  "REJECTED",
+]);
+
 export const usersTable = table("user_table", {
   id: uuid("id").primaryKey().defaultRandom().unique(),
   name: text("name").notNull(),
@@ -50,4 +83,59 @@ export const variantsTable = table("product_variants", {
   discountedPrice: integer("discounted_price").notNull(),
   imageUrl: text("imageUrl").notNull(),
   availableQuantity: integer("available_quantity").notNull().default(10),
+});
+
+export const ordersTable = table("orders_table", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  clientId: uuid("client_id")
+    .references(() => usersTable.id)
+    .notNull(),
+  shippingInfo: uuid("shipping_info")
+    .references(() => deliveryTable.id)
+    .notNull(),
+  paymentInfo: uuid("payment_info")
+    .references(() => paymentTable.id)
+    .notNull(),
+  orderDate: timestamp("order_date", {
+    withTimezone: true,
+  }).defaultNow(),
+  summaryPrice: integer("summary_price").notNull(),
+  orderStatus: ORDER_STATUS_ENUM("order_status").default("CREATED"),
+});
+
+export const deliveryTable = table("delivery_table", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  shippingService: SHIPPING_SERVICE_ENUM("shipping_service")
+    .notNull()
+    .default("NOVAPOST"),
+  deliveryStatus: DELIVERY_STATUS_ENUM("delivery_status").default("PENDING"),
+  sendDate: timestamp("send_date", {
+    withTimezone: true,
+  }),
+  arrivalDate: timestamp("arrival_date", {
+    withTimezone: true,
+  }),
+});
+
+export const paymentTable = table("payment_table", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  paymentType: PAYMENT_TYPE_ENUM("payment_type").notNull().default("CARD"),
+  paymentStatus: PAYMENT_STATUS_ENUM("payment_status").default("PENDING"),
+  paymentDate: timestamp("payment_date", {
+    withTimezone: true,
+  }).defaultNow(),
+});
+
+export const orderItemsTable = table("order_items", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  orderId: uuid("order_id")
+    .references(() => ordersTable.id)
+    .notNull(),
+  productId: uuid("product_id")
+    .references(() => variantsTable.id)
+    .notNull(),
+  priceAtPurchase: integer("price_at_purchase").notNull(),
+  quantity: integer("quantity").notNull(),
+  size: text("size"),
+  color: text("color"),
 });
