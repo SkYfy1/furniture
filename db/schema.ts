@@ -105,10 +105,20 @@ export const ordersTable = table("orders_table", {
 
 export const deliveryTable = table("delivery_table", {
   id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  userId: uuid("user_id")
+    .references(() => usersTable.id)
+    .notNull(),
   shippingService: SHIPPING_SERVICE_ENUM("shipping_service")
     .notNull()
     .default("NOVAPOST"),
   deliveryStatus: DELIVERY_STATUS_ENUM("delivery_status").default("PENDING"),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  country: text("country").notNull(),
+  city: text("city").notNull(),
+  state: text("state").notNull(),
+  zip: integer("zip_code").notNull(),
+  address: text("address").notNull(),
   sendDate: timestamp("send_date", {
     withTimezone: true,
   }),
