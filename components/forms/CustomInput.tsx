@@ -9,6 +9,7 @@ import {
 interface Props<T extends FieldValues> {
   register: UseFormRegister<T>;
   error?: FieldError;
+  label?: string;
   name: Path<T>;
   showPass?: boolean;
 }
@@ -17,15 +18,16 @@ const CustomInput = <T extends FieldValues>({
   register,
   error,
   name,
+  label,
   showPass,
 }: Props<T>) => {
   return (
-    <>
+    <div className="w-full flex flex-col gap-1">
       <label
         htmlFor={name}
         className="w-full px-4 py-1.5 bg-gray border border-gray focus-within:border-black rounded-sm"
       >
-        <p className="text-sm font-semibold capitalize">{name}*</p>
+        <p className="text-sm font-semibold capitalize">{label}*</p>
         {name == "password" ? (
           <input
             className="bg-gray-200/20 w-full rounded-xs focus:outline-none"
@@ -42,8 +44,10 @@ const CustomInput = <T extends FieldValues>({
           />
         )}
       </label>
-      {error && <span>{error.message}</span>}
-    </>
+      {error && (
+        <span className="text-xs text-red-600 ml-3">{error.message}</span>
+      )}
+    </div>
   );
 };
 

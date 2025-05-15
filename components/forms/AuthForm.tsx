@@ -56,11 +56,13 @@ const AuthForm = <T extends FieldValues>({
     >
       <CustomInput<T>
         register={register}
+        label="email"
         error={errors.email as FieldError}
         name={"email" as Path<T>}
       />
       {type === "SIGN_UP" && (
         <CustomInput<T>
+          label="Name"
           register={register}
           error={errors.name as FieldError}
           name={"name" as Path<T>}
@@ -68,6 +70,7 @@ const AuthForm = <T extends FieldValues>({
       )}
       <CustomInput<T>
         register={register}
+        label="password"
         error={errors.password as FieldError}
         name={"password" as Path<T>}
         showPass={showPass}
