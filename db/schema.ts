@@ -141,9 +141,8 @@ export const orderItemsTable = table("order_items", {
   orderId: uuid("order_id")
     .references(() => ordersTable.id)
     .notNull(),
-  productId: uuid("product_id")
-    .references(() => variantsTable.id)
-    .notNull(),
+  productId: uuid("product_id").references(() => productsTable.id),
+  variantId: uuid("variant_id").references(() => variantsTable.id),
   priceAtPurchase: integer("price_at_purchase").notNull(),
   quantity: integer("quantity").notNull(),
   size: text("size"),
