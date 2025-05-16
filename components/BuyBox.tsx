@@ -14,7 +14,7 @@ interface Props {
 const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
   const source = selected ?? product;
   const payload = {
-    id: selected ? selected.productId : product.id,
+    id: source.id,
     name: product.name,
     newPrice: source.discountedPrice ?? source.price,
     oldPrice: source.price,
