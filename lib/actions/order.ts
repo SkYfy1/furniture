@@ -6,11 +6,12 @@ import {
   orderItemsTable,
   ordersTable,
   paymentTable,
+  productsTable,
   variantsTable,
 } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
 
-interface ProductInfo {
+export interface ProductInfo {
   id: string;
   quantity: number;
   price: number;
@@ -23,134 +24,131 @@ interface OrderData {
 
 interface FormData {
   userId: string;
-  fullName: string;
+  firstName: string;
+  lastName: string;
+  zip: string;
+  country: string;
+  state: string;
+  city: string;
   address: string;
   paymentMethod: "CASH" | "CARD" | "CRYPTO";
   shippingService: "NOVAPOST" | "MEEST" | "UKRPOSTA";
 }
 
 export const createOrder = async (formData: FormData, orderData: OrderData) => {
-  const { userId, fullName, address, paymentMethod, shippingService } =
-    formData;
+  const {
+    userId,
+    firstName,
+    lastName,
+    city,
+    country,
+    state,
+    zip,
+    address,
+    paymentMethod,
+    shippingService,
+  } = formData;
   const { products, summaryPrice } = orderData;
   try {
     return await db.transaction(async (tx) => {
-      // const productArray = await Promise.all(
-      //   products.map(async (prod) => {
-      //     const product = await tx
-      //       .select()
-      //       .from(variantsTable)
-      //       .where(eq(variantsTable.id, prod.id));
-
-      //     return product[0];
-      //   })
-      // );
-
       const productIds = products.map((p) => p.id);
 
-      const productArray = await tx
-        .select()
-        .from(variantsTable)
-        .where(inArray(variantsTable.id, productIds));
+      const [variantArray, productArray] = await Promise.all([
+        tx
+          .select()
+          .from(variantsTable)
+          .where(inArray(variantsTable.id, productIds)),
+        tx
+          .select()
+          .from(productsTable)
+          .where(inArray(productsTable.id, productIds)),
+      ]);
 
-      if (productArray.some((item) => item.availableQuantity < 1))
+      if (
+        variantArray.some((item) => {
+          const product = products.find((elem) => elem.id === item.id);
+          return (product?.quantity as number) > item.availableQuantity;
+        }) ||
+        productArray.some((item) => {
+          const product = products.find((elem) => elem.id === item.id);
+          return (product?.quantity as number) > item.availableQuantity;
+        })
+      )
         return {
           success: false,
           message: "Some positions not available at this moment!",
         };
 
-      const [[{ paymentId }], [{ deliveryId }], [{ orderId }]] =
-        await Promise.all([
-          tx
-            .insert(paymentTable)
-            .values({
-              paymentType: paymentMethod,
-            })
-            .returning({ paymentId: paymentTable.id }),
-          tx
-            .insert(deliveryTable)
-            .values({
-              shippingService: shippingService,
-              userId,
-              address,
-              fullName,
-            })
-            .returning({ deliveryId: deliveryTable.id }),
-          tx
-            .insert(ordersTable)
-            .values({
-              clientId: userId,
-              shippingInfo: "",
-              paymentInfo: "",
-              summaryPrice,
-            })
-            .returning({ orderId: ordersTable.id }),
-        ]);
+      const [[{ paymentId }], [{ deliveryId }]] = await Promise.all([
+        tx
+          .insert(paymentTable)
+          .values({
+            paymentType: paymentMethod,
+          })
+          .returning({ paymentId: paymentTable.id }),
+        tx
+          .insert(deliveryTable)
+          .values({
+            shippingService,
+            userId,
+            address,
+            firstName,
+            lastName,
+            zip: Number(zip),
+            state,
+            country,
+            city,
+          })
+          .returning({ deliveryId: deliveryTable.id }),
+      ]);
 
-      await tx
-        .update(ordersTable)
-        .set({ paymentInfo: paymentId, shippingInfo: deliveryId })
-        .where(eq(ordersTable.id, orderId));
-
-      // First version
-
-      // const { paymentId } = (
-      //   await db
-      //     .insert(paymentTable)
-      //     .values({
-      //       paymentType: paymentMethod,
-      //     })
-      //     .returning({ paymentId: paymentTable.id })
-      // )[0];
-
-      // const { deliveryId } = (
-      //   await db
-      //     .insert(deliveryTable)
-      //     .values({
-      //       shippingService: shippingService,
-      //       userId,
-      //       address,
-      //       fullName,
-      //     })
-      //     .returning({ deliveryId: deliveryTable.id })
-      // )[0];
-
-      // const { orderId } = (
-      //   await db
-      //     .insert(ordersTable)
-      //     .values({
-      //       clientId: userId,
-      //       shippingInfo: deliveryId,
-      //       paymentInfo: paymentId,
-      //       summaryPrice,
-      //     })
-      //     .returning({ orderId: ordersTable.id })
-      // )[0];
+      const [{ orderId }] = await tx
+        .insert(ordersTable)
+        .values({
+          clientId: userId,
+          shippingInfo: deliveryId,
+          paymentInfo: paymentId,
+          summaryPrice,
+        })
+        .returning({ orderId: ordersTable.id });
 
       await Promise.all(
         products.map(async (item) => {
-          await tx.insert(orderItemsTable).values({
-            orderId,
-            productId: item.id,
-            priceAtPurchase: item.price,
-            quantity: item.quantity,
-          });
+          // Check if its variant - update variants table
+          if (variantArray.find((obj) => obj.id === item.id)) {
+            await tx.insert(orderItemsTable).values({
+              orderId,
+              variantId: item.id,
+              productId: null,
+              priceAtPurchase: item.price,
+              quantity: item.quantity,
+            });
 
-          // const product = productArray.find((el) => item.id === el.id);
+            await tx
+              .update(variantsTable)
+              .set({
+                availableQuantity: sql`${variantsTable.availableQuantity} - ${item.quantity}`,
+              })
+              .where(eq(variantsTable.id, item.id));
+          } else {
+            // Or Product Table
+            await tx.insert(orderItemsTable).values({
+              orderId,
+              productId: item.id,
+              variantId: null,
+              priceAtPurchase: item.price,
+              quantity: item.quantity,
+            });
 
-          // if (product?.availableQuantity)
-          await tx
-            .update(variantsTable)
-            .set({
-              availableQuantity: sql`${variantsTable.availableQuantity} - ${item.quantity}`,
-            })
-            .where(eq(variantsTable.id, item.id));
+            await tx
+              .update(productsTable)
+              .set({
+                availableQuantity: sql`${productsTable.availableQuantity} - ${item.quantity}`,
+              })
+              .where(eq(productsTable.id, item.id));
+          }
         })
       );
-
-      console.log(orderId, deliveryId, paymentId);
-
-      // redirect("/success");
 
       return { success: true, message: `Order id: ${orderId}` };
     });
