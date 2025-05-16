@@ -42,11 +42,11 @@ const OrderForm: React.FC<Props> = ({
 
     // on success redirect
 
-    // if (!result.success) {
-    //   console.log(result.message);
-    // } else {
-    //   router.push("/success");
-    // }
+    if (!result.success) {
+      console.log(result.message);
+    } else {
+      router.push("/success");
+    }
   };
 
   return (
