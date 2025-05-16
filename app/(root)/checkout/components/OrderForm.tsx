@@ -1,7 +1,6 @@
 "use client";
 
-import { CreateOrder } from "@/lib/actions/order";
-import { useAppSelector } from "@/lib/hooks";
+import { CreateOrder, ProductInfo } from "@/lib/actions/order";
 import { orderSchema, orderType } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -13,10 +12,16 @@ import DeliveryPayment from "./DeliveryPayment";
 interface Props {
   userId: string;
   action: CreateOrder;
+  cartItems: ProductInfo[];
+  summaryPrice: number;
 }
 
-const OrderForm: React.FC<Props> = ({ userId, action }) => {
-  const cart = useAppSelector((state) => state.cart.items);
+const OrderForm: React.FC<Props> = ({
+  userId,
+  cartItems,
+  summaryPrice,
+  action,
+}) => {
   const router = useRouter();
   const {
     register,
@@ -26,36 +31,23 @@ const OrderForm: React.FC<Props> = ({ userId, action }) => {
     resolver: zodResolver(orderSchema),
   });
 
-  const orderProducts = cart.map((item) => ({
-    id: item.id,
-    quantity: item.quantity,
-    price: item.newPrice,
-  }));
-
-  const summaryPrice = 1000;
-
   const submitForm: SubmitHandler<orderType> = async (data) => {
     const result = await action(
       {
         userId,
-        fullName: data.firstName,
-        address: data.address,
-        paymentMethod: data.paymentMethod,
-        shippingService: data.shippingService,
+        ...data,
       },
-      { products: orderProducts, summaryPrice }
+      { products: cartItems, summaryPrice }
     );
 
-    if (!result.success) {
-      console.log(result.message);
-    } else {
-      router.push("/success");
-    }
-  };
+    // on success redirect
 
-  //   if (!cart.length) {
-  //     router.push("/");
-  //   }
+    // if (!result.success) {
+    //   console.log(result.message);
+    // } else {
+    //   router.push("/success");
+    // }
+  };
 
   return (
     <form
