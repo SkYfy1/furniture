@@ -1,30 +1,15 @@
 import { db } from "@/db/drizzle";
 import {
+  deliveryTable,
   orderItemsTable,
   ordersTable,
+  paymentTable,
   productsTable,
   usersTable,
   variantsTable,
 } from "@/db/schema";
+import { Order, result } from "@/db/tableTypes";
 import { eq } from "drizzle-orm";
-
-type Order = typeof ordersTable.$inferSelect;
-// type Items = Partial<typeof orderItemsTable.$inferSelect>;
-type Variants = Partial<typeof variantsTable.$inferSelect> & {
-  quantity: number;
-};
-type Products = Partial<typeof productsTable.$inferSelect> & {
-  quantity: number;
-};
-type result = Record<string, { order: Order; items: Variants[] | Products[] }>;
-
-type PromiseResolvedType<T> = T extends Promise<infer R> ? R : never;
-
-type ArrayType<S> = S extends readonly (infer F)[] ? F : never;
-
-export type OrdersValue = ArrayType<
-  PromiseResolvedType<ReturnType<typeof getOrderData>>
->;
 
 export const getOrderData = async (userId: string) => {
   const query = await db
@@ -81,4 +66,22 @@ export const getOrderData = async (userId: string) => {
   const orders = Object.values(result);
 
   return orders;
+};
+
+export const getShippingInfo = async (shippingId: string) => {
+  const [result] = await db
+    .select()
+    .from(deliveryTable)
+    .where(eq(deliveryTable.id, shippingId));
+
+  return result;
+};
+
+export const getPaymentInfo = async (paymentId: string) => {
+  const [result] = await db
+    .select()
+    .from(paymentTable)
+    .where(eq(paymentTable.id, paymentId));
+
+  return result;
 };
