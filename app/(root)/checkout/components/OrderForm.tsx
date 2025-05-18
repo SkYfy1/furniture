@@ -3,11 +3,12 @@
 import { CreateOrder, ProductInfo } from "@/lib/actions/order";
 import { orderSchema, orderType } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import ShippingInfo from "./ShippingInfo";
 import DeliveryPayment from "./DeliveryPayment";
+import { useAppDispatch } from "@/lib/hooks";
+import { clearCart } from "@/lib/features/cartSlice";
 
 interface Props {
   userId: string;
@@ -22,7 +23,7 @@ const OrderForm: React.FC<Props> = ({
   summaryPrice,
   action,
 }) => {
-  const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -40,12 +41,10 @@ const OrderForm: React.FC<Props> = ({
       { products: cartItems, summaryPrice }
     );
 
-    // on success redirect
-
     if (!result.success) {
       console.log(result.message);
     } else {
-      router.push("/success");
+      dispatch(clearCart());
     }
   };
 
