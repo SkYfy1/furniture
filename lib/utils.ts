@@ -1,4 +1,5 @@
 import { blackList } from "@/constants";
+import { Products, Variants } from "@/db/tableTypes";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -20,6 +21,10 @@ export function debounce<T extends (...args: Parameters<T>) => void>(
 
 export const isVariant = (item: Product | Variant): item is Variant => {
   return (item as Variant).sku !== undefined;
+};
+
+export const isProductTable = (item: Products | Variants): item is Products => {
+  return (item as Products).name !== undefined;
 };
 
 export const filterSku = (sku: string) => {
