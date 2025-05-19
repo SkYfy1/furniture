@@ -8,9 +8,15 @@ interface Props {
   items: Variants[] | Products[];
   shipping: shippingInfo;
   payment: paymentInfo;
+  orderId: string;
 }
 
-const OrderDetails: React.FC<Props> = ({ items, shipping, payment }) => {
+const OrderDetails: React.FC<Props> = ({
+  items,
+  shipping,
+  payment,
+  orderId,
+}) => {
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-1.5 py-2">
@@ -20,7 +26,7 @@ const OrderDetails: React.FC<Props> = ({ items, shipping, payment }) => {
         ))}
       </div>
       <OrderShipping shipping={shipping} />
-      <OrderPayment payment={payment} />
+      <OrderPayment orderId={orderId} payment={payment} />
     </div>
   );
 };

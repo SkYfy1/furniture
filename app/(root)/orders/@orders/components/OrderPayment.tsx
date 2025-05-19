@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/Button";
 import { paymentInfo } from "@/db/tableTypes";
+import { cancelOrder } from "@/lib/actions/order";
 import Link from "next/link";
 import React from "react";
 
-const OrderPayment: React.FC<{ payment: paymentInfo }> = ({ payment }) => {
+const OrderPayment: React.FC<{ payment: paymentInfo; orderId: string }> = ({
+  payment,
+  orderId,
+}) => {
   return (
     <div className="flex-col flex justify-between py-2">
       <div>
@@ -21,7 +25,13 @@ const OrderPayment: React.FC<{ payment: paymentInfo }> = ({ payment }) => {
         <Button asChild className="flex mb-2">
           <Link href="/receipt">Print receipt</Link>
         </Button>
-        <Button variant="destructive" className="w-full">
+        <Button
+          variant="destructive"
+          className="w-full"
+          onClick={() => {
+            cancelOrder(orderId);
+          }}
+        >
           Cancel order
         </Button>
       </div>

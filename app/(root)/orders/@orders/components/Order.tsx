@@ -64,6 +64,7 @@ const Order: React.FC<Props> = ({
           items={products}
           shipping={shippingInfo}
           payment={paymentInfo}
+          orderId={orderInfo.id}
         />
       )}
     </div>
