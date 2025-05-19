@@ -10,8 +10,8 @@ const Page = async () => {
   if (!session?.user) redirect("/orders");
 
   return (
-    <div className="container h-full w-full min-h-[70vh] pt-36">
-      <h2 className="mb-18 text-4xl pl-2 font-semibold">Checkout</h2>
+    <div className="container h-full w-full min-h-[70vh] md:pt-36 pt-12">
+      <h2 className="mb-8 md:mb-18 text-4xl pl-2 font-semibold">Checkout</h2>
       <Checkout userId={session.user.id as string} action={createOrder} />
     </div>
   );

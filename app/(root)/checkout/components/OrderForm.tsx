@@ -51,7 +51,7 @@ const OrderForm: React.FC<Props> = ({
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
-      className="flex flex-col gap-4 w-[50%]"
+      className="flex flex-col gap-4 px-4 md:w-[50%]"
     >
       <ShippingInfo register={register} errors={errors} />
       <DeliveryPayment register={register} errors={errors} />

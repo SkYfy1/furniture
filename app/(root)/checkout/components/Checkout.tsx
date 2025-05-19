@@ -41,7 +41,7 @@ const Checkout: React.FC<Props> = ({ userId, action }) => {
   }, [cart, router]);
 
   return (
-    <section className="flex flex-col md:flex-row gap-24">
+    <section className="flex flex-col md:flex-row md:gap-24 gap-8">
       <OrderForm
         cartItems={cartItems}
         userId={userId}
