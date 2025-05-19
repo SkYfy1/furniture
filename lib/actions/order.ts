@@ -10,6 +10,7 @@ import {
   variantsTable,
 } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export interface ProductInfo {
   id: string;
@@ -162,3 +163,82 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
 };
 
 export type CreateOrder = typeof createOrder;
+
+export const cancelOrder = async (orderId: string) => {
+  try {
+    await db.transaction(async (tx) => {
+      const orderItems = await tx
+        .select()
+        .from(orderItemsTable)
+        .where(eq(orderItemsTable.orderId, orderId));
+
+      const { products, variants } = orderItems.reduce<{
+        products: { id: string; quantity: number }[];
+        variants: { id: string; quantity: number }[];
+      }>(
+        (acc, cur) => {
+          if (cur.variantId)
+            acc.variants.push({ id: cur?.variantId, quantity: cur.quantity });
+          if (cur.productId)
+            acc.products.push({ id: cur?.productId, quantity: cur.quantity });
+          return acc;
+        },
+        { products: [], variants: [] }
+      );
+
+      await Promise.all(
+        products.map(async (product) => {
+          await tx
+            .update(productsTable)
+            .set({
+              availableQuantity: sql`${productsTable.availableQuantity} + ${product.quantity}`,
+            })
+            .where(eq(productsTable.id, product.id));
+        })
+      );
+
+      await Promise.all(
+        variants.map(async (variant) => {
+          await tx
+            .update(variantsTable)
+            .set({
+              availableQuantity: sql`${variantsTable.availableQuantity} + ${variant.quantity}`,
+            })
+            .where(eq(variantsTable.id, variant.id));
+        })
+      );
+
+      const [{ shippingId, paymentId }] = await tx
+        .update(ordersTable)
+        .set({ orderStatus: "REJECTED" })
+        .where(eq(ordersTable.id, orderId))
+        .returning({
+          shippingId: ordersTable.shippingInfo,
+          paymentId: ordersTable.paymentInfo,
+        });
+
+      await Promise.all([
+        tx
+          .update(paymentTable)
+          .set({ paymentStatus: "REJECTED" })
+          .where(eq(paymentTable.id, paymentId)),
+        tx
+          .update(deliveryTable)
+          .set({ deliveryStatus: "REJECTED" })
+          .where(eq(deliveryTable.id, shippingId)),
+      ]);
+    });
+
+    revalidatePath("/orders");
+    return {
+      success: true,
+      message: "Order cancelled",
+    };
+  } catch (error) {
+    console.error("Order cancellation failed:", error);
+    return {
+      success: false,
+      message: error instanceof Error ? error.message : "Order cancel failed",
+    };
+  }
+};
