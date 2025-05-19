@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/Button";
 import { paymentInfo } from "@/db/tableTypes";
 import Link from "next/link";
 import React from "react";
@@ -16,12 +17,14 @@ const OrderPayment: React.FC<{ payment: paymentInfo }> = ({ payment }) => {
           </p>
         </div>
       </div>
-      <Link
-        href="/receipt"
-        className="bg-black rounded-md w-full border border-black text-center hover:bg-gray hover:text-black duration-400 py-2 text-sm text-white "
-      >
-        Print receipt
-      </Link>
+      <div>
+        <Button asChild className="flex mb-2">
+          <Link href="/receipt">Print receipt</Link>
+        </Button>
+        <Button variant="destructive" className="w-full">
+          Cancel order
+        </Button>
+      </div>
     </div>
   );
 };
