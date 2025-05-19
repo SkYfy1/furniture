@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import OrderForm from "./OrderForm";
 import OrderSummary from "./OrderSummary";
 import { CreateOrder } from "@/lib/actions/order";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 
 interface Props {
@@ -14,6 +14,7 @@ interface Props {
 
 const Checkout: React.FC<Props> = ({ userId, action }) => {
   const cart = useAppSelector((state) => state.cart.items);
+  const router = useRouter();
 
   const totalPrice = cart.reduce((cur, acc) => {
     if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
@@ -35,7 +36,9 @@ const Checkout: React.FC<Props> = ({ userId, action }) => {
 
   // If cart is empty - redirect to main page!
 
-  if (!cart.length) redirect("/");
+  useEffect(() => {
+    if (cart.length === 0) router.push("/");
+  }, [cart, router]);
 
   return (
     <section className="flex flex-col md:flex-row gap-24">
