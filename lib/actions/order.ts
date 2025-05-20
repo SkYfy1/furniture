@@ -11,6 +11,7 @@ import {
 } from "@/db/schema";
 import { eq, inArray, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { stripe } from "../stripe";
 
 export interface ProductInfo {
   id: string;
@@ -151,7 +152,56 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
         })
       );
 
-      return { success: true, message: `Order id: ${orderId}` };
+      const line_items = [
+        ...variantArray.map((item) => {
+          const quantity = products.find((el) => el.id === item.id)?.quantity;
+
+          return {
+            price_data: {
+              currency: "eur",
+              product_data: {
+                name: item.sku,
+                images: [item.imageUrl],
+              },
+              unit_amount: item.price * 100,
+            },
+            quantity: quantity,
+          };
+        }),
+        ...productArray.map((item) => {
+          const quantity = products.find((el) => el.id === item.id)?.quantity;
+
+          return {
+            price_data: {
+              currency: "eur",
+              product_data: {
+                name: item.name,
+                images: [item.imageUrl],
+              },
+              unit_amount: item.price * 100,
+            },
+            quantity: quantity,
+          };
+        }),
+      ];
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items,
+        mode: "payment",
+        success_url: `${process.env.NEXT_PUBLIC_URL}/success?payment_id=${paymentId}`,
+        cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
+        metadata: {
+          payment_id: paymentId,
+          user_id: userId,
+        },
+      });
+
+      return {
+        success: true,
+        url: session.url,
+        message: `Order id: ${orderId}`,
+      };
     });
   } catch (error) {
     console.error("Order creation failed:", error);
