@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 const buttonVariants = cva(
-  "border duration-400 rounded-md cursor-pointer items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none",
+  "border duration-400 rounded-md cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -17,7 +17,7 @@ const buttonVariants = cva(
       size: {
         default: "px-3 py-2 text-sm",
         sm: "h-9 px-2 text-xs",
-        lg: "h-11 px-8 text-base",
+        lg: "py-3 px-8 text-lg font-semibold",
       },
     },
     defaultVariants: {
