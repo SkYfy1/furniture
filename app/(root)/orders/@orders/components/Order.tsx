@@ -4,6 +4,8 @@ import { OrdersValue, paymentInfo, shippingInfo } from "@/db/tableTypes";
 import React, { use, useState } from "react";
 import OrderDetails from "./OrderDetails";
 import { cn } from "@/lib/utils";
+import { retryPayment } from "@/lib/actions/payment";
+import { redirect } from "next/navigation";
 
 interface Props {
   order: OrdersValue;
@@ -23,13 +25,28 @@ const Order: React.FC<Props> = ({
 
   const orderInfo = order.order;
   const products = order.items;
+  const cancelled = paymentInfo.paymentStatus === "REJECTED";
+
+  const retryAction = async () => {
+    const url = await retryPayment({
+      userId: orderInfo.clientId,
+      paymentId: paymentInfo.id,
+      orderedProducts: products,
+    });
+
+    if (url) redirect(url);
+  };
   return (
     <div className="border rounded-md p-4 bg-gray">
       <div className="flex justify-between items-center">
         <div>
           <h3 className="text-base font-semibold pb-1">
             Order ID <span className="text-xs">#{orderInfo.id}</span>{" "}
-            <span className="text-green-price">{orderInfo.orderStatus}</span>
+            <span
+              className={cn("text-green-price", cancelled && "text-red-900")}
+            >
+              {orderInfo.orderStatus}
+            </span>
           </h3>
           <div className="flex gap-2 text-xs">
             <p className="after:content-['|'] after:pl-2">
@@ -65,6 +82,7 @@ const Order: React.FC<Props> = ({
           shipping={shippingInfo}
           payment={paymentInfo}
           orderId={orderInfo.id}
+          retryAction={retryAction}
         />
       )}
     </div>

@@ -9,6 +9,7 @@ interface Props {
   shipping: shippingInfo;
   payment: paymentInfo;
   orderId: string;
+  retryAction: () => Promise<void>;
 }
 
 const OrderDetails: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const OrderDetails: React.FC<Props> = ({
   shipping,
   payment,
   orderId,
+  retryAction,
 }) => {
   return (
     <div className="flex justify-between">
@@ -26,7 +28,11 @@ const OrderDetails: React.FC<Props> = ({
         ))}
       </div>
       <OrderShipping shipping={shipping} />
-      <OrderPayment orderId={orderId} payment={payment} />
+      <OrderPayment
+        retryAction={retryAction}
+        orderId={orderId}
+        payment={payment}
+      />
     </div>
   );
 };
