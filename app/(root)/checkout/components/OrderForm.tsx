@@ -7,8 +7,9 @@ import React from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import ShippingInfo from "./ShippingInfo";
 import DeliveryPayment from "./DeliveryPayment";
-import { useAppDispatch } from "@/lib/hooks";
-import { clearCart } from "@/lib/features/cartSlice";
+// import { useAppDispatch } from "@/lib/hooks";
+// import { clearCart } from "@/lib/features/cartSlice";
+import { redirect } from "next/navigation";
 
 interface Props {
   userId: string;
@@ -23,7 +24,7 @@ const OrderForm: React.FC<Props> = ({
   summaryPrice,
   action,
 }) => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -41,11 +42,17 @@ const OrderForm: React.FC<Props> = ({
       { products: cartItems, summaryPrice }
     );
 
-    if (!result.success) {
-      console.log(result.message);
-    } else {
-      dispatch(clearCart());
+    if (result.url) {
+      redirect(result.url);
     }
+
+    // REWORK!
+
+    // if (!result.success) {
+    //   console.log(result.message);
+    // } else {
+    //   dispatch(clearCart());
+    // }
   };
 
   return (
