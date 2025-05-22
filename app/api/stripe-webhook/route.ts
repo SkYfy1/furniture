@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
   const body = await req.text();
   const signature = (await headers()).get("Stripe-Signature") as string;
+  console.log("Webhook start!");
 
   let event;
 
@@ -32,6 +33,8 @@ export async function POST(req: Request) {
         paymentDate: new Date(),
       })
       .where(eq(paymentTable.id, session?.metadata?.payment_id as string));
+
+    console.log("Payment updated!");
   }
 
   return new NextResponse(null, { status: 200 });
