@@ -33,3 +33,39 @@ export const filterSku = (sku: string) => {
     .filter((str) => !blackList.includes(str))
     .join(" ");
 };
+
+export const createLineItems = (
+  variantArray: Variants[],
+  productArray: Products[]
+) => {
+  const line_items = [
+    ...variantArray.map((item) => {
+      return {
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: item.sku as string,
+            images: [item.imageUrl as string],
+          },
+          unit_amount: item.price! * 100,
+        },
+        quantity: item.quantity,
+      };
+    }),
+    ...productArray.map((item) => {
+      return {
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: item.name as string,
+            images: [item.imageUrl as string],
+          },
+          unit_amount: item.price! * 100,
+        },
+        quantity: item.quantity,
+      };
+    }),
+  ];
+
+  return line_items;
+};
