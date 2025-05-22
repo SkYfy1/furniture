@@ -20,7 +20,7 @@ const OrderDetails: React.FC<Props> = ({
   retryAction,
 }) => {
   return (
-    <div className="flex justify-between">
+    <div className="flex flex-col lg:flex-row  justify-between">
       <div className="flex flex-col gap-1.5 py-2">
         <h1 className="text-lg font-semibold">Order Items</h1>
         {items.map((item) => (

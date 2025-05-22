@@ -3,7 +3,7 @@
 import { OrdersValue, paymentInfo, shippingInfo } from "@/db/tableTypes";
 import React, { use, useState } from "react";
 import OrderDetails from "./OrderDetails";
-import { cn } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { retryPayment } from "@/lib/actions/payment";
 import { redirect } from "next/navigation";
 
@@ -38,7 +38,7 @@ const Order: React.FC<Props> = ({
   };
   return (
     <div className="border rounded-md p-4 bg-gray">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between md:items-center">
         <div>
           <h3 className="text-base font-semibold pb-1">
             Order ID <span className="text-xs">#{orderInfo.id}</span>{" "}
@@ -48,17 +48,22 @@ const Order: React.FC<Props> = ({
               {orderInfo.orderStatus}
             </span>
           </h3>
-          <div className="flex gap-2 text-xs">
-            <p className="after:content-['|'] after:pl-2">
-              Placed on {orderInfo.orderDate?.toDateString()}
+          <div className="flex flex-row gap-2 text-[0.63rem] md:text-xs">
+            <p className="sm:after:content-['|'] sm:after:pl-2">
+              Placed on{" "}
+              <span className="font-semibold">
+                {formatDate(orderInfo.orderDate?.toDateString() as string)}
+              </span>
             </p>
             <p>
               Will be sent{" "}
-              <span className="text-blue-600 uppercase">tomorrow</span>
+              <span className="text-blue-600 uppercase font-semibold">
+                tomorrow
+              </span>
             </p>
           </div>
         </div>
-        <div className="text-green-price font-semibold text-lg text-center flex flex-col gap-1">
+        <div className="text-green-price font-semibold text-lg text-center flex md:flex-col w-full md:w-fit justify-between md:gap-1 pt-2 md:pt-0">
           <div>€{orderInfo.summaryPrice}.00</div>
           <button
             onClick={() => setShowDetails((prev) => !prev)}
