@@ -69,3 +69,26 @@ export const createLineItems = (
 
   return line_items;
 };
+
+export const formatDate = (input: string) => {
+  const [weekDay, month, day, year] = input.split(" ");
+
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const monthNumber = monthNames.indexOf(month);
+
+  return `${weekDay} ${monthNumber + 1}/${day}/${year}`;
+};
