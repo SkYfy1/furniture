@@ -8,6 +8,7 @@ const OrderPayment: React.FC<{ payment: paymentInfo; orderId: string }> = ({
   payment,
   orderId,
 }) => {
+  const cancelled = payment.paymentStatus === "REJECTED";
   return (
     <div className="flex-col flex justify-between py-2">
       <div>
@@ -21,20 +22,22 @@ const OrderPayment: React.FC<{ payment: paymentInfo; orderId: string }> = ({
           </p>
         </div>
       </div>
-      <div>
-        <Button asChild className="flex mb-2">
-          <Link href="/receipt">Print receipt</Link>
-        </Button>
-        <Button
-          variant="destructive"
-          className="w-full"
-          onClick={() => {
-            cancelOrder(orderId);
-          }}
-        >
-          Cancel order
-        </Button>
-      </div>
+      {!cancelled && (
+        <div>
+          <Button asChild className="flex mb-2">
+            <Link href="/receipt">Print receipt</Link>
+          </Button>
+          <Button
+            variant="destructive"
+            className="w-full"
+            onClick={() => {
+              cancelOrder(orderId);
+            }}
+          >
+            Cancel order
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
