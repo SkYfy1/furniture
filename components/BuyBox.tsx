@@ -9,9 +9,10 @@ interface Props {
   product: Product;
   selected: Variant;
   variants: Variant[];
+  userId: string;
 }
 
-const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
+const BuyBox: React.FC<Props> = ({ product, variants, selected, userId }) => {
   const source = selected ?? product;
   const payload = {
     id: source.id,
@@ -68,7 +69,11 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected }) => {
             </span>
           )}
         </div>
-        <BuyButtons payload={payload} />
+        <BuyButtons
+          payload={payload}
+          userId={userId}
+          type={selected ? "variant" : "product"}
+        />
         <ProductStockStatus
           quantity={selected?.availableQuantity ?? product.availableQuantity}
         />
