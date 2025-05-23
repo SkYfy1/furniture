@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import BuyBox from "@/components/BuyBox";
 import ProductDimensions from "@/components/ProductDimensions";
 import { getProductById, getVariants } from "@/lib/data/products";
@@ -16,6 +17,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
     getProductById(id),
     getVariants(id),
   ]);
+  const session = await auth();
 
   const defaultSku =
     searchPars ?? variants[Math.floor(variants.length / 2)]?.sku;
@@ -39,6 +41,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
         </div>
       </div>
       <BuyBox
+        userId={session?.user?.id as string}
         product={product}
         variants={variants}
         selected={selectedItem as Variant}
