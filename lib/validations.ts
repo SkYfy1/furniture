@@ -21,6 +21,7 @@ export const orderSchema = z.object({
     message: "Zip code must contain 5 digits",
   }),
   address: z.string().min(2),
+  default: z.boolean(),
   shippingService: z.enum(["MEEST", "NOVAPOST", "UKRPOSTA"], {
     message: "Please choose either MEEST, NOVAPOST or URKPOSTA",
   }),

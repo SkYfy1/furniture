@@ -8,25 +8,30 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import ShippingInfo from "./ShippingInfo";
 import DeliveryPayment from "./DeliveryPayment";
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/Button";
 
 interface Props {
   userId: string;
   action: CreateOrder;
   cartItems: ProductInfo[];
   summaryPrice: number;
+  defaultValues?: orderType;
 }
 
 const OrderForm: React.FC<Props> = ({
   userId,
   cartItems,
   summaryPrice,
+  defaultValues,
   action,
 }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
+    defaultValues: defaultValues,
     resolver: zodResolver(orderSchema),
   });
 
@@ -55,9 +60,24 @@ const OrderForm: React.FC<Props> = ({
     >
       <ShippingInfo register={register} errors={errors} />
       <DeliveryPayment register={register} errors={errors} />
-      <button className="w-full bg-black text-white py-2 rounded-sm cursor-pointer">
+      <div className="flex items-center justify-between">
+        <div className="flex gap-2 text-sm px-2">
+          <input type="checkbox" id="default" {...register("default")} />
+          <label htmlFor="default">Save as default</label>
+        </div>
+        <Button
+          onClick={() => reset({})}
+          variant="destructive"
+          type="button"
+          size="sm"
+          className="w-fit"
+        >
+          Reset form
+        </Button>
+      </div>
+      <Button className="w-full bg-black text-white py-2 rounded-sm cursor-pointer text-base">
         Submit
-      </button>
+      </Button>
     </form>
   );
 };

@@ -6,13 +6,15 @@ import OrderSummary from "./OrderSummary";
 import { CreateOrder } from "@/lib/actions/order";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
+import { shippingInfo } from "@/db/tableTypes";
 
 interface Props {
   userId: string;
+  shippingData?: shippingInfo;
   action: CreateOrder;
 }
 
-const Checkout: React.FC<Props> = ({ userId, action }) => {
+const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
   const cart = useAppSelector((state) => state.cart.items);
   const router = useRouter();
 
@@ -44,6 +46,17 @@ const Checkout: React.FC<Props> = ({ userId, action }) => {
     <section className="flex flex-col md:flex-row md:gap-24 gap-8">
       <OrderForm
         cartItems={cartItems}
+        defaultValues={
+          shippingData !== undefined
+            ? {
+                ...shippingData,
+                // zip number (in db) - z object waits string
+                zip: shippingData.zip.toString(),
+                paymentMethod: "CARD",
+                default: false,
+              }
+            : undefined
+        }
         userId={userId}
         action={action}
         summaryPrice={totalPrice + tax}
