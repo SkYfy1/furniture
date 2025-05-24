@@ -9,7 +9,7 @@ import {
   variantsTable,
 } from "@/db/schema";
 import { Order, result } from "@/db/tableTypes";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 export const getOrderData = async (userId: string) => {
   const query = await db
@@ -82,6 +82,17 @@ export const getPaymentInfo = async (paymentId: string) => {
     .select()
     .from(paymentTable)
     .where(eq(paymentTable.id, paymentId));
+
+  return result;
+};
+
+export const getShippingRows = async (userId: string) => {
+  const result = await db
+    .select()
+    .from(deliveryTable)
+    .where(
+      and(eq(deliveryTable.userId, userId), eq(deliveryTable.default, true))
+    );
 
   return result;
 };
