@@ -6,6 +6,7 @@ import {
   pgEnum,
   integer,
   jsonb,
+  boolean,
 } from "drizzle-orm/pg-core";
 
 export const ROLE_ENUM = pgEnum("role", ["user", "admin"]);
@@ -125,6 +126,7 @@ export const deliveryTable = table("delivery_table", {
   arrivalDate: timestamp("arrival_date", {
     withTimezone: true,
   }),
+  default: boolean().default(false),
 });
 
 export const paymentTable = table("payment_table", {
@@ -134,6 +136,7 @@ export const paymentTable = table("payment_table", {
   paymentDate: timestamp("payment_date", {
     withTimezone: true,
   }).defaultNow(),
+  default: boolean().default(false),
 });
 
 export const orderItemsTable = table("order_items", {
