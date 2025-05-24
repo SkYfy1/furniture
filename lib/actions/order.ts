@@ -12,6 +12,7 @@ import {
 import { eq, inArray, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { stripe } from "../stripe";
+import { orderType } from "../validations";
 
 export interface ProductInfo {
   id: string;
@@ -24,17 +25,8 @@ interface OrderData {
   summaryPrice: number;
 }
 
-interface FormData {
+interface FormData extends orderType {
   userId: string;
-  firstName: string;
-  lastName: string;
-  zip: string;
-  country: string;
-  state: string;
-  city: string;
-  address: string;
-  paymentMethod: "CASH" | "CARD" | "CRYPTO";
-  shippingService: "NOVAPOST" | "MEEST" | "UKRPOSTA";
 }
 
 export const createOrder = async (formData: FormData, orderData: OrderData) => {
@@ -46,6 +38,7 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
     country,
     state,
     zip,
+    default: isDefault,
     address,
     paymentMethod,
     shippingService,
@@ -86,6 +79,7 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
           .insert(paymentTable)
           .values({
             paymentType: paymentMethod,
+            default: isDefault,
           })
           .returning({ paymentId: paymentTable.id }),
         tx
@@ -100,6 +94,7 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
             state,
             country,
             city,
+            default: isDefault,
           })
           .returning({ deliveryId: deliveryTable.id }),
       ]);
