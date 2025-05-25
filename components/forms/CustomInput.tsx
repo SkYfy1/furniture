@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 import {
   FieldError,
@@ -25,7 +26,10 @@ const CustomInput = <T extends FieldValues>({
     <div className="w-full flex flex-col gap-1">
       <label
         htmlFor={name}
-        className="w-full px-4 py-1.5 bg-gray border border-gray focus-within:border-black rounded-sm"
+        className={cn(
+          "w-full px-4 py-1.5 bg-gray border border-gray focus-within:border-black rounded-sm",
+          error && "border-red-400 "
+        )}
       >
         <p className="text-sm font-semibold capitalize">{label}*</p>
         {name == "password" ? (
