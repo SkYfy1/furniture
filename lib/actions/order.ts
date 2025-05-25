@@ -290,15 +290,15 @@ export const cancelOrder = async (orderId: string) => {
 
 export const updateDefaultDelivery = async (deliveryId: string) => {
   try {
-    return await db.transaction(async (tx) => {
+    await db.transaction(async (tx) => {
       await tx.update(deliveryTable).set({ default: false });
       await tx
         .update(deliveryTable)
         .set({ default: true })
         .where(eq(deliveryTable.id, deliveryId));
-
-      return { success: true, message: "This delivery method set to default" };
     });
+    revalidatePath("/orders");
+    return { success: true, message: "This delivery method set to default" };
   } catch (error) {
     console.error("Order cancellation failed:", error);
     return {
