@@ -9,6 +9,7 @@ import ShippingInfo from "./ShippingInfo";
 import DeliveryPayment from "./DeliveryPayment";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import CustomCheckbox from "@/components/forms/CustomCheckbox";
 
 interface Props {
   userId: string;
@@ -29,6 +30,7 @@ const OrderForm: React.FC<Props> = ({
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: defaultValues,
@@ -61,10 +63,12 @@ const OrderForm: React.FC<Props> = ({
       <ShippingInfo register={register} errors={errors} />
       <DeliveryPayment register={register} errors={errors} />
       <div className="flex items-center justify-between">
-        <div className="flex gap-2 text-sm px-2">
-          <input type="checkbox" id="default" {...register("default")} />
-          <label htmlFor="default">Save as default</label>
-        </div>
+        <CustomCheckbox
+          control={control}
+          text="Save as default"
+          name="default"
+          defaultValue={defaultValues?.default as boolean}
+        />
         <Button
           onClick={() => reset({})}
           variant="destructive"
