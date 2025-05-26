@@ -10,6 +10,7 @@ import { Checkbox } from "../ui/checkbox";
 
 interface Props<T extends FieldValues> {
   name: Path<T>;
+  disabled?: boolean;
   control: Control<T>;
   defaultValue: PathValue<T, Path<T>>;
   text?: string;
@@ -17,6 +18,7 @@ interface Props<T extends FieldValues> {
 
 const CustomCheckbox = <T extends FieldValues>({
   name,
+  disabled,
   control,
   defaultValue,
   text,
@@ -25,6 +27,7 @@ const CustomCheckbox = <T extends FieldValues>({
   return (
     <div className="flex items-center gap-2 text-sm">
       <Checkbox
+        disabled={disabled}
         id={name}
         value={field.value}
         onCheckedChange={field.onChange}

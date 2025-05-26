@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 import {
   FieldError,
@@ -8,6 +9,7 @@ import {
 
 interface Props<T extends FieldValues> {
   register: UseFormRegister<T>;
+  disabled?: boolean;
   error?: FieldError;
   label?: string;
   name: Path<T>;
@@ -20,16 +22,22 @@ const CustomSelect = <T extends FieldValues>({
   name,
   label,
   options,
+  disabled,
 }: Props<T>) => {
   return (
     <div className="w-full flex flex-col gap-1">
       <label
         htmlFor={name}
-        className=" px-4 py-1.5 bg-gray border border-gray focus-within:border-black rounded-sm"
+        className={cn(
+          "px-4 py-1.5 bg-gray border border-gray focus-within:border-black rounded-sm",
+          disabled && "bg-gray-200",
+          error && "border-red-400"
+        )}
       >
         <p className="text-sm font-semibold capitalize">{label}*</p>
 
         <select
+          disabled={disabled}
           className="bg-gray-200/20 w-full rounded-xs focus:outline-none"
           id={name}
           {...register(name as Path<T>)}

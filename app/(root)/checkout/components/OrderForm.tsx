@@ -31,7 +31,7 @@ const OrderForm: React.FC<Props> = ({
     handleSubmit,
     reset,
     control,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: defaultValues,
     resolver: zodResolver(orderSchema),
@@ -60,16 +60,26 @@ const OrderForm: React.FC<Props> = ({
       onSubmit={handleSubmit(submitForm)}
       className="flex flex-col gap-4 px-4 md:w-[50%]"
     >
-      <ShippingInfo register={register} errors={errors} />
-      <DeliveryPayment register={register} errors={errors} />
+      <ShippingInfo
+        disableForm={isSubmitting}
+        register={register}
+        errors={errors}
+      />
+      <DeliveryPayment
+        disableForm={isSubmitting}
+        register={register}
+        errors={errors}
+      />
       <div className="flex items-center justify-between">
         <CustomCheckbox
           control={control}
+          disabled={isSubmitting}
           text="Save as default"
           name="default"
           defaultValue={defaultValues?.default as boolean}
         />
         <Button
+          disabled={isSubmitting}
           onClick={() => reset({})}
           variant="destructive"
           type="button"
@@ -79,7 +89,10 @@ const OrderForm: React.FC<Props> = ({
           Reset form
         </Button>
       </div>
-      <Button className="w-full bg-black text-white py-2 rounded-sm cursor-pointer text-base">
+      <Button
+        disabled={isSubmitting}
+        className="w-full bg-black text-white py-2 rounded-sm cursor-pointer text-base"
+      >
         Submit
       </Button>
     </form>
