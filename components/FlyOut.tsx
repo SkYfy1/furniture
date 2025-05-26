@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -10,9 +11,18 @@ interface FlyOut {
 
 const FlyOut: React.FC<FlyOut> = ({ title, links }) => {
   const [showMore, setShowMore] = useState(false);
+
+  const handleChangeView = () => {
+    setShowMore((prev) => !prev);
+  };
+
   return (
-    <li onMouseEnter={() => setShowMore(true)} className="relative">
-      <span className="flex gap-3 items-center group hover:underline capitalize">
+    <li
+      onMouseEnter={handleChangeView}
+      onMouseLeave={handleChangeView}
+      className="relative py-1"
+    >
+      <span className="flex gap-3 items-center group hover:underline capitalize cursor-pointer">
         {title}
         <span
           className={cn(
@@ -22,10 +32,7 @@ const FlyOut: React.FC<FlyOut> = ({ title, links }) => {
         ></span>
       </span>
       {showMore && (
-        <div
-          onMouseLeave={() => setShowMore(false)}
-          className="absolute group top-8 left-0 flex flex-col space-y-3 py-6 w-[200px] bg-white border border-gray-200 rounded-md text-sm"
-        >
+        <div className="absolute group top-7 left-0 flex flex-col space-y-3 py-6 w-[200px] bg-white border border-gray-200 rounded-md text-sm">
           {links.map((link) => (
             <Link
               key={link}
