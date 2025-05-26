@@ -173,7 +173,7 @@ export const getQueryProduct = async (query: string) => {
   const products = await db
     .select()
     .from(productsTable)
-    .where(ilike(productsTable.name, `%${query}%`));
+    .where(ilike(productsTable.name, `${query}%`));
 
   return products;
 };
