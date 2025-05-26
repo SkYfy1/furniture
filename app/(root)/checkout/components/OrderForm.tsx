@@ -80,7 +80,10 @@ const OrderForm: React.FC<Props> = ({
         />
         <Button
           disabled={isSubmitting}
-          onClick={() => reset({})}
+          onClick={() => {
+            reset({});
+            setTimeout(() => reset({}), 300);
+          }}
           variant="destructive"
           type="button"
           size="sm"
