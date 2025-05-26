@@ -1,15 +1,15 @@
 import { db } from "@/db/drizzle";
 import {
   deliveryTable,
-  orderItemsTable,
   ordersTable,
   paymentTable,
   productsTable,
   variantsTable,
 } from "@/db/schema";
+import { updateOrderItems } from "@/lib/mutations/products";
 import { stripe } from "@/lib/stripe";
 import { orderSchema } from "@/lib/validations";
-import { eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -30,6 +30,8 @@ export async function POST(req: Request) {
       const session = event.data.object;
 
       if (session.metadata?.type === "create") {
+        // If creation from stripe checkout form
+
         const fieldValues = session.custom_fields.reduce((acc, cur) => {
           acc[cur.key] =
             (cur.text?.value as string) || (cur.dropdown?.value as string);
@@ -41,6 +43,8 @@ export async function POST(req: Request) {
         const name = (customerDetails?.name as string).split(" ");
         const userId = metadata.client_id;
         const isVariant = productData?.type === "variant";
+
+        // Parse fields
 
         const validatedFields = orderSchema.safeParse({
           firstName: name[0],
@@ -57,6 +61,7 @@ export async function POST(req: Request) {
         if (!validatedFields.success) {
           throw new Error(validatedFields.error.toString());
         }
+
         const {
           firstName,
           lastName,
@@ -69,24 +74,23 @@ export async function POST(req: Request) {
           paymentMethod,
         } = validatedFields.data;
 
+        // Start transaction
+
         await db.transaction(async (tx) => {
-          let product;
+          const tableToCheck = isVariant ? variantsTable : productsTable;
 
-          if (isVariant) {
-            product = await tx
-              .select()
-              .from(variantsTable)
-              .where(eq(variantsTable.id, productData.id));
-          } else {
-            product = await tx
-              .select()
-              .from(productsTable)
-              .where(eq(productsTable.id, productData.id));
-          }
+          // Get product or Variant
 
-          if (productData.quantity > product[0].availableQuantity) {
+          const [product] = await tx
+            .select()
+            .from(tableToCheck)
+            .where(eq(tableToCheck.id, productData.id));
+
+          if (productData.quantity > product.availableQuantity) {
             throw new Error("Product not available at this moment!");
           }
+
+          // Create payment and delivery rows
 
           const [[{ paymentId }], [{ deliveryId }]] = await Promise.all([
             tx
@@ -112,6 +116,8 @@ export async function POST(req: Request) {
               .returning({ deliveryId: deliveryTable.id }),
           ]);
 
+          // Create order row
+
           const [{ orderId }] = await tx
             .insert(ordersTable)
             .values({
@@ -122,41 +128,13 @@ export async function POST(req: Request) {
             })
             .returning({ orderId: ordersTable.id });
 
-          if (isVariant) {
-            await Promise.all([
-              tx.insert(orderItemsTable).values({
-                orderId,
-                variantId: productData.id,
-                productId: null,
-                priceAtPurchase: productData.price,
-                quantity: productData.quantity,
-              }),
-              await tx
-                .update(variantsTable)
-                .set({
-                  availableQuantity: sql`${variantsTable.availableQuantity} - ${productData.quantity}`,
-                })
-                .where(eq(variantsTable.id, productData.id)),
-            ]);
-          } else {
-            await Promise.all([
-              tx.insert(orderItemsTable).values({
-                orderId,
-                variantId: null,
-                productId: productData.id,
-                priceAtPurchase: productData.price,
-                quantity: productData.quantity,
-              }),
-              await tx
-                .update(productsTable)
-                .set({
-                  availableQuantity: sql`${productsTable.availableQuantity} - ${productData.quantity}`,
-                })
-                .where(eq(productsTable.id, productData.id)),
-            ]);
-          }
+          // Create ordered item row and update quantity value in item
+
+          await updateOrderItems(tx, productData, orderId);
         });
       } else {
+        // If own form handle, update only payment
+
         await db
           .update(paymentTable)
           .set({
