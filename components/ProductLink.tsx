@@ -14,7 +14,7 @@ const ProductLink: React.FC<{ item: Product }> = ({ item }) => {
             src={item.imageUrl}
             fill
             alt="product-image"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
         <p className="font-semibold text-base">{item.name}</p>
@@ -25,13 +25,13 @@ const ProductLink: React.FC<{ item: Product }> = ({ item }) => {
             <p className="text-base">€{item.price}.00</p>
           </>
         ) : (
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col-reverse items-center gap-2">
             <p className="text-sm">€{item.discountedPrice}.00</p>
             <div className="flex gap-2 items-center">
               <span className="text-xs line-through font-semibold">
                 €{item.price}.00
               </span>
-              <div className="px-1 py-0.5 bg-gray-200 rounded-xs ">
+              <div className="px-1 py-0.5 bg-gray-200 rounded-xs">
                 {item.discount}%
               </div>
             </div>
