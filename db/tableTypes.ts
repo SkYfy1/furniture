@@ -6,6 +6,7 @@ import {
   productsTable,
   variantsTable,
 } from "./schema";
+import { db } from "./drizzle";
 
 export type shippingInfo = typeof deliveryTable.$inferSelect;
 
@@ -32,3 +33,7 @@ type ArrayType<S> = S extends readonly (infer F)[] ? F : never;
 export type OrdersValue = ArrayType<
   PromiseResolvedType<ReturnType<typeof getOrderData>>
 >;
+
+export type Transaction = Parameters<
+  Parameters<(typeof db)["transaction"]>[0]
+>[0];
