@@ -18,7 +18,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
       href={link}
       className="flex flex-col h-full pb-10 min-h-[351] min-w-fit 2xl:min-w-[300] "
     >
-      <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative">
+      <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative ">
         {data.discount && (
           <div className="absolute -translate-x-1/4 translate-y-1/4 top-0 right-0 size-10 flex justify-center items-center bg-green-900 z-10 rounded-full text-xs text-white">
             -{data.discount}%
@@ -26,7 +26,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
         )}
         <Image
           src={data.imageUrl}
-          className="rounded-md object-cover 2xl:object-contain pointer-events-none"
+          className="rounded-md object-cover 2xl:object-contain pointer-events-none bg-white"
           fill
           alt="product-image"
         />
