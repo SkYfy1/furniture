@@ -15,12 +15,14 @@ const CardSection: React.FC = () => {
             out when your mind and body naturally work best.
           </p>
         </div>
-        <Image
-          src="/main/time-to-get-productive_4.jpeg"
-          height={800}
-          width={950}
-          alt="laptop image"
-        />
+        <div>
+          <Image
+            src="/main/time-to-get-productive_4.jpeg"
+            height={800}
+            width={950}
+            alt="laptop image"
+          />
+        </div>
       </div>
       <div className="col-start-2 col-span-3 lg:col-end-2 min-h-full bg-green">
         <div className="flex flex-col gap-2 pb-8 pt-20 pl-10">
