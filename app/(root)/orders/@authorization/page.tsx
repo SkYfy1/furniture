@@ -2,7 +2,7 @@
 
 import AuthForm from "@/components/forms/AuthForm";
 import { signInWithCredentials, signUp } from "@/lib/actions/auth";
-import { signUpSchema } from "@/lib/validations";
+import { signInSchema, signUpSchema } from "@/lib/validations";
 import React, { useState } from "react";
 
 const Page = () => {
@@ -40,7 +40,7 @@ const Page = () => {
             type="SIGN_IN"
             defaultValues={{ email: "", password: "" }}
             submitHandler={signInWithCredentials}
-            schema={signUpSchema}
+            schema={signInSchema}
           />
         )}
       </div>
