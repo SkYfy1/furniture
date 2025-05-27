@@ -9,13 +9,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
-  pages: {
-    signIn: "/sign-in",
-  },
   providers: [
     Credentials({
       authorize: async (credentials) => {
-        if (!credentials.email || !credentials.password) return null;
+        if (!credentials?.email || !credentials?.password) return null;
 
         // Check if the user exists
         const user = await db
@@ -40,6 +37,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
+  pages: {
+    signIn: "/orders",
+  },
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
