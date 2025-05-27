@@ -5,6 +5,9 @@ import { db } from "@/db/drizzle";
 import { usersTable } from "@/db/schema";
 import { hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
+import ratelimit from "../ratelimit";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const singOut = async () => {
   await signOut({ redirectTo: "/" });
@@ -15,26 +18,36 @@ export const signInWithCredentials = async (
 ) => {
   const { email, password } = credentials;
 
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) {
+    return redirect("/too-fast");
+  }
+
   try {
-    const result = await signIn("credentials", {
+    await signIn("credentials", {
       email,
       password,
       redirect: false,
     });
 
-    if (result?.error) {
-      return { success: false, message: result.error };
-    }
-
     return { success: true };
   } catch (error) {
     console.log(error);
-    return { success: false, message: "Signin exists" };
+    return { success: false, message: "Invalid Credentials" };
   }
 };
 
 export const signUp = async (credentials: AuthCredentials) => {
   const { email, name, password } = credentials;
+
+  const ip = (await headers()).get("x-forwarded-for") || "127.0.0.1";
+
+  const { success } = await ratelimit.limit(ip);
+
+  if (!success) return redirect("/too-fast");
 
   const user = await db
     .select()
