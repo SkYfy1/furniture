@@ -7,6 +7,16 @@ import {
 import React from "react";
 import Order from "./components/Order";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Orders",
+  description: "Track or manage your orders with ease",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const Page = async () => {
   const session = await auth();

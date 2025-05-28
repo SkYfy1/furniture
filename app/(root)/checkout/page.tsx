@@ -4,6 +4,17 @@ import { redirect } from "next/navigation";
 import { createOrder } from "@/lib/actions/order";
 import Checkout from "./components/Checkout";
 import { getShippingRows } from "@/lib/data/order";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Checkout",
+  description:
+    "Complete your purchase securely. Fast delivery and easy returns.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const Page = async () => {
   const session = await auth();

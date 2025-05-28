@@ -1,9 +1,19 @@
 import React from "react";
 import ClearCart from "./components/ClearCart";
+import { Metadata } from "next";
 
 interface Props {
   searchParams?: Promise<{ payment_id: string }>;
 }
+
+export const metadata: Metadata = {
+  title: "Order success",
+  description: "Order completed successfully!",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const Page: React.FC<Props> = async ({ searchParams }) => {
   const paymentId = (await searchParams)?.payment_id;

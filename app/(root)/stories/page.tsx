@@ -1,6 +1,18 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Stories",
+  description:
+    "Perfect design solutions for everyone. Transform your space today!",
+  openGraph: {
+    url: "/stories",
+    title: "Plant starter pack",
+    description: "Designing with plant starter pack...",
+  },
+};
 
 const Page: React.FC = () => {
   return (

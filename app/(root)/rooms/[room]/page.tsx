@@ -1,9 +1,22 @@
 import ProductsGridSection from "@/components/ProductsGridSection";
 import { getProductsWithTag } from "@/lib/data/products";
+import { Metadata } from "next";
 import React from "react";
 
 interface Props {
   params: Promise<{ room: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const room = (await params).room;
+  return {
+    title: "Rooms",
+    openGraph: {
+      url: `/rooms/${room}`,
+      title: `FRNTR | ${room.toUpperCase()}`,
+      description: "Promotions...",
+    },
+  };
 }
 
 const Page: React.FC<Props> = async ({ params }) => {

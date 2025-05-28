@@ -4,6 +4,18 @@ import React from "react";
 import ImageGallery from "../plant-starter-pack/components/ImageGallery";
 import Product from "@/components/Product";
 import { getFewProducts } from "@/lib/data/products";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Japandi",
+  description:
+    "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold.",
+  openGraph: {
+    url: "stories/japandi-interior-design",
+    title: "Japandi interior design",
+    description: "Japandi interior design is a hybrid of east and...",
+  },
+};
 
 const Page = async () => {
   const products = await getFewProducts();
