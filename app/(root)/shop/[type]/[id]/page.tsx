@@ -2,12 +2,41 @@ import { auth } from "@/auth";
 import BuyBox from "@/components/BuyBox";
 import ProductDimensions from "@/components/ProductDimensions";
 import { getProductById, getVariants } from "@/lib/data/products";
+import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
 
 interface Props {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ sku: string }>;
+}
+
+interface MetadataProps {
+  params: Promise<{ id: string; type: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const { id, type } = await params;
+
+  const product = await getProductById(id);
+
+  const name = product.name;
+  const description = product.description;
+
+  return {
+    title: name,
+    description,
+    openGraph: {
+      title: name,
+      description: `Buy ${name} for your home. Price: €${
+        product.discountedPrice ?? product.price
+      }`,
+      url: `/shop/${type}/${id}`,
+      images: product.imageUrl,
+    },
+  };
 }
 
 const Page: React.FC<Props> = async ({ params, searchParams }) => {
