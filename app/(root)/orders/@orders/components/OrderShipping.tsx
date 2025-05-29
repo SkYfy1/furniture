@@ -14,9 +14,12 @@ const OrderShipping: React.FC<{ shipping: shippingInfo }> = ({ shipping }) => {
         >
           Select
         </TooltipComponent>
-        {/* <Button size="sm">Set as default delivery method</Button> */}
       </div>
-      {shipping.default && <p className="text-sm text-green-700">Default</p>}
+      {shipping.default && (
+        <p className="text-sm text-green-700 font-semibold tracking-wide">
+          Default
+        </p>
+      )}
       <div className="flex-col flex gap-1 pt-4 text-sm">
         <p>Service: {shipping.shippingService}</p>
         <p>

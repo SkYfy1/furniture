@@ -6,6 +6,7 @@ import OrderDetails from "./OrderDetails";
 import { cn, formatDate } from "@/lib/utils";
 import { retryPayment } from "@/lib/actions/payment";
 import { redirect } from "next/navigation";
+import { AnimatePresence } from "motion/react";
 
 interface Props {
   order: OrdersValue;
@@ -81,15 +82,17 @@ const Order: React.FC<Props> = ({
           </button>
         </div>
       </div>
-      {showDetails && (
-        <OrderDetails
-          items={products}
-          shipping={shippingInfo}
-          payment={paymentInfo}
-          orderId={orderInfo.id}
-          retryAction={retryAction}
-        />
-      )}
+      <AnimatePresence>
+        {showDetails && (
+          <OrderDetails
+            items={products}
+            shipping={shippingInfo}
+            payment={paymentInfo}
+            orderId={orderInfo.id}
+            retryAction={retryAction}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React from "react";
 import OrderItem from "./OrderItem";
 import OrderShipping from "./OrderShipping";
 import OrderPayment from "./OrderPayment";
+import { motion } from "motion/react";
 
 interface Props {
   items: Variants[] | Products[];
@@ -20,7 +21,19 @@ const OrderDetails: React.FC<Props> = ({
   retryAction,
 }) => {
   return (
-    <div className="flex flex-col lg:flex-row  justify-between">
+    <motion.div
+      exit={{
+        opacity: 0,
+        height: 0,
+      }}
+      initial={{ opacity: 0, height: 0 }}
+      animate={{
+        opacity: 1,
+        height: "auto",
+      }}
+      style={{ overflow: "hidden" }}
+      className="flex flex-col lg:flex-row  justify-between"
+    >
       <div className="flex flex-col gap-1.5 py-2">
         <h1 className="text-lg font-semibold">Order Items</h1>
         {items.map((item) => (
@@ -33,7 +46,7 @@ const OrderDetails: React.FC<Props> = ({
         orderId={orderId}
         payment={payment}
       />
-    </div>
+    </motion.div>
   );
 };
 

@@ -4,6 +4,7 @@ import { cancelOrder } from "@/lib/actions/order";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
+import { motion } from "motion/react";
 
 interface Props {
   payment: paymentInfo;
@@ -39,7 +40,17 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
         </div>
       </div>
       {!cancelled && (
-        <div>
+        <motion.div
+          exit={{ opacity: 0, transition: { duration: 0.1 } }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: {
+              delay: 0.2,
+            },
+          }}
+        >
           {isPaid ? (
             <Button asChild className="flex mb-2">
               <Link href="/receipt">Print receipt</Link>
@@ -61,7 +72,7 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
           >
             Cancel order
           </Button>
-        </div>
+        </motion.div>
       )}
     </div>
   );
