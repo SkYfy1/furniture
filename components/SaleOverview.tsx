@@ -13,12 +13,6 @@ const SaleOverview: React.FC = () => {
           <Button size="lg" asChild className="font-semibold text-sm py-4">
             <Link href="/shop">See our big sale</Link>
           </Button>
-          {/* <Link
-            href="/shop"
-            className="bg-black lg:w-full w-1/2 px-6 py-5 lg:px-8 lg:py-4 text-sm font-semibold rounded-md text-white text-center"
-          >
-            See our big sale
-          </Link> */}
         </div>
         <div className="w-full px-2 lg:mt-0 mt-14">
           <Image
