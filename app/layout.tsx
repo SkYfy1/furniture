@@ -4,19 +4,15 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import StoreProvider from "./StoreProvider";
 import { getLocale, getMessages } from "next-intl/server";
-import { Locale, Messages, NextIntlClientProvider } from "next-intl";
+import { Messages, NextIntlClientProvider } from "next-intl";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-export const generateMetadata = async ({
-  params: { locale },
-}: {
-  params: { locale: Locale };
-}) => {
-  const t: Messages = await getMessages({ locale });
+export const generateMetadata = async () => {
+  const t: Messages = await getMessages();
 
   const title = t.TabTitles.Main;
 
