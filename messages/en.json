@@ -1,0 +1,63 @@
+{
+  "TabTitles": {
+    "Main": "FRNTR"
+  },
+  "HomePage": {
+    "Slider": {
+      "title": "To Plant a Garden is To Believe in Tomorrow",
+      "subTitle": "Our plants are sure to brighten up your home (and your future)."
+    },
+    "Outlet": {
+      "title": "Outlet",
+      "subTitle": "Enjoy discounts on the following:"
+    },
+    "CardSection": {
+      "CardOne": {
+        "title": "Time To Get Productive",
+        "subTitle": "The first step in determining your ideal working hours is to figure out when your mind and body naturally work best."
+      },
+      "CardTwo": {
+        "title": "Let Nature Into Your Living Room",
+        "subTitle": "Choose from a wide variety of plants that add life and style to any space."
+      },
+      "CardThree": {
+        "title": "Japandi Interior Design Stylee",
+        "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold..."
+      },
+      "CardFour": {
+        "title": "Plant Starter Pack",
+        "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks."
+      }
+    }
+  },
+  "SaleOverview": {
+    "title": "Sale",
+    "subTitle": "Incredible deals. Top-of-the-line design for less.",
+    "link": "See our big sale"
+  },
+  "Header": {
+    "Search": "Names, categories...",
+    "Nav": {
+      "shop": "Shop",
+      "stories": "Stories",
+      "promotions": {
+        "title": "Promotions",
+        "tag1": "eco-friendly",
+        "tag2": "vegan",
+        "tag3": "new-arrival"
+      },
+      "rooms": {
+        "title": "Rooms",
+        "tag1": "kitchen",
+        "tag2": "living-room",
+        "tag3": "outdoors",
+        "tag4": "furniture"
+      },
+      "specials": {
+        "title": "specials",
+        "tag1": "3-for-2",
+        "tag2": "4-for-3"
+      }
+    }
+  }
+}

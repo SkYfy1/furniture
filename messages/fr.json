@@ -1,0 +1,63 @@
+{
+  "TabTitles": {
+    "Main": "FRNTRé"
+  },
+  "HomePage": {
+    "Slider": {
+      "title": "Planter un jardin, c'est croire en demain",
+      "subTitle": "Nos plantes égayeront à coup sûr votre maison (et votre avenir)."
+    },
+    "Outlet": {
+      "title": "Sortie",
+      "subTitle": "Bénéficiez de réductions sur les produits suivants:"
+    },
+    "CardSection": {
+      "CardOne": {
+        "title": "Il est temps de devenir productif",
+        "subTitle": "La première étape pour déterminer vos horaires de travail idéaux est de déterminer quand votre esprit et votre corps fonctionnent naturellement le mieux."
+      },
+      "CardTwo": {
+        "title": "Laissez la nature entrer dans votre salon",
+        "subTitle": "Choisissez parmi une grande variété de plantes qui ajoutent de la vie et du style à n’importe quel espace."
+      },
+      "CardThree": {
+        "title": "Style de design d'intérieur Japandi",
+        "subTitle": "Le style Japandi est un hybride entre l'Orient et l'Occident. Ce style est de plus en plus populaire et s'inscrit dans la durée. Il crée des intérieurs minimalistes sans être froids..."
+      },
+      "CardFour": {
+        "title": "Pack de démarrage de plantes",
+        "subTitle": "Comment réussir à associer plusieurs plantes dans un même espace? Découvrez nos astuces déco préférées."
+      }
+    }
+  },
+  "SaleOverview": {
+    "title": "Vente",
+    "subTitle": "Offres exceptionnelles. Design haut de gamme à moindre coût.",
+    "link": "Voir notre grande vente"
+  },
+  "Header": {
+    "Search": "Noms, catégories...",
+    "Nav": {
+      "shop": "Boutique",
+      "stories": "Histoires",
+      "promotions": {
+        "title": "Promos",
+        "tag1": "écologique",
+        "tag2": "végétaliens",
+        "tag3": "nouveauté"
+      },
+      "rooms": {
+        "title": "Chambres",
+        "tag1": "cuisine",
+        "tag2": "salon",
+        "tag3": "dehors",
+        "tag4": "meubles"
+      },
+      "specials": {
+        "title": "spéciale",
+        "tag1": "3 pour 2",
+        "tag2": "4 pour 3"
+      }
+    }
+  }
+}
