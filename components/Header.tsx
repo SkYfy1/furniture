@@ -2,20 +2,51 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlyOut from "./FlyOut";
 import { FlyOutLinks } from "@/constants";
 import { useAppSelector } from "@/lib/hooks";
 import SearchProducts from "./SearchProducts";
+import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const cartSize = useAppSelector((state) => state.cart.items.length);
+  const [locale, setLocale] = useState<string>("");
+  const router = useRouter();
+  const t = useTranslations("Header");
+
+  const placeholder = t("Search");
+
+  useEffect(() => {
+    const cookieLocale = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("FRNTR_LOCALE="))
+      ?.split("=")[1];
+
+    if (cookieLocale) {
+      setLocale(cookieLocale);
+    } else {
+      // Get browser locale (not using bc my locale UA(Not implemented locale))
+      // const browseLocale = navigator.language.slice(0, 2);
+
+      setLocale("en");
+      document.cookie = `FRNTR_LOCALE=en;`;
+      router.refresh();
+    }
+  }, [router]);
 
   const handleClose = (e: React.MouseEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).tagName === "A") {
       setShowMenu(false);
     }
+  };
+
+  const handleChangeLocale = (value: string) => {
+    setLocale(value);
+    document.cookie = `FRNTR_LOCALE=${value};`;
+    router.refresh();
   };
 
   return (
@@ -31,13 +62,13 @@ const Header: React.FC = () => {
             />
           </Link>
           <div className="justify-between items-center gap-12 hidden lg:flex">
-            <SearchProducts />
+            <SearchProducts placeholder={placeholder} />
             <ul className="flex xl:gap-12 gap-4 items-center">
               <li className="cursor-pointer hover:underline">
-                <Link href="/shop">Shop</Link>
+                <Link href="/shop">{t("Nav.shop")}</Link>
               </li>
               <li className="cursor-pointer hover:underline">
-                <Link href="/stories">Stories</Link>
+                <Link href="/stories">{t("Nav.stories")}</Link>
               </li>
               {FlyOutLinks.map((link) => (
                 <FlyOut key={link.title} title={link.title} links={link.tags} />
@@ -67,9 +98,15 @@ const Header: React.FC = () => {
               </span>
             )}
           </Link>
-          <select name="En" id="En" className="p-0.5 pr-2 border-2 rounded-sm">
-            <option value="En">En</option>
-            <option value="Fr">Fr</option>
+          <select
+            name="lang"
+            id="lang"
+            value={locale}
+            onChange={(e) => handleChangeLocale(e.target.value)}
+            className="p-0.5 pr-2 border-2 rounded-sm"
+          >
+            <option value="en">En</option>
+            <option value="fr">Fr</option>
           </select>
           <button
             className="lg:hidden"
@@ -96,7 +133,7 @@ const Header: React.FC = () => {
       {showMenu && (
         <div className="absolute top-0 left-0 mt-15 h-screen w-full bg-white">
           <div className="justify-between items-start pl-10 gap-12 flex flex-col pt-12">
-            <SearchProducts />
+            <SearchProducts placeholder={placeholder} />
             <ul
               className="flex flex-col gap-12 items-start"
               onClick={handleClose}

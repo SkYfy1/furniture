@@ -4,7 +4,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import QueryProducts from "./QueryProducts";
 
-const SearchProducts: React.FC = () => {
+interface Props {
+  placeholder: string;
+}
+
+const SearchProducts: React.FC<Props> = ({ placeholder }) => {
   const [text, setText] = useState("");
 
   const params = useSearchParams();
@@ -44,7 +48,7 @@ const SearchProducts: React.FC = () => {
         type="text"
         value={text}
         onChange={handleChangeInput}
-        placeholder="Names, categories..."
+        placeholder={placeholder}
         className="bg-gray-50 rounded-full pl-6 pr-4 xl:pr-22 py-2 focus:outline-1"
       />
       <Image
