@@ -1,32 +1,43 @@
-import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import StoreProvider from "./StoreProvider";
+import { getLocale, getMessages } from "next-intl/server";
+import { Locale, Messages, NextIntlClientProvider } from "next-intl";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://furniture-pi-seven.vercel.app/"),
-  title: {
-    template: "FRNTR | %s ",
-    default: "FRNTR",
-  },
-  description:
-    "Furniture Store – Shop premium furniture, indoor plants, fresh flowers & the latest smartphones. Enjoy stylish home decor, fast delivery & competitive prices. Transform your space today!",
-  icons: {
-    icon: "/svg/lofofrntr.svg",
-  },
-  openGraph: {
-    title: "Furniture Store",
-    description: "Your one-stop shop for home and tech.",
-    images: "/svg/lofofrntr.svg",
-    url: "/",
-  },
+export const generateMetadata = async ({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}) => {
+  const t: Messages = await getMessages({ locale });
+
+  const title = t.TabTitles.Main;
+
+  return {
+    metadataBase: new URL("https://furniture-pi-seven.vercel.app/"),
+    title: {
+      template: `${title} | %s `,
+      default: `${title}`,
+    },
+    description:
+      "Furniture Store – Shop premium furniture, indoor plants, fresh flowers & the latest smartphones. Enjoy stylish home decor, fast delivery & competitive prices. Transform your space today!",
+    icons: {
+      icon: "/svg/lofofrntr.svg",
+    },
+    openGraph: {
+      title: "Furniture Store",
+      description: "Your one-stop shop for home and tech.",
+      images: "/svg/lofofrntr.svg",
+      url: "/",
+    },
+  };
 };
 
 export default async function RootLayout({
@@ -35,11 +46,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await auth();
+  const locale = await getLocale();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${montserrat.className} antialiased`}>
         <StoreProvider>
-          <SessionProvider session={session}>{children}</SessionProvider>
+          <SessionProvider session={session}>
+            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          </SessionProvider>
         </StoreProvider>
       </body>
     </html>
