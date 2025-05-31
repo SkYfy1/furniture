@@ -3,16 +3,23 @@ import ProductSlider from "@/components/ProductSlider";
 import SaleOverview from "@/components/SaleOverview";
 import { categories } from "@/constants";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { Messages } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Shop",
-  openGraph: {
-    url: "/shop",
-    title: "Shop",
-    description: "Incredible deals. Top-of-the-line design for less.",
-  },
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
+
+  const title = t.TabTitles.Shop;
+
+  return {
+    title: title,
+    openGraph: {
+      url: "/shop",
+      title: "Shop",
+      description: "Incredible deals. Top-of-the-line design for less.",
+    },
+  };
 };
 
 const Page = async () => {
