@@ -30,6 +30,34 @@
       }
     }
   },
+  "ShopPage": {
+    "ProductSliderTitle": "Voir tous les produits",
+    "Categories": {
+      "title": "Parcourir les catégories",
+      "category": {
+        "Sofas": {
+          "name": "Canapés",
+          "description": "Confortables, élégants et abordables."
+        },
+        "Plants": {
+          "name": "Plantes",
+          "description": "Plantes de toutes formes et tailles pour votre maison. Avec un peu d'amour, vous en profiterez pendant des années."
+        },
+        "Flowers": {
+          "name": "Fleurs",
+          "description": "Les plus belles fleurs du monde."
+        },
+        "Kitchen": {
+          "name": "Cuisine",
+          "description": "De magnifiques appareils qui vous font gagner du temps et des efforts. Profitez de résultats professionnels à la maison."
+        },
+        "Phones": {
+          "name": "Téléphones",
+          "description": "Juste des téléphones."
+        }
+      }
+    }
+  },
   "SaleOverview": {
     "title": "Vente",
     "subTitle": "Offres exceptionnelles. Design haut de gamme à moindre coût.",

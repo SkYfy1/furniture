@@ -30,6 +30,34 @@
       }
     }
   },
+  "ShopPage": {
+    "ProductSliderTitle": "View all products",
+    "Categories": {
+      "title": "Browse categories",
+      "category": {
+        "Sofas": {
+          "name": "Sofas",
+          "description": "Comfy, stylish, and affordable."
+        },
+        "Plants": {
+          "name": "Plants",
+          "description": "Plants of all shapes and sizes for your home. With a little TLC, you’ll enjoy them for years to come."
+        },
+        "Flowers": {
+          "name": "Flowers",
+          "description": "Most beautiful flowers in the world."
+        },
+        "Kitchen": {
+          "name": "Kitchen",
+          "description": "Beautiful appliances that save you time and effort. Enjoy professional results from home."
+        },
+        "Phones": {
+          "name": "Phones",
+          "description": "Just phones."
+        }
+      }
+    }
+  },
   "SaleOverview": {
     "title": "Sale",
     "subTitle": "Incredible deals. Top-of-the-line design for less.",
