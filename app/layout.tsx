@@ -5,13 +5,14 @@ import { auth } from "@/auth";
 import StoreProvider from "./StoreProvider";
 import { getLocale, getMessages } from "next-intl/server";
 import { Messages, NextIntlClientProvider } from "next-intl";
+import { Metadata } from "next";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
-export const generateMetadata = async () => {
+export const generateMetadata = async (): Promise<Metadata> => {
   const t: Messages = await getMessages();
 
   const title = t.TabTitles.Main;
