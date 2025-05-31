@@ -5,6 +5,7 @@ import ImageGallery from "../plant-starter-pack/components/ImageGallery";
 import Product from "@/components/Product";
 import { getFewProducts } from "@/lib/data/products";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Japandi",
@@ -19,21 +20,15 @@ export const metadata: Metadata = {
 
 const Page = async () => {
   const products = await getFewProducts();
+  const t = await getTranslations("StoriesPage.JapandiPage");
+
   return (
     <>
       <div className="mt-8 md:mt-20 lg:mt-24 max-w-[95rem] mx-auto px-6 lg:pr-96">
-        <span className=" text-sm mb-3 block">February 21, 2025</span>
+        <span className=" text-sm mb-3 block">{t("month")} 21, 2025</span>
         <div className="max-w-[1000]">
-          <h1 className="text-5xl font-semibold mb-2">
-            Japandi Interior Design Stylee
-          </h1>
-          <p className="mb-15 lg:w-3/4 leading-7">
-            Japandi interior design is a hybrid of east and west. The style is
-            increasingly popular, and it is here to stay. The style creates
-            interiors that are minimal without being cold. Japandi makes use of
-            craftsmanship and tactile materials, such as textured wood and
-            handmade ceramics, to add comfort and warmth.
-          </p>
+          <h1 className="text-5xl font-semibold mb-2">{t("title")}</h1>
+          <p className="mb-15 lg:w-3/4 leading-7">{t("subTitle")}</p>
         </div>
         <div className="w-full h-[238] lg:h-[650] relative">
           <Image
@@ -45,16 +40,16 @@ const Page = async () => {
         </div>
         <TipSection
           className="lg:w-3/4 p-0 pb-8 lg:p-8"
-          title="What Is Japandi Design?"
-          paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+          title={t("tips.what.title")}
+          paragraph={t("tips.what.tipText")}
         />
         <ImageGallery
           images={["japandi-i.jpeg", "japandi-i.jpeg", "japandi-inter.jpeg"]}
         />
         <TipSection
           className="lg:w-3/4 p-0 pb-8 lg:p-8"
-          title="Headline"
-          paragraph="Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+          title={t("tips.headline.title")}
+          paragraph={t("tips.headline.tipText")}
         />
         <ImageGallery
           images={["chairs-rug.jpeg", "japandi-inter.jpeg", "japandi-i.jpeg"]}

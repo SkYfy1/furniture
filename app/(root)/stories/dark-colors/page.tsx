@@ -2,6 +2,7 @@ import StoriesOffer from "@/components/StoriesOffer";
 import TipSection from "@/components/TipSection";
 import { getLimitedProducts } from "@/lib/data/products";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 
 const Page: React.FC = async () => {
   const products = await getLimitedProducts("Sofas", 3);
+  const t = await getTranslations("StoriesPage.DarkPage");
   return (
     <div className="stories-container relative">
       <div className="lg:w-7/12">
@@ -30,9 +32,8 @@ const Page: React.FC = async () => {
           />
         </div>
         <TipSection
-          title="Pair With Warm Neutrals"
-          paragraph="If you paint your room with a dramatic dark color, pair this with
-          neutral furnishings for a comfortable, inviting look."
+          title={t("tips.pair.title")}
+          paragraph={t("tips.pair.tipText")}
         />
         <div className="flex flex-col gap-2 pt-24">
           <div className="w-full h-[238] lg:h-[300] relative">
@@ -54,8 +55,8 @@ const Page: React.FC = async () => {
         </div>
       </div>
       <StoriesOffer
-        title="Dark Colors"
-        description="Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor."
+        title={t("title")}
+        description={t("subTitle")}
         products={products}
       />
     </div>

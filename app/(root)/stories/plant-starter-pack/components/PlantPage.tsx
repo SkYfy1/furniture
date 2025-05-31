@@ -7,12 +7,14 @@ import React, { useState } from "react";
 import QuoteBlock from "./QuoteBlock";
 import ImageGallery from "./ImageGallery";
 import ProductMarker from "./ProductMarker";
+import { useTranslations } from "next-intl";
 
 const PlantPage: React.FC<{ products: Product[] }> = ({ products }) => {
   const [selectedId, setSelectedId] = useState<string | undefined>(undefined);
   const selectProduct = (id: string) => {
     setSelectedId(id);
   };
+  const t = useTranslations("StoriesPage.PlantPage");
   return (
     <div className="stories-container">
       <div className="lg:w-7/12">
@@ -46,11 +48,10 @@ const PlantPage: React.FC<{ products: Product[] }> = ({ products }) => {
           />
         </div>
         <TipSection
-          title="Use Different-Sized Plants"
-          paragraph="You don’t want a look that’s too uniform. Pair plants with different
-            widths and heights together. They’ll look more natural and fresh."
+          title={t("tips.first.title")}
+          paragraph={t("tips.first.tipText")}
         />
-        <QuoteBlock />
+        <QuoteBlock quote={t("quote")} />
         <ImageGallery
           rows={4}
           images={[
@@ -62,10 +63,8 @@ const PlantPage: React.FC<{ products: Product[] }> = ({ products }) => {
         />
         <TipSection
           className="mt-10 mb-20"
-          title="Arrange Plants In Odd-Numbered Groups"
-          paragraph="The “law of threes” suggests that odd-numbered collections are more
-            visually pleasing and effective than even-numbered collections.
-            Arrange your plants in groups of 3, 5, 7, 9, and so on."
+          title={t("tips.second.title")}
+          paragraph={t("tips.second.tipText")}
         />
         <div className="w-full h-[260] lg:h-[650] relative col-span-2">
           <Image
@@ -77,16 +76,16 @@ const PlantPage: React.FC<{ products: Product[] }> = ({ products }) => {
         </div>
         <TipSection
           className="mb-20"
-          title="Use Decorative Pots"
-          paragraph="Combine pots with different materials and colors for an electric finish. Use pots with similar finishes for an elegant look."
+          title={t("tips.third.title")}
+          paragraph={t("tips.third.tipText")}
         />
         <ImageGallery
           images={["fill.webp", "plants.webp", "housedecor.webp"]}
         />
         <TipSection
           className="mb-20"
-          title="Houseplant Care"
-          paragraph="Group plants with other plants that share the same needs in terms of sunlight, water, climate, and so on."
+          title={t("tips.fourth.title")}
+          paragraph={t("tips.fourth.tipText")}
         />
         <div className="flex gap-2 flex-col">
           <div className="w-full h-[238] lg:h-[650] relative col-span-2">
@@ -108,8 +107,8 @@ const PlantPage: React.FC<{ products: Product[] }> = ({ products }) => {
         </div>
       </div>
       <StoriesOffer
-        title="Plant starter pack"
-        description="Designing with plant starter pack can add depth and coziness to a small space. Read our tips for using darker colors in your decor."
+        title={t("title")}
+        description={t("subTitle")}
         products={products}
         selected={selectedId}
       />

@@ -2,7 +2,8 @@
   "TabTitles": {
     "Main": "FRNTR",
     "Shop": "Shop",
-    "Cart": "Cart"
+    "Cart": "Cart",
+    "Stories": "Stories"
   },
   "HomePage": {
     "Slider": {
@@ -29,6 +30,69 @@
       "CardFour": {
         "title": "Plant Starter Pack",
         "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks."
+      }
+    }
+  },
+  "StoriesPage": {
+    "title": "Stories",
+    "japandiCard": {
+      "title": "Japandi Interior Design Stylee",
+      "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold"
+    },
+    "darkCard": {
+      "title": "Dark Colors",
+      "subTitle": "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor."
+    },
+    "plantCard": {
+      "title": "Plant Starter Pack",
+      "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks."
+    },
+    "JapandiPage": {
+      "month": "February",
+      "title": "Japandi Interior Design Stylee",
+      "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold. Japandi makes use of craftsmanship and tactile materials, such as textured wood and handmade ceramics, to add comfort and warmth.",
+      "tips": {
+        "what": {
+          "title": "What Is Japandi Design?",
+          "tipText": "Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+        },
+        "headline": {
+          "title": "Headline",
+          "tipText": "Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+        }
+      }
+    },
+    "DarkPage": {
+      "title": "Dark Colors",
+      "subTitle": "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor.",
+      "tips": {
+        "pair": {
+          "title": "Pair With Warm Neutrals",
+          "tipText": "If you paint your room with a dramatic dark color, pair this with neutral furnishings for a comfortable, inviting look."
+        }
+      }
+    },
+    "PlantPage": {
+      "title": "Plant Starter Pack",
+      "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks.",
+      "quote": "”Plants are more courageous than almost all human beings: an orange tree would rather die than produce lemons, whereas instead of dying the average person would rather be someone they are not.” - Mokokoma Mokhonoana",
+      "tips": {
+        "first": {
+          "title": "Use Different-Sized Plants",
+          "tipText": "You don’t want a look that’s too uniform. Pair plants with different widths and heights together. They’ll look more natural and fresh."
+        },
+        "second": {
+          "title": "Arrange Plants In Odd-Numbered Groups",
+          "tipText": "The “law of threes” suggests that odd-numbered collections are more visually pleasing and effective than even-numbered collections. Arrange your plants in groups of 3, 5, 7, 9, and so on."
+        },
+        "third": {
+          "title": "Use Decorative Pots",
+          "tipText": "Combine pots with different materials and colors for an electric finish. Use pots with similar finishes for an elegant look."
+        },
+        "fourth": {
+          "title": "Houseplant Care",
+          "tipText": "Group plants with other plants that share the same needs in terms of sunlight, water, climate, and so on."
+        }
       }
     }
   },
