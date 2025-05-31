@@ -6,9 +6,11 @@ import {
   increaseQuantity,
   decreaseQuantity,
 } from "@/lib/features/cartSlice";
+import { useTranslations } from "next-intl";
 
 const CartItem = ({ item }: { item: CartItem }) => {
   const dispatch = useAppDispatch();
+  const t = useTranslations("CartPage.CartItem");
   return (
     <div className="flex justify-between items-center bg-gray rounded-md py-8 px-5">
       <div className="flex gap-3">
@@ -30,14 +32,17 @@ const CartItem = ({ item }: { item: CartItem }) => {
           ) : (
             <>
               <p>€{item.newPrice}.00</p>
-              <p>Total: €{item.newPrice * item.quantity}.00</p>
+              <p>
+                {t("total")}: €{item.newPrice * item.quantity}.00
+              </p>
               <div>
                 <span className="text-xs line-through font-semibold">
                   €{item.oldPrice}.00
                 </span>
                 <div className="flex gap-2 items-center">
                   <span>
-                    Savings: €{(item.oldPrice - item.newPrice!) * item.quantity}
+                    {t("savings")}: €
+                    {(item.oldPrice - item.newPrice!) * item.quantity}
                     .00
                   </span>
                   <div className="px-1 py-0.5 bg-gray-200 rounded-xs ">

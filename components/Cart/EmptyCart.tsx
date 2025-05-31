@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const EmptyCart = () => {
+interface Props {
+  title: string;
+  subTitle: string;
+  button: string;
+}
+
+const EmptyCart: React.FC<Props> = ({ title, subTitle, button }) => {
   return (
     <div className="w-full flex items-center gap-6">
       <Image
@@ -12,14 +18,10 @@ const EmptyCart = () => {
         alt="sad-smile"
       />
       <div>
-        <h1 className="text-2xl font-semibold">
-          Woah, nothing in your cart yet
-        </h1>
-        <p className="text-sm mt-2.5">
-          Try going back and find something beautiul before you come back
-        </p>
+        <h1 className="text-2xl font-semibold">{title}</h1>
+        <p className="text-sm mt-2.5">{subTitle}</p>
         <button className="px-4 py-2 bg-gray text-black rounded-sm text-sm mt-3">
-          <Link href="/">Back</Link>
+          <Link href="/">{button}</Link>
         </button>
       </div>
     </div>
