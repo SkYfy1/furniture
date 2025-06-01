@@ -4,7 +4,11 @@ import CustomSlider from "./CustomSlider";
 import CustomSelect from "./CustomSelect";
 import { redirect, usePathname } from "next/navigation";
 
-const Filters: React.FC = () => {
+interface Props {
+  buttonText: string;
+}
+
+const Filters: React.FC<Props> = ({ buttonText }) => {
   const path = usePathname();
   const handleClearParams = () => {
     redirect(path);
@@ -19,7 +23,7 @@ const Filters: React.FC = () => {
         className="w-fit text-sm justify-start ml-1 mt-1"
         onClick={handleClearParams}
       >
-        Remove all filters
+        {buttonText}
       </button>
     </div>
   );

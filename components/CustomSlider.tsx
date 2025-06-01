@@ -1,5 +1,6 @@
 import { debounce } from "@/lib/utils";
 import { Slider } from "@mui/material";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
@@ -8,6 +9,7 @@ const CustomSlider: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const t = useTranslations("ShopPage.Filtration.Filters.Slider");
 
   const min = searchParams.get("min") ?? 0;
   const max = searchParams.get("max") ?? 1000;
@@ -44,7 +46,7 @@ const CustomSlider: React.FC = () => {
         className="flex justify-between cursor-pointer"
         onClick={() => setShowSlider((prev) => !prev)}
       >
-        <p>Change Range</p>
+        <p>{t("label")}</p>
         <Image
           width={10}
           height={10}
@@ -83,8 +85,8 @@ const CustomSlider: React.FC = () => {
             disableSwap
           />
           <div className="flex justify-between text-xs">
-            <span>${range[0]}.00</span>
-            <span>${range[1]}.00</span>
+            <span>€{range[0]}.00</span>
+            <span>€{range[1]}.00</span>
           </div>
         </div>
       )}

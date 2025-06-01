@@ -2,19 +2,26 @@ import StoriesOffer from "@/components/StoriesOffer";
 import TipSection from "@/components/TipSection";
 import { getLimitedProducts } from "@/lib/data/products";
 import { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { Messages } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Dark Colors",
-  description:
-    "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor.",
-  openGraph: {
-    url: "/stories/dark-colors",
-    title: "Dark Colors",
-    description: "Designing with dark colors...",
-  },
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
+
+  const title = t.TabTitles.Dark;
+
+  return {
+    title: title,
+    description:
+      "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor.",
+    openGraph: {
+      url: "/stories/dark-colors",
+      title: "Dark Colors",
+      description: "Designing with dark colors...",
+    },
+  };
 };
 
 const Page: React.FC = async () => {

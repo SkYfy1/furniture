@@ -3,7 +3,10 @@
     "Main": "FRNTR",
     "Shop": "Shop",
     "Cart": "Cart",
-    "Stories": "Stories"
+    "Stories": "Stories",
+    "Japandi": "Japandi",
+    "Dark": "Dark Colors",
+    "Plant": "Plant Starter Pack"
   },
   "HomePage": {
     "Slider": {
@@ -120,6 +123,22 @@
         "Phones": {
           "name": "Phones",
           "description": "Just phones."
+        }
+      }
+    },
+    "Filtration": {
+      "found": "Found {quantity} matching results",
+      "show": "Show variants",
+      "Filters": {
+        "remove": "Remove all filters",
+        "Select": {
+          "nameAsc": "Name ascending",
+          "nameDesc": "Name descending",
+          "priceAsc": "Price: Low to High",
+          "priceDesc": "Price: High to low"
+        },
+        "Slider": {
+          "label": "Change Range"
         }
       }
     }

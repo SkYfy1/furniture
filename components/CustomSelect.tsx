@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React from "react";
@@ -6,6 +7,7 @@ const CustomSelect: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const t = useTranslations("ShopPage.Filtration.Filters.Select");
 
   const updateParams = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const params = new URLSearchParams(searchParams);
@@ -24,10 +26,10 @@ const CustomSelect: React.FC = () => {
         id="orderBy"
         className="appearance-none w-full px-4 py-1.5 cursor-pointer"
       >
-        <option value={"NAME_ASC"}>Name ascending</option>
-        <option value={"NAME_DESC"}>Name descending</option>
-        <option value={"PRICE_ASC"}>Price: Low to High</option>
-        <option value={"PRICE_DESC"}>Price: High to low</option>
+        <option value={"NAME_ASC"}>{t("nameAsc")}</option>
+        <option value={"NAME_DESC"}>{t("nameDesc")}</option>
+        <option value={"PRICE_ASC"}>{t("priceAsc")}</option>
+        <option value={"PRICE_DESC"}>{t("priceDesc")}</option>
       </select>
       <Image
         width={10}

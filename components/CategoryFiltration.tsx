@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch } from "./ui/switch";
 import Filters from "./Filters";
+import { useTranslations } from "next-intl";
 
 interface Props {
   quantity: number;
@@ -13,13 +14,14 @@ const CategoryFiltration: React.FC<Props> = ({
   showVariants,
   changeShow,
 }) => {
+  const t = useTranslations("ShopPage.Filtration");
   return (
     <>
-      <Filters />
+      <Filters buttonText={t("Filters.remove")} />
       <div className="text-sm font-semibold flex justify-between">
-        <div>Found {quantity} matching results</div>
+        <div>{t("found", { quantity })}</div>
         <div className="flex gap-2.5 items-center">
-          <span>Show variants</span>
+          <span>{t("show")}</span>
           <Switch
             checked={showVariants}
             onCheckedChange={() => changeShow((prev) => !prev)}

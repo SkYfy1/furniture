@@ -3,7 +3,10 @@
     "Main": "FRNTRé",
     "Shop": "Boutique",
     "Cart": "Panier",
-    "Stories": "Histoires"
+    "Stories": "Histoires",
+    "Japandi": "Février",
+    "Dark": "Couleurs Sombres",
+    "Plant": "Kit de Départ pour Plantes"
   },
   "HomePage": {
     "Slider": {
@@ -120,6 +123,22 @@
         "Phones": {
           "name": "Téléphones",
           "description": "Juste des téléphones."
+        }
+      }
+    },
+    "Filtration": {
+      "found": "{quantity} résultats correspondants trouvés",
+      "show": "Afficher les variantes",
+      "Filters": {
+        "remove": "Supprimer tous les filtres",
+        "Select": {
+          "nameAsc": "Nom (A-Z)",
+          "nameDesc": "Nom (Z-A)",
+          "priceAsc": "Prix (croissant)",
+          "priceDesc": "Prix (décroissant)"
+        },
+        "Slider": {
+          "label": "Modifier la plage"
         }
       }
     }
