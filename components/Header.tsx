@@ -25,6 +25,8 @@ const Header: React.FC = () => {
       .find((row) => row.startsWith("FRNTR_LOCALE="))
       ?.split("=")[1];
 
+    console.log(document.cookie);
+
     if (cookieLocale) {
       setLocale(cookieLocale);
     } else {
@@ -32,7 +34,7 @@ const Header: React.FC = () => {
       // const browseLocale = navigator.language.slice(0, 2);
 
       setLocale("en");
-      document.cookie = `FRNTR_LOCALE=en;`;
+      document.cookie = `FRNTR_LOCALE=en; path=/; SameSite=Lax; Secure;`;
       router.refresh();
     }
   }, [router]);
@@ -45,7 +47,7 @@ const Header: React.FC = () => {
 
   const handleChangeLocale = (value: string) => {
     setLocale(value);
-    document.cookie = `FRNTR_LOCALE=${value};`;
+    document.cookie = `FRNTR_LOCALE=${value}; path=/; SameSite=Lax; Secure;`;
     router.refresh();
   };
 
