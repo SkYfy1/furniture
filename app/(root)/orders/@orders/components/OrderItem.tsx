@@ -1,5 +1,6 @@
 import { Products, Variants } from "@/db/tableTypes";
 import { isProductTable } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import React from "react";
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const OrderItem: React.FC<Props> = ({ item }) => {
+  const t = useTranslations("OrdersPage.Orders.Order.OrderDetails.Items");
   if (isProductTable(item)) {
     return (
       <div className="flex gap-4 rounded-md group">
@@ -21,12 +23,14 @@ const OrderItem: React.FC<Props> = ({ item }) => {
         </div>
         <div className="capitalize text-sm py-2 flex flex-col gap-1">
           <p>{item.name}</p>
-          <p>Color/Size: default</p>
+          <p>{t("colorSize")}: default</p>
           <p>
-            Price:{" "}
+            {t("price")}:{" "}
             <span className="text-xs font-semibold">€{item.price}.00</span>
           </p>
-          <p>Qty: {item.quantity}</p>
+          <p>
+            {t("quantity")}: {item.quantity}
+          </p>
         </div>
       </div>
     );
@@ -43,12 +47,16 @@ const OrderItem: React.FC<Props> = ({ item }) => {
         </div>
         <div className="capitalize text-sm py-2 flex flex-col gap-1">
           <p>{item?.sku?.split("-").join(" ")}</p>
-          <p>Color/Size: {item.color ?? item.size}</p>
           <p>
-            Price:{" "}
+            {t("colorSize")}: {item.color ?? item.size}
+          </p>
+          <p>
+            {t("price")}:{" "}
             <span className="text-xs font-semibold">€{item.price}.00</span>
           </p>
-          <p>Qty: {item.quantity}</p>
+          <p>
+            {t("quantity")}: {item.quantity}
+          </p>
         </div>
       </div>
     );

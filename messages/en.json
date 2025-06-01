@@ -169,6 +169,91 @@
       "savings": "Savings"
     }
   },
+  "OrdersPage": {
+    "title": "Your orders",
+    "Auth": {
+      "titles": {
+        "login": "Login",
+        "signUp": "Sign Up"
+      },
+      "subTitle": "We`ll send you a magick link.",
+      "Form": {
+        "email": "email",
+        "name": "name",
+        "password": "password",
+        "submit": "Submit"
+      },
+      "logOut": "Log out"
+    },
+    "Orders": {
+      "empty": {
+        "title": "No Orders Placed Yet",
+        "link": "Continue shopping"
+      },
+      "Order": {
+        "title": "Order ID",
+        "placed": "Placed on",
+        "sendState": "Will be sent",
+        "OrderDetails": {
+          "Items": {
+            "title": "Order Items",
+            "colorSize": "Color/Size",
+            "price": "Price",
+            "quantity": "Qty"
+          },
+          "Delivery": {
+            "title": "Delivery Info",
+            "status": "Default",
+            "info": {
+              "service": "Service",
+              "fullname": "Fullname",
+              "country": "Country",
+              "city": "City",
+              "state": "State",
+              "zipCode": "Zip code",
+              "address": "Address",
+              "status": "Status"
+            },
+            "Tooltip": {
+              "label": "Select",
+              "data": "Set as default delivery method"
+            }
+          },
+          "Payment": {
+            "title": "Payment Info",
+            "status": "Status",
+            "type": "Type",
+            "date": "Date",
+            "buttons": {
+              "receipt": "Print receipt",
+              "cancel": "Cancel Order",
+              "payNow": "Pay now"
+            }
+          }
+        },
+        "status": {
+          "created": "CREATED",
+          "rejected": "REJECTED"
+        },
+        "button": "Show Details"
+      }
+    }
+  },
+  "Promotions": {
+    "eco-friendly": "eco-friendly",
+    "vegan": "vegan",
+    "new-arrival": "new-arrival"
+  },
+  "Rooms": {
+    "kitchen": "kitchen",
+    "living-room": "living-room",
+    "outdoors": "outdoors",
+    "furniture": "furniture"
+  },
+  "Specials": {
+    "3-for-2": "3-for-2",
+    "4-for-3": "4-for-3"
+  },
   "SaleOverview": {
     "title": "Sale",
     "subTitle": "Incredible deals. Top-of-the-line design for less.",
@@ -193,7 +278,7 @@
         "tag4": "furniture"
       },
       "specials": {
-        "title": "specials",
+        "title": "Specials",
         "tag1": "3-for-2",
         "tag2": "4-for-3"
       }

@@ -169,6 +169,91 @@
       "savings": "Économies"
     }
   },
+  "OrdersPage": {
+    "title": "Vos commandes",
+    "Auth": {
+      "titles": {
+        "login": "Connexion",
+        "signUp": "Inscription"
+      },
+      "subTitle": "Nous vous enverrons un lien magique par email.",
+      "Form": {
+        "email": "Email",
+        "name": "Nom",
+        "password": "Mot de passe",
+        "submit": "Valider"
+      },
+      "logOut": "Se déconnecter"
+    },
+    "Orders": {
+      "empty": {
+        "title": "Aucune commande passée",
+        "link": "Continuer vos achats"
+      },
+      "Order": {
+        "title": "N° de commande",
+        "placed": "Passée le",
+        "sendState": "Expédition prévue",
+        "OrderDetails": {
+          "Items": {
+            "title": "Articles commandés",
+            "colorSize": "Couleur/Taille",
+            "price": "Prix",
+            "quantity": "Qté"
+          },
+          "Delivery": {
+            "title": "Livraison",
+            "status": "Standard",
+            "info": {
+              "service": "Service",
+              "fullname": "Nom complet",
+              "country": "Pays",
+              "city": "Ville",
+              "state": "Région",
+              "zipCode": "Code postal",
+              "address": "Adresse",
+              "status": "Statut"
+            },
+            "Tooltip": {
+              "label": "Sélectionner",
+              "data": "Définir comme mode de livraison par défaut"
+            }
+          },
+          "Payment": {
+            "title": "Paiement",
+            "status": "Statut",
+            "type": "Méthode",
+            "date": "Date",
+            "buttons": {
+              "receipt": "Imprimer le reçu",
+              "cancel": "Annuler la commande",
+              "payNow": "Payer maintenant"
+            }
+          }
+        },
+        "status": {
+          "created": "CRÉÉE",
+          "rejected": "REJETÉE"
+        },
+        "button": "Voir le détail"
+      }
+    }
+  },
+  "Promotions": {
+    "eco-friendly": "écologique",
+    "vegan": "végan",
+    "new-arrival": "nouveauté"
+  },
+  "Rooms": {
+    "kitchen": "cuisine",
+    "living-room": "salon",
+    "outdoors": "extérieur",
+    "furniture": "meubles"
+  },
+  "Specials": {
+    "3-for-2": "3-pour-2",
+    "4-for-3": "4-pour-3"
+  },
   "SaleOverview": {
     "title": "Vente",
     "subTitle": "Offres exceptionnelles. Design haut de gamme à moindre coût.",
@@ -193,7 +278,7 @@
         "tag4": "meubles"
       },
       "specials": {
-        "title": "spéciale",
+        "title": "Spéciale",
         "tag1": "3 pour 2",
         "tag2": "4 pour 3"
       }

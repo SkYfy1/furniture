@@ -8,6 +8,7 @@ import React from "react";
 import Order from "./components/Order";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Orders",
@@ -24,13 +25,14 @@ const Page = async () => {
   const id = session?.user?.id as string;
 
   const orders = await getOrderData(id);
+  const t = await getTranslations("OrdersPage.Orders.empty");
 
   if (!orders.length) {
     return (
       <div className="flex items-center pt-36 flex-col gap-4 text-black">
-        <h1 className="text-5xl font-semibold">No Orders Placed Yet</h1>
+        <h1 className="text-5xl font-semibold">{t("title")}</h1>
         <Link href="/shop" className="underline text-sm">
-          Continue shopping
+          {t("link")}
         </Link>
       </div>
     );
