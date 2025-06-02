@@ -3,6 +3,7 @@ import BuyBox from "@/components/BuyBox";
 import ProductDimensions from "@/components/ProductDimensions";
 import { getProductById, getVariants } from "@/lib/data/products";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
@@ -52,6 +53,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
     searchPars ?? variants[Math.floor(variants.length / 2)]?.sku;
 
   const selectedItem = variants.find((variant) => variant.sku === defaultSku);
+  const t = await getTranslations("ProductPage");
 
   return (
     <div className="stories-container mt-0">
@@ -66,7 +68,7 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
         </div>
         <ProductDimensions dimensions={product.dimensions as Dimensions} />
         <div className="py-36">
-          <h2 className="font-semibold">You might also be interested in</h2>
+          <h2 className="font-semibold">{t("more")}</h2>
         </div>
       </div>
       <BuyBox

@@ -8,15 +8,22 @@ import React from "react";
 import Order from "./components/Order";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
+import { Messages } from "next-intl";
 
-export const metadata: Metadata = {
-  title: "Orders",
-  description: "Track or manage your orders with ease",
-  robots: {
-    index: false,
-    follow: false,
-  },
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
+
+  const title = t.TabTitles.Orders;
+
+  return {
+    title: title,
+    description: "Track or manage your orders with ease!",
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
 };
 
 const Page = async () => {

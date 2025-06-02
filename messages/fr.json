@@ -1,12 +1,16 @@
 {
   "TabTitles": {
-    "Main": "FRNTRé",
+    "Main": "FRNTR",
     "Shop": "Boutique",
     "Cart": "Panier",
     "Stories": "Histoires",
     "Japandi": "Février",
     "Dark": "Couleurs Sombres",
-    "Plant": "Kit de Départ pour Plantes"
+    "Plant": "Kit de Départ pour Plantes",
+    "Orders": "Ordres",
+    "Success": "Succès",
+    "Receipt": "Reçu",
+    "TooFast": "Erreur"
   },
   "HomePage": {
     "Slider": {
@@ -238,6 +242,34 @@
         "button": "Voir le détail"
       }
     }
+  },
+  "ProductPage": {
+    "BuyBox": {
+      "addButton": "Ajouter au panier",
+      "stripeButton": "Acheter avec Stripe",
+      "productStatus": "En ligne",
+      "stock": "en stock",
+      "less": "Plus que"
+    },
+    "Dimensions": {
+      "title": "Dimensions",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "depth": "Profondeur",
+      "weight": "Poids"
+    },
+    "more": "Vous pourriez aussi aimer"
+  },
+  "SuccessPage": {
+    "title": "Paiement confirmé !",
+    "id": "Identifiant de paiement",
+    "info": "Votre commande sera expédiée au plus vite !"
+  },
+  "ReceiptPage": {
+    "title": "Page de reçu factice"
+  },
+  "TooFastPage": {
+    "title": "Trop rapide"
   },
   "Promotions": {
     "eco-friendly": "écologique",

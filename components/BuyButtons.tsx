@@ -6,6 +6,7 @@ import { addItem } from "@/lib/features/cartSlice";
 import { Button } from "./ui/Button";
 import { buyNow } from "@/lib/actions/payment";
 import { redirect } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface Props {
   payload: CartItem;
@@ -15,6 +16,7 @@ interface Props {
 
 const BuyButtons: React.FC<Props> = ({ payload, type, userId }) => {
   const dispatch = useAppDispatch();
+  const t = useTranslations("ProductPage.BuyBox");
   const handleStripeBuy = async () => {
     const result = await buyNow({
       id: payload.id,
@@ -41,10 +43,10 @@ const BuyButtons: React.FC<Props> = ({ payload, type, userId }) => {
           dispatch(addItem(payload));
         }}
       >
-        Add to cart
+        {t("addButton")}
       </Button>
       <Button className="w-full" size="lg" onClick={handleStripeBuy}>
-        Buy with Stripe
+        {t("stripeButton")}
       </Button>
     </div>
   );

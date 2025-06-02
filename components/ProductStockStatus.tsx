@@ -1,8 +1,12 @@
 import { cn } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
-const ProductStockStatus: React.FC<{ quantity: number }> = ({ quantity }) => {
+const ProductStockStatus: React.FC<{ quantity: number }> = async ({
+  quantity,
+}) => {
+  const t = await getTranslations("ProductPage.BuyBox");
   return (
     <div className="border-t py-4 flex justify-between items-center text-sm">
       <div className="flex gap-2 items-center">
@@ -12,7 +16,7 @@ const ProductStockStatus: React.FC<{ quantity: number }> = ({ quantity }) => {
           width={18}
           alt="stock-icon"
         />
-        <p className="font-semibold">Online</p>
+        <p className="font-semibold">{t("productStatus")}</p>
         <div
           className={cn(
             "size-2.5 rounded-full bg-green-price",
@@ -20,7 +24,9 @@ const ProductStockStatus: React.FC<{ quantity: number }> = ({ quantity }) => {
           )}
         ></div>
       </div>
-      <p>{quantity < 20 ? "Less than 20" : "20+"} in stock</p>
+      <p>
+        {quantity < 20 ? `${t("less")} 20` : "20+"} {t("stock")}
+      </p>
     </div>
   );
 };

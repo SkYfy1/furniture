@@ -6,7 +6,11 @@
     "Stories": "Stories",
     "Japandi": "Japandi",
     "Dark": "Dark Colors",
-    "Plant": "Plant Starter Pack"
+    "Plant": "Plant Starter Pack",
+    "Orders": "Orders",
+    "Success": "Success",
+    "Receipt": "Receipt",
+    "TooFast": "Error"
   },
   "HomePage": {
     "Slider": {
@@ -238,6 +242,34 @@
         "button": "Show Details"
       }
     }
+  },
+  "ProductPage": {
+    "BuyBox": {
+      "addButton": "Add to cart",
+      "stripeButton": "Buy with stripe",
+      "productStatus": "Online",
+      "stock": "in stock",
+      "less": "Less than"
+    },
+    "Dimensions": {
+      "title": "Dimensions",
+      "width": "width",
+      "height": "height",
+      "depth": "depth",
+      "weight": "weight"
+    },
+    "more": "You might also be interested in"
+  },
+  "SuccessPage": {
+    "title": "Your payment fulfilled!",
+    "id": "Payment ID",
+    "info": "Your order will be sent as soon as possible!"
+  },
+  "ReceiptPage": {
+    "title": "Fake receipt route"
+  },
+  "TooFastPage": {
+    "title": "Too fast"
   },
   "Promotions": {
     "eco-friendly": "eco-friendly",
