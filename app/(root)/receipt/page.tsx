@@ -2,15 +2,6 @@ import { Metadata } from "next";
 import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Receipt",
-  description: "Thanks you for the order!",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-
 export const genearteMetadata = async (): Promise<Metadata> => {
   const t = await getMessages();
 
