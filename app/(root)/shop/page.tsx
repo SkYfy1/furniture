@@ -3,27 +3,39 @@ import ProductSlider from "@/components/ProductSlider";
 import SaleOverview from "@/components/SaleOverview";
 import { categories } from "@/constants";
 import { Metadata } from "next";
+import { Messages } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
 
-export const metadata: Metadata = {
-  title: "Shop",
-  openGraph: {
-    url: "/shop",
-    title: "Shop",
-    description: "Incredible deals. Top-of-the-line design for less.",
-  },
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
+
+  const title = t.TabTitles.Shop;
+
+  return {
+    title: title,
+    openGraph: {
+      url: "/shop",
+      title: "Shop",
+      description: "Incredible deals. Top-of-the-line design for less.",
+    },
+  };
 };
 
-const Page = () => {
+const Page = async () => {
+  const t = await getTranslations("ShopPage");
+
   return (
     <>
       <SaleOverview />
       <div className="mt-20 mb-10 px-5 flex flex-col gap-4 container">
-        <h2 className="text-sm font-semibold">Browse categories</h2>
+        <h2 className="text-sm font-semibold">{t("Categories.title")}</h2>
         <div className="flex flex-wrap gap-1.5">
           {categories.map((category) => (
             <CustomLink
-              title={category.name}
+              title={t(
+                `Categories.category.${category.name}.name` as "Categories.category.Sofas.name"
+              )}
               link={category.route}
               key={category.route}
             />
@@ -32,8 +44,13 @@ const Page = () => {
       </div>
       {categories.map((category) => (
         <ProductSlider
+          title={t(
+            `Categories.category.${category.name}.name` as "Categories.category.Sofas.name"
+          )}
           category={category.name}
-          description={category.desc}
+          description={t(
+            `Categories.category.${category.name}.description` as "Categories.category.Sofas.description"
+          )}
           key={category.name}
         />
       ))}

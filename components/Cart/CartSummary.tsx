@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 interface Props {
@@ -7,18 +8,19 @@ interface Props {
 }
 
 const CartSummary: React.FC<Props> = ({ summary, discount, tax }) => {
+  const t = useTranslations("CartPage.CartSummary");
   return (
     <div className="py-5 flex flex-col gap-3 min-w-1/4 border-b-2">
       <div className="text-xs text-gray-500 flex justify-between items-center">
-        <p>Savings</p>
+        <p>{t("savings")}</p>
         <span>€{discount}.00</span>
       </div>
       <div className="text-xs text-gray-500 flex justify-between items-center">
-        <p>Tax Amount</p>
+        <p>{t("tax")}</p>
         <span>€{tax}.00</span>
       </div>
       <div className=" font-semibold flex justify-between items-center mt-1">
-        <p>To pay</p>
+        <p>{t("pay")}</p>
         <span>€{summary + tax}.00</span>
       </div>
     </div>

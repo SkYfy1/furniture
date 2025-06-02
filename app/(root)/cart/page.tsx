@@ -1,5 +1,18 @@
 import Cart from "@/components/Cart/Cart";
+import { Metadata } from "next";
+import { Messages } from "next-intl";
+import { getMessages } from "next-intl/server";
 import React from "react";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
+
+  const title = t.TabTitles.Cart;
+
+  return {
+    title: title,
+  };
+};
 
 const Page = () => {
   return (

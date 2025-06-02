@@ -4,6 +4,7 @@ import OrderItem from "./OrderItem";
 import OrderShipping from "./OrderShipping";
 import OrderPayment from "./OrderPayment";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 interface Props {
   items: Variants[] | Products[];
@@ -20,6 +21,7 @@ const OrderDetails: React.FC<Props> = ({
   orderId,
   retryAction,
 }) => {
+  const t = useTranslations("OrdersPage.Orders.Order.OrderDetails");
   return (
     <motion.div
       exit={{
@@ -35,7 +37,7 @@ const OrderDetails: React.FC<Props> = ({
       className="flex flex-col lg:flex-row  justify-between"
     >
       <div className="flex flex-col gap-1.5 py-2">
-        <h1 className="text-lg font-semibold">Order Items</h1>
+        <h1 className="text-lg font-semibold">{t("Items.title")}</h1>
         {items.map((item) => (
           <OrderItem key={item.id} item={item} />
         ))}

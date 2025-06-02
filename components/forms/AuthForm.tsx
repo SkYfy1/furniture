@@ -14,6 +14,7 @@ import { ZodType } from "zod";
 import { useRouter } from "next/navigation";
 import CustomInput from "./CustomInput";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 interface Props<T extends FieldValues> {
   type: "SIGN_UP" | "SIGN_IN";
@@ -30,6 +31,7 @@ const AuthForm = <T extends FieldValues>({
 }: Props<T>) => {
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const t = useTranslations("OrdersPage.Auth.Form");
 
   const {
     register,
@@ -56,13 +58,13 @@ const AuthForm = <T extends FieldValues>({
     >
       <CustomInput<T>
         register={register}
-        label="email"
+        label={t("email")}
         error={errors.email as FieldError}
         name={"email" as Path<T>}
       />
       {type === "SIGN_UP" && (
         <CustomInput<T>
-          label="Name"
+          label={t("name")}
           register={register}
           error={errors.name as FieldError}
           name={"name" as Path<T>}
@@ -70,7 +72,7 @@ const AuthForm = <T extends FieldValues>({
       )}
       <CustomInput<T>
         register={register}
-        label="password"
+        label={t("password")}
         error={errors.password as FieldError}
         name={"password" as Path<T>}
         showPass={showPass}
@@ -87,7 +89,7 @@ const AuthForm = <T extends FieldValues>({
         className="w-full bg-black text-white py-2 rounded-sm cursor-pointer"
         type="submit"
       >
-        Submit
+        {t("submit")}
       </button>
     </form>
   );

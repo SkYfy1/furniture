@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 interface Props {
   payment: paymentInfo;
@@ -15,13 +16,14 @@ interface Props {
 const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
   const cancelled = payment.paymentStatus === "REJECTED";
   const isPaid = payment.paymentStatus === "PAID";
+  const t = useTranslations("OrdersPage.Orders.Order.OrderDetails.Payment");
   return (
     <div className="flex-col flex justify-between py-2">
       <div>
-        <h1 className="text-lg font-semibold">Payment Info</h1>
+        <h1 className="text-lg font-semibold">{t("title")}</h1>
         <div className="flex text-sm flex-col gap-1 pt-4">
           <p>
-            Status:{" "}
+            {t("status")}:{" "}
             <span
               className={cn(
                 "font-semibold",
@@ -32,9 +34,11 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
               {payment.paymentStatus}
             </span>
           </p>
-          <p>Type: {payment.paymentType}</p>
           <p>
-            Date:{" "}
+            {t("type")}: {payment.paymentType}
+          </p>
+          <p>
+            {t("date")}:{" "}
             {payment.paymentDate?.toDateString().split(" ").slice(1).join(" ")}
           </p>
         </div>
@@ -53,14 +57,14 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
         >
           {isPaid ? (
             <Button asChild className="flex mb-2">
-              <Link href="/receipt">Print receipt</Link>
+              <Link href="/receipt">{t("buttons.receipt")}</Link>
             </Button>
           ) : (
             <Button
               onClick={retryAction}
               className="flex w-full mb-2 hover:border-green-600 hover:text-green-600"
             >
-              Pay now
+              {t("buttons.payNow")}
             </Button>
           )}
           <Button
@@ -70,7 +74,7 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
               cancelOrder(orderId);
             }}
           >
-            Cancel order
+            {t("buttons.cancel")}
           </Button>
         </motion.div>
       )}

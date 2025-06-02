@@ -1,5 +1,7 @@
 type size = "small" | "medium" | "large";
 
+type supportedLocale = "en" | "fr";
+
 interface User {
   id: string;
   name: string;

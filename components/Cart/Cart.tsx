@@ -7,6 +7,7 @@ import Coupon from "./Coupon";
 import CartSummary from "./CartSummary";
 import Link from "next/link";
 import EmptyCart from "./EmptyCart";
+import { useTranslations } from "next-intl";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart.items);
@@ -14,8 +15,16 @@ const Cart = () => {
   const handleAddCoupon = useCallback((text: string) => {
     setCoupon(text);
   }, []);
+  const t = useTranslations("CartPage");
 
-  if (!cart.length) return <EmptyCart />;
+  if (!cart.length)
+    return (
+      <EmptyCart
+        title={t("Empty.title")}
+        subTitle={t("Empty.subTitle")}
+        button={t("Buttons.back")}
+      />
+    );
 
   const totalPrice = cart.reduce((cur, acc) => {
     if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
@@ -31,7 +40,7 @@ const Cart = () => {
 
   return (
     <section className="flex flex-col gap-3 w-full">
-      <h1 className="text-xl font-semibold mb-4">Cart</h1>
+      <h1 className="text-xl font-semibold mb-4">{t("title")}</h1>
       {cart?.map((item) => (
         <CartItem item={item} key={item.id} />
       ))}
@@ -46,10 +55,10 @@ const Cart = () => {
         </div>
         <div className="flex justify-between font-semibold mt-10">
           <button className="px-4 py-3 bg-gray text-black rounded-sm text-sm">
-            <Link href="/">Back</Link>
+            <Link href="/">{t("Buttons.back")}</Link>
           </button>
           <button className="px-10 py-3 bg-black text-white rounded-sm text-sm">
-            <Link href="/checkout">Checkout</Link>
+            <Link href="/checkout">{t("Buttons.checkout")}</Link>
           </button>
         </div>
       </div>

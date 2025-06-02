@@ -1,0 +1,319 @@
+{
+  "TabTitles": {
+    "Main": "FRNTR",
+    "Shop": "Boutique",
+    "Cart": "Panier",
+    "Stories": "Histoires",
+    "Japandi": "Février",
+    "Dark": "Couleurs Sombres",
+    "Plant": "Kit de Départ pour Plantes",
+    "Orders": "Ordres",
+    "Success": "Succès",
+    "Receipt": "Reçu",
+    "TooFast": "Erreur"
+  },
+  "HomePage": {
+    "Slider": {
+      "title": "Planter un jardin, c'est croire en demain",
+      "subTitle": "Nos plantes égayeront à coup sûr votre maison (et votre avenir)."
+    },
+    "Outlet": {
+      "title": "Sortie",
+      "subTitle": "Bénéficiez de réductions sur les produits suivants:"
+    },
+    "CardSection": {
+      "CardOne": {
+        "title": "Il est temps de devenir productif",
+        "subTitle": "La première étape pour déterminer vos horaires de travail idéaux est de déterminer quand votre esprit et votre corps fonctionnent naturellement le mieux."
+      },
+      "CardTwo": {
+        "title": "Laissez la nature entrer dans votre salon",
+        "subTitle": "Choisissez parmi une grande variété de plantes qui ajoutent de la vie et du style à n’importe quel espace."
+      },
+      "CardThree": {
+        "title": "Style de design d'intérieur Japandi",
+        "subTitle": "Le style Japandi est un hybride entre l'Orient et l'Occident. Ce style est de plus en plus populaire et s'inscrit dans la durée. Il crée des intérieurs minimalistes sans être froids..."
+      },
+      "CardFour": {
+        "title": "Pack de démarrage de plantes",
+        "subTitle": "Comment réussir à associer plusieurs plantes dans un même espace? Découvrez nos astuces déco préférées."
+      }
+    }
+  },
+  "StoriesPage": {
+    "title": "Histoires",
+    "japandiCard": {
+      "title": "Style de Design d'Intérieur Japandi",
+      "subTitle": "Le design d'intérieur Japandi est un mélange d'est et d'ouest. Ce style devient de plus en plus populaire, et il est là pour rester. Il crée des intérieurs minimalistes sans être froids."
+    },
+    "darkCard": {
+      "title": "Couleurs Sombres",
+      "subTitle": "Utiliser des couleurs sombres peut ajouter de la profondeur et du confort à un petit espace. Découvrez nos conseils pour intégrer des teintes foncées dans votre décoration."
+    },
+    "plantCard": {
+      "title": "Kit de Départ pour Plantes",
+      "subTitle": "Comment réussir à intégrer plusieurs plantes dans un même espace ? Lisez nos astuces préférées en matière de design."
+    },
+    "JapandiPage": {
+      "month": "Février",
+      "title": "Style de Design d'Intérieur Japandi",
+      "subTitle": "Le design d'intérieur Japandi est un savant mélange entre l'est et l'ouest. Ce style gagne en popularité et s'installe durablement. Il crée des intérieurs minimalistes sans froideur. Le Japandi met en valeur l'artisanat et les matériaux tactiles comme le bois texturé et les céramiques artisanales, apportant ainsi confort et chaleur.",
+      "tips": {
+        "what": {
+          "title": "Qu'est-ce que le style Japandi ?",
+          "tipText": "Le Japandi est une fusion des styles d'intérieur japonais et scandinave. Bien qu'extrêmement populaire aujourd'hui, ce style trouve ses origines au XIXe siècle, lorsque le Japon a ouvert ses frontières aux visiteurs scandinaves. Les styles et mentalités des deux cultures étaient déjà similaires, offrant ainsi de nombreuses sources d'inspiration mutuelle. Toutes deux privilégient la simplicité, les matériaux naturels de qualité, la nature et l'artisanat. Le Japandi réunit le meilleur des deux univers."
+        },
+        "headline": {
+          "title": "Titre",
+          "tipText": "Le Japandi est une fusion des styles d'intérieur japonais et scandinave. Bien qu'extrêmement populaire aujourd'hui, ce style trouve ses origines au XIXe siècle, lorsque le Japon a ouvert ses frontières aux visiteurs scandinaves. Les styles et mentalités des deux cultures étaient déjà similaires, offrant ainsi de nombreuses sources d'inspiration mutuelle. Toutes deux privilégient la simplicité, les matériaux naturels de qualité, la nature et l'artisanat. Le Japandi réunit le meilleur des deux univers."
+        }
+      }
+    },
+    "DarkPage": {
+      "title": "Couleurs Sombres",
+      "subTitle": "Utiliser des couleurs foncées peut apporter profondeur et chaleur à un petit espace. Découvrez nos conseils pour intégrer ces teintes dans votre décoration.",
+      "tips": {
+        "pair": {
+          "title": "Associez avec des Neutres Chauds",
+          "tipText": "Si vous peignez votre pièce avec une couleur foncée intense, associez-la à des meubles neutres pour un rendu chaleureux et accueillant."
+        }
+      }
+    },
+    "PlantPage": {
+      "title": "Guide Débutant Plantes d'Intérieur",
+      "subTitle": "Comment réussir à intégrer plusieurs plantes dans un même espace ? Découvrez nos astuces déco préférées.",
+      "quote": "« Les plantes sont plus courageuses que la plupart des êtres humains : un oranger préférerait mourir que produire des citrons, alors qu'un être humain moyen préférerait devenir quelqu'un d'autre plutôt que de mourir. » - Mokokoma Mokhonoana",
+      "tips": {
+        "first": {
+          "title": "Variez les Tailles",
+          "tipText": "Évitez l'uniformité. Associez des plantes de différentes largeurs et hauteurs pour un rendu naturel et dynamique."
+        },
+        "second": {
+          "title": "Groupements Impairs",
+          "tipText": "La « règle des nombres impairs » en déco suggère que les groupements de 3, 5 ou 7 plantes sont plus harmonieux que les nombres pairs."
+        },
+        "third": {
+          "title": "Pots Décoratifs",
+          "tipText": "Mélangez matières et couleurs de pots pour un style éclectique, ou privilégiez des finitions similaires pour une ambiance élégante."
+        },
+        "fourth": {
+          "title": "Soins des Plantes",
+          "tipText": "Regroupez les plantes ayant les mêmes besoins en lumière, eau et humidité pour faciliter leur entretien."
+        }
+      }
+    }
+  },
+  "ShopPage": {
+    "ProductSliderTitle": "Voir tous les produits",
+    "Categories": {
+      "title": "Parcourir les catégories",
+      "category": {
+        "Sofas": {
+          "name": "Canapés",
+          "description": "Confortables, élégants et abordables."
+        },
+        "Plants": {
+          "name": "Plantes",
+          "description": "Plantes de toutes formes et tailles pour votre maison. Avec un peu d'amour, vous en profiterez pendant des années."
+        },
+        "Flowers": {
+          "name": "Fleurs",
+          "description": "Les plus belles fleurs du monde."
+        },
+        "Kitchen": {
+          "name": "Cuisine",
+          "description": "De magnifiques appareils qui vous font gagner du temps et des efforts. Profitez de résultats professionnels à la maison."
+        },
+        "Phones": {
+          "name": "Téléphones",
+          "description": "Juste des téléphones."
+        }
+      }
+    },
+    "Filtration": {
+      "found": "{quantity} résultats correspondants trouvés",
+      "show": "Afficher les variantes",
+      "Filters": {
+        "remove": "Supprimer tous les filtres",
+        "Select": {
+          "nameAsc": "Nom (A-Z)",
+          "nameDesc": "Nom (Z-A)",
+          "priceAsc": "Prix (croissant)",
+          "priceDesc": "Prix (décroissant)"
+        },
+        "Slider": {
+          "label": "Modifier la plage"
+        }
+      }
+    }
+  },
+  "CartPage": {
+    "title": "Panier",
+    "Empty": {
+      "title": "Oups, votre panier est vide",
+      "subTitle": "Parcourez notre boutique et trouvez quelque chose de beau avant de revenir"
+    },
+    "Buttons": {
+      "back": "Retour",
+      "checkout": "Paiement"
+    },
+    "Coupon": {
+      "label": "Code promo",
+      "placeholder": "Code de réduction",
+      "use": "Utiliser le bon",
+      "clear": "Supprimer"
+    },
+    "CartSummary": {
+      "savings": "Économies",
+      "tax": "Montant des taxes",
+      "pay": "À payer"
+    },
+    "CartItem": {
+      "total": "Totale",
+      "savings": "Économies"
+    }
+  },
+  "OrdersPage": {
+    "title": "Vos commandes",
+    "Auth": {
+      "titles": {
+        "login": "Connexion",
+        "signUp": "Inscription"
+      },
+      "subTitle": "Nous vous enverrons un lien magique par email.",
+      "Form": {
+        "email": "Email",
+        "name": "Nom",
+        "password": "Mot de passe",
+        "submit": "Valider"
+      },
+      "logOut": "Se déconnecter"
+    },
+    "Orders": {
+      "empty": {
+        "title": "Aucune commande passée",
+        "link": "Continuer vos achats"
+      },
+      "Order": {
+        "title": "N° de commande",
+        "placed": "Passée le",
+        "sendState": "Expédition prévue",
+        "OrderDetails": {
+          "Items": {
+            "title": "Articles commandés",
+            "colorSize": "Couleur/Taille",
+            "price": "Prix",
+            "quantity": "Qté"
+          },
+          "Delivery": {
+            "title": "Livraison",
+            "status": "Standard",
+            "info": {
+              "service": "Service",
+              "fullname": "Nom complet",
+              "country": "Pays",
+              "city": "Ville",
+              "state": "Région",
+              "zipCode": "Code postal",
+              "address": "Adresse",
+              "status": "Statut"
+            },
+            "Tooltip": {
+              "label": "Sélectionner",
+              "data": "Définir comme mode de livraison par défaut"
+            }
+          },
+          "Payment": {
+            "title": "Paiement",
+            "status": "Statut",
+            "type": "Méthode",
+            "date": "Date",
+            "buttons": {
+              "receipt": "Imprimer le reçu",
+              "cancel": "Annuler la commande",
+              "payNow": "Payer maintenant"
+            }
+          }
+        },
+        "status": {
+          "created": "CRÉÉE",
+          "rejected": "REJETÉE"
+        },
+        "button": "Voir le détail"
+      }
+    }
+  },
+  "ProductPage": {
+    "BuyBox": {
+      "addButton": "Ajouter au panier",
+      "stripeButton": "Acheter avec Stripe",
+      "productStatus": "En ligne",
+      "stock": "en stock",
+      "less": "Plus que"
+    },
+    "Dimensions": {
+      "title": "Dimensions",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "depth": "Profondeur",
+      "weight": "Poids"
+    },
+    "more": "Vous pourriez aussi aimer"
+  },
+  "SuccessPage": {
+    "title": "Paiement confirmé !",
+    "id": "Identifiant de paiement",
+    "info": "Votre commande sera expédiée au plus vite !"
+  },
+  "ReceiptPage": {
+    "title": "Page de reçu factice"
+  },
+  "TooFastPage": {
+    "title": "Trop rapide"
+  },
+  "Promotions": {
+    "eco-friendly": "écologique",
+    "vegan": "végan",
+    "new-arrival": "nouveauté"
+  },
+  "Rooms": {
+    "kitchen": "cuisine",
+    "living-room": "salon",
+    "outdoors": "extérieur",
+    "furniture": "meubles"
+  },
+  "Specials": {
+    "3-for-2": "3-pour-2",
+    "4-for-3": "4-pour-3"
+  },
+  "SaleOverview": {
+    "title": "Vente",
+    "subTitle": "Offres exceptionnelles. Design haut de gamme à moindre coût.",
+    "link": "Voir notre grande vente"
+  },
+  "Header": {
+    "Search": "Noms, catégories...",
+    "Nav": {
+      "shop": "Boutique",
+      "stories": "Histoires",
+      "promotions": {
+        "title": "Promos",
+        "tag1": "écologique",
+        "tag2": "végétaliens",
+        "tag3": "nouveauté"
+      },
+      "rooms": {
+        "title": "Chambres",
+        "tag1": "cuisine",
+        "tag2": "salon",
+        "tag3": "dehors",
+        "tag4": "meubles"
+      },
+      "specials": {
+        "title": "Spéciale",
+        "tag1": "3 pour 2",
+        "tag2": "4 pour 3"
+      }
+    }
+  }
+}

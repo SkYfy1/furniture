@@ -1,0 +1,319 @@
+{
+  "TabTitles": {
+    "Main": "FRNTR",
+    "Shop": "Shop",
+    "Cart": "Cart",
+    "Stories": "Stories",
+    "Japandi": "Japandi",
+    "Dark": "Dark Colors",
+    "Plant": "Plant Starter Pack",
+    "Orders": "Orders",
+    "Success": "Success",
+    "Receipt": "Receipt",
+    "TooFast": "Error"
+  },
+  "HomePage": {
+    "Slider": {
+      "title": "To Plant a Garden is To Believe in Tomorrow",
+      "subTitle": "Our plants are sure to brighten up your home (and your future)."
+    },
+    "Outlet": {
+      "title": "Outlet",
+      "subTitle": "Enjoy discounts on the following:"
+    },
+    "CardSection": {
+      "CardOne": {
+        "title": "Time To Get Productive",
+        "subTitle": "The first step in determining your ideal working hours is to figure out when your mind and body naturally work best."
+      },
+      "CardTwo": {
+        "title": "Let Nature Into Your Living Room",
+        "subTitle": "Choose from a wide variety of plants that add life and style to any space."
+      },
+      "CardThree": {
+        "title": "Japandi Interior Design Stylee",
+        "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold..."
+      },
+      "CardFour": {
+        "title": "Plant Starter Pack",
+        "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks."
+      }
+    }
+  },
+  "StoriesPage": {
+    "title": "Stories",
+    "japandiCard": {
+      "title": "Japandi Interior Design Stylee",
+      "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold"
+    },
+    "darkCard": {
+      "title": "Dark Colors",
+      "subTitle": "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor."
+    },
+    "plantCard": {
+      "title": "Plant Starter Pack",
+      "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks."
+    },
+    "JapandiPage": {
+      "month": "February",
+      "title": "Japandi Interior Design Stylee",
+      "subTitle": "Japandi interior design is a hybrid of east and west. The style is increasingly popular, and it is here to stay. The style creates interiors that are minimal without being cold. Japandi makes use of craftsmanship and tactile materials, such as textured wood and handmade ceramics, to add comfort and warmth.",
+      "tips": {
+        "what": {
+          "title": "What Is Japandi Design?",
+          "tipText": "Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+        },
+        "headline": {
+          "title": "Headline",
+          "tipText": "Japandi is a hybrid of Japanese and Scandinavian interior styles. Though it’s still very popular today, it actually dates back to the 1800s, when Japan opened its borders and visitors from Scandinavia arrived. The two cultures’ styles and mentalities were already similar, so there was a lot to like and be inspired by. Both value simplicity, good quality natural material, nature, and craftsmanship. Japandi brings out the best of both worlds."
+        }
+      }
+    },
+    "DarkPage": {
+      "title": "Dark Colors",
+      "subTitle": "Designing with dark colors can add depth and coziness to a small space. Read our tips for using darker colors in your decor.",
+      "tips": {
+        "pair": {
+          "title": "Pair With Warm Neutrals",
+          "tipText": "If you paint your room with a dramatic dark color, pair this with neutral furnishings for a comfortable, inviting look."
+        }
+      }
+    },
+    "PlantPage": {
+      "title": "Plant Starter Pack",
+      "subTitle": "How do you pull off multiple plants in a single space? Read about our favorite design tricks.",
+      "quote": "”Plants are more courageous than almost all human beings: an orange tree would rather die than produce lemons, whereas instead of dying the average person would rather be someone they are not.” - Mokokoma Mokhonoana",
+      "tips": {
+        "first": {
+          "title": "Use Different-Sized Plants",
+          "tipText": "You don’t want a look that’s too uniform. Pair plants with different widths and heights together. They’ll look more natural and fresh."
+        },
+        "second": {
+          "title": "Arrange Plants In Odd-Numbered Groups",
+          "tipText": "The “law of threes” suggests that odd-numbered collections are more visually pleasing and effective than even-numbered collections. Arrange your plants in groups of 3, 5, 7, 9, and so on."
+        },
+        "third": {
+          "title": "Use Decorative Pots",
+          "tipText": "Combine pots with different materials and colors for an electric finish. Use pots with similar finishes for an elegant look."
+        },
+        "fourth": {
+          "title": "Houseplant Care",
+          "tipText": "Group plants with other plants that share the same needs in terms of sunlight, water, climate, and so on."
+        }
+      }
+    }
+  },
+  "ShopPage": {
+    "ProductSliderTitle": "View all products",
+    "Categories": {
+      "title": "Browse categories",
+      "category": {
+        "Sofas": {
+          "name": "Sofas",
+          "description": "Comfy, stylish, and affordable."
+        },
+        "Plants": {
+          "name": "Plants",
+          "description": "Plants of all shapes and sizes for your home. With a little TLC, you’ll enjoy them for years to come."
+        },
+        "Flowers": {
+          "name": "Flowers",
+          "description": "Most beautiful flowers in the world."
+        },
+        "Kitchen": {
+          "name": "Kitchen",
+          "description": "Beautiful appliances that save you time and effort. Enjoy professional results from home."
+        },
+        "Phones": {
+          "name": "Phones",
+          "description": "Just phones."
+        }
+      }
+    },
+    "Filtration": {
+      "found": "Found {quantity} matching results",
+      "show": "Show variants",
+      "Filters": {
+        "remove": "Remove all filters",
+        "Select": {
+          "nameAsc": "Name ascending",
+          "nameDesc": "Name descending",
+          "priceAsc": "Price: Low to High",
+          "priceDesc": "Price: High to low"
+        },
+        "Slider": {
+          "label": "Change Range"
+        }
+      }
+    }
+  },
+  "CartPage": {
+    "title": "Cart",
+    "Empty": {
+      "title": "Woah, nothing in your cart yet",
+      "subTitle": "Try going back and find something beautiul before you come back"
+    },
+    "Buttons": {
+      "back": "Back",
+      "checkout": "Checkout"
+    },
+    "Coupon": {
+      "label": "Coupon Code",
+      "placeholder": "Voucher code",
+      "use": "Use voucher",
+      "clear": "Delete"
+    },
+    "CartSummary": {
+      "savings": "Savings",
+      "tax": "Tax amount",
+      "pay": "To pay"
+    },
+    "CartItem": {
+      "total": "Total",
+      "savings": "Savings"
+    }
+  },
+  "OrdersPage": {
+    "title": "Your orders",
+    "Auth": {
+      "titles": {
+        "login": "Login",
+        "signUp": "Sign Up"
+      },
+      "subTitle": "We`ll send you a magick link.",
+      "Form": {
+        "email": "email",
+        "name": "name",
+        "password": "password",
+        "submit": "Submit"
+      },
+      "logOut": "Log out"
+    },
+    "Orders": {
+      "empty": {
+        "title": "No Orders Placed Yet",
+        "link": "Continue shopping"
+      },
+      "Order": {
+        "title": "Order ID",
+        "placed": "Placed on",
+        "sendState": "Will be sent",
+        "OrderDetails": {
+          "Items": {
+            "title": "Order Items",
+            "colorSize": "Color/Size",
+            "price": "Price",
+            "quantity": "Qty"
+          },
+          "Delivery": {
+            "title": "Delivery Info",
+            "status": "Default",
+            "info": {
+              "service": "Service",
+              "fullname": "Fullname",
+              "country": "Country",
+              "city": "City",
+              "state": "State",
+              "zipCode": "Zip code",
+              "address": "Address",
+              "status": "Status"
+            },
+            "Tooltip": {
+              "label": "Select",
+              "data": "Set as default delivery method"
+            }
+          },
+          "Payment": {
+            "title": "Payment Info",
+            "status": "Status",
+            "type": "Type",
+            "date": "Date",
+            "buttons": {
+              "receipt": "Print receipt",
+              "cancel": "Cancel Order",
+              "payNow": "Pay now"
+            }
+          }
+        },
+        "status": {
+          "created": "CREATED",
+          "rejected": "REJECTED"
+        },
+        "button": "Show Details"
+      }
+    }
+  },
+  "ProductPage": {
+    "BuyBox": {
+      "addButton": "Add to cart",
+      "stripeButton": "Buy with stripe",
+      "productStatus": "Online",
+      "stock": "in stock",
+      "less": "Less than"
+    },
+    "Dimensions": {
+      "title": "Dimensions",
+      "width": "width",
+      "height": "height",
+      "depth": "depth",
+      "weight": "weight"
+    },
+    "more": "You might also be interested in"
+  },
+  "SuccessPage": {
+    "title": "Your payment fulfilled!",
+    "id": "Payment ID",
+    "info": "Your order will be sent as soon as possible!"
+  },
+  "ReceiptPage": {
+    "title": "Fake receipt route"
+  },
+  "TooFastPage": {
+    "title": "Too fast"
+  },
+  "Promotions": {
+    "eco-friendly": "eco-friendly",
+    "vegan": "vegan",
+    "new-arrival": "new-arrival"
+  },
+  "Rooms": {
+    "kitchen": "kitchen",
+    "living-room": "living-room",
+    "outdoors": "outdoors",
+    "furniture": "furniture"
+  },
+  "Specials": {
+    "3-for-2": "3-for-2",
+    "4-for-3": "4-for-3"
+  },
+  "SaleOverview": {
+    "title": "Sale",
+    "subTitle": "Incredible deals. Top-of-the-line design for less.",
+    "link": "See our big sale"
+  },
+  "Header": {
+    "Search": "Names, categories...",
+    "Nav": {
+      "shop": "Shop",
+      "stories": "Stories",
+      "promotions": {
+        "title": "Promotions",
+        "tag1": "eco-friendly",
+        "tag2": "vegan",
+        "tag3": "new-arrival"
+      },
+      "rooms": {
+        "title": "Rooms",
+        "tag1": "kitchen",
+        "tag2": "living-room",
+        "tag3": "outdoors",
+        "tag4": "furniture"
+      },
+      "specials": {
+        "title": "Specials",
+        "tag1": "3-for-2",
+        "tag2": "4-for-3"
+      }
+    }
+  }
+}
