@@ -14,7 +14,7 @@ const Layout: React.FC<{
     <div className="container pt-12 min-h-screen px-4 lg:px-0">
       <div className="flex justify-between">
         <h1 className="text-2xl font-semibold">{t("title")}</h1>
-        {session?.user && <LogOut />}
+        {session?.user && <LogOut text={t("Auth.logOut")} />}
       </div>
       {session?.user ? orders : authorization}
     </div>
