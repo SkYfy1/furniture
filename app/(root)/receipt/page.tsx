@@ -1,9 +1,10 @@
 import { Metadata } from "next";
+import { Messages } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import React from "react";
 
-export const genearteMetadata = async (): Promise<Metadata> => {
-  const t = await getMessages();
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t: Messages = await getMessages();
 
   const title = t.TabTitles.Receipt;
 
