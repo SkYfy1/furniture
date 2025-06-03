@@ -3,6 +3,7 @@ import { hasValueInArray } from "@/db/helpers";
 import { productsTable, variantsTable } from "@/db/schema";
 import { and, asc, desc, eq, gte, ilike, lte, or, sql } from "drizzle-orm";
 import { blackList } from "@/constants";
+import { deleteDublicates } from "../utils";
 
 export const getVariants = async (id: string) => {
   const variants = await db
@@ -161,6 +162,27 @@ export const getProductsWithTag = async (tag: string) => {
     .execute({ [tag]: tag });
 
   return products;
+};
+
+export const getRelatedProducts = async (tags: string[], id: string) => {
+  const result = await Promise.all(
+    tags.map(async (tag) => {
+      const res = await db
+        .select()
+        .from(productsTable)
+        .where(hasValueInArray(productsTable.tags, tag))
+        .execute({ [tag]: tag });
+      return res;
+    })
+  );
+
+  // Or just .flat()
+
+  const products = result
+    .reduce((acc, cur) => [...acc, ...cur], [])
+    .filter((item) => item.id != id);
+
+  return deleteDublicates(products, "id");
 };
 
 export const getFewProducts = async () => {
