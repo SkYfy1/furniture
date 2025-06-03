@@ -1,7 +1,14 @@
 import { auth } from "@/auth";
 import BuyBox from "@/components/BuyBox";
+import MotionList from "@/components/MotionList";
+import Product from "@/components/Product";
 import ProductDimensions from "@/components/ProductDimensions";
-import { getProductById, getVariants } from "@/lib/data/products";
+import {
+  getProductById,
+  getProductsByCategory,
+  getRelatedProducts,
+  getVariants,
+} from "@/lib/data/products";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -48,16 +55,23 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
     getVariants(id),
   ]);
   const session = await auth();
+  const t = await getTranslations("ProductPage");
+
+  const tags = product.tags ?? [];
+
+  const related =
+    tags.length >= 1
+      ? await getRelatedProducts(tags, id)
+      : await getProductsByCategory(product.category);
 
   const defaultSku =
     searchPars ?? variants[Math.floor(variants.length / 2)]?.sku;
 
   const selectedItem = variants.find((variant) => variant.sku === defaultSku);
-  const t = await getTranslations("ProductPage");
 
   return (
     <div className="stories-container mt-0">
-      <div className="w-full">
+      <div className="w-full overflow-hidden">
         <div className="w-full h-[600] max-h-[1400] relative">
           <Image
             src={selectedItem?.imageUrl ?? product.imageUrl}
@@ -68,7 +82,12 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
         </div>
         <ProductDimensions dimensions={product.dimensions as Dimensions} />
         <div className="py-36">
-          <h2 className="font-semibold">{t("more")}</h2>
+          <h2 className="font-semibold pb-8">{t("more")}</h2>
+          <MotionList>
+            {related.map((item) => {
+              return <Product key={item.name} data={item} name={item.name} />;
+            })}
+          </MotionList>
         </div>
       </div>
       <BuyBox
