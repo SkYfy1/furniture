@@ -92,3 +92,17 @@ export const formatDate = (input: string) => {
 
   return `${weekDay} ${monthNumber + 1}/${day}/${year}`;
 };
+
+export const deleteDublicates = <T>(array: T[], filterKey: keyof T): T[] => {
+  const result = [];
+  const set = new Set();
+
+  for (const item of array) {
+    if (!set.has(item[filterKey])) {
+      set.add(item[filterKey]);
+      result.push(item);
+    }
+  }
+
+  return result;
+};
