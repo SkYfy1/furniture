@@ -25,8 +25,6 @@ const Header: React.FC = () => {
       .find((row) => row.startsWith("FRNTR_LOCALE="))
       ?.split("=")[1];
 
-    console.log(document.cookie);
-
     if (cookieLocale) {
       setLocale(cookieLocale);
     } else {
