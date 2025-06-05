@@ -2,6 +2,8 @@ type size = "small" | "medium" | "large";
 
 type supportedLocale = "en" | "fr";
 
+type discountType = "PERCENTAGE" | "FIXED";
+
 interface User {
   id: string;
   name: string;
@@ -56,4 +58,10 @@ interface Variant {
   discountedPrice: number | null;
   availableQuantity: number;
   imageUrl: string;
+}
+
+interface Coupon {
+  code: string;
+  discount: number;
+  type: discountType;
 }
