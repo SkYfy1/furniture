@@ -3,11 +3,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface CartState {
   items: CartItem[];
+  coupon?: Coupon;
   isInitialized: boolean;
 }
 
 const initialState: CartState = {
   items: [],
+  coupon: undefined,
   isInitialized: false,
 };
 
@@ -80,6 +82,9 @@ export const cartSlice = createSlice({
       state.items = action.payload;
       state.isInitialized = true;
     },
+    addCoupon: (state, action: PayloadAction<Coupon>) => {
+      state.coupon = action.payload;
+    },
   },
 });
 
@@ -91,6 +96,7 @@ export const {
   addItemsKit,
   clearCart,
   initializeCart,
+  addCoupon,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
