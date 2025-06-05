@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import Coupon from "./Coupon";
 import CartSummary from "./CartSummary";
 import Link from "next/link";
 import EmptyCart from "./EmptyCart";
 import { useTranslations } from "next-intl";
+import { checkCoupon } from "@/lib/actions/order";
+import { addCoupon } from "@/lib/features/cartSlice";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart.items);
-  const [, setCoupon] = useState("");
-  const handleAddCoupon = useCallback((text: string) => {
-    setCoupon(text);
-  }, []);
+  const couponData = useAppSelector((state) => state.cart.coupon);
+  const dispatch = useAppDispatch();
+  const [coupon, setCoupon] = useState("");
   const t = useTranslations("CartPage");
 
   if (!cart.length)
@@ -36,7 +37,20 @@ const Cart = () => {
     return cur + (acc.oldPrice - acc.newPrice) * acc.quantity;
   }, 0);
 
+  const couponActivated = couponData ? true : false;
+
   const tax = totalPrice > 1000 ? Math.floor((totalPrice * 12) / 100) : 0;
+
+  const handleAddCoupon = async () => {
+    const result = await checkCoupon(coupon, totalPrice);
+
+    if (!result.success) {
+      console.log(result.message);
+    } else {
+      const couponInfo = result.couponInfo as Coupon;
+      dispatch(addCoupon(couponInfo));
+    }
+  };
 
   return (
     <section className="flex flex-col gap-3 w-full">
@@ -46,7 +60,12 @@ const Cart = () => {
       ))}
       <div>
         <div className=" flex flex-col lg:flex-row gap-5 pl-2">
-          <Coupon submitCoupon={handleAddCoupon} />
+          <Coupon
+            coupon={coupon}
+            setCoupon={(value) => setCoupon(value)}
+            handleAddCoupon={handleAddCoupon}
+            couponActivated={couponActivated}
+          />
           <CartSummary
             summary={totalPrice}
             discount={totalDiscount}
