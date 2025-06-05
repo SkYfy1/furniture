@@ -3,10 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface CartState {
   items: CartItem[];
+  isInitialized: boolean;
 }
 
 const initialState: CartState = {
   items: [],
+  isInitialized: false,
 };
 
 export const cartSlice = createSlice({
@@ -19,6 +21,7 @@ export const cartSlice = createSlice({
         exists.quantity += 1;
         return;
       }
+
       state.items.push(action.payload);
     },
     deleteItem: (state, action: PayloadAction<string>) => {
@@ -73,6 +76,10 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
+    initializeCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+      state.isInitialized = true;
+    },
   },
 });
 
@@ -83,6 +90,7 @@ export const {
   decreaseQuantity,
   addItemsKit,
   clearCart,
+  initializeCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
