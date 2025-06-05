@@ -1,0 +1,1 @@
+ALTER TABLE "coupon_table" ALTER COLUMN "expires_at" SET DATA TYPE date;
