@@ -7,6 +7,7 @@ import {
   integer,
   jsonb,
   boolean,
+  date,
 } from "drizzle-orm/pg-core";
 
 export const ROLE_ENUM = pgEnum("role", ["user", "admin"]);
@@ -167,5 +168,5 @@ export const couponTable = table("coupon_table", {
   minOrderAmount: integer("min_order_amount").notNull().default(1),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow(),
-  expiresAt: timestamp("expires_at").notNull(),
+  expiresAt: date("expires_at").notNull(),
 });
