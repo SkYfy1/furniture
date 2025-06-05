@@ -40,6 +40,11 @@ export const PAYMENT_TYPE_ENUM = pgEnum("PAYMENT_TYPE", [
   "CRYPTO",
 ]);
 
+export const DISCOUNT_TYPE_ENUM = pgEnum("DISCOUNT_TYPE_ENUM", [
+  "PERCENTAGE",
+  "FIXED",
+]);
+
 export const PAYMENT_STATUS_ENUM = pgEnum("PAYMENT_STATUS", [
   "PENDING",
   "PAID",
@@ -150,4 +155,17 @@ export const orderItemsTable = table("order_items", {
   quantity: integer("quantity").notNull(),
   size: text("size"),
   color: text("color"),
+});
+
+export const couponTable = table("coupon_table", {
+  id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
+  couponCode: text("coupon_code").unique().notNull(),
+  discountType: DISCOUNT_TYPE_ENUM("discount_type").default("PERCENTAGE"),
+  discountValue: integer("discount_value").notNull(),
+  usageLimit: integer("usage_limit").notNull().default(5),
+  timesUsed: integer("times_used").default(0),
+  minOrderAmount: integer("min_order_amount").notNull().default(1),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  expiresAt: timestamp("expires_at").notNull(),
 });
