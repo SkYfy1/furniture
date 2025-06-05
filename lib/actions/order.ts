@@ -2,6 +2,7 @@
 
 import { db } from "@/db/drizzle";
 import {
+  couponTable,
   deliveryTable,
   orderItemsTable,
   ordersTable,
@@ -307,4 +308,41 @@ export const updateDefaultDelivery = async (deliveryId: string) => {
         error instanceof Error ? error.message : "Delivery change failed",
     };
   }
+};
+
+export const checkCoupon = async (couponCode: string, orderAmount: number) => {
+  const [result] = await db
+    .select()
+    .from(couponTable)
+    .where(eq(couponTable.couponCode, couponCode));
+
+  if (result === undefined) {
+    return {
+      success: false,
+      message: "Coupon not fould",
+    };
+  }
+
+  const available = result.timesUsed! <= result.usageLimit && result.isActive;
+
+  if (!available || result.minOrderAmount > orderAmount) {
+    return {
+      success: false,
+      message: "Coupon expired or not available",
+    };
+  }
+
+  await db
+    .update(couponTable)
+    .set({ timesUsed: sql`${couponTable.timesUsed} + ${1}` })
+    .where(eq(couponTable.couponCode, result.couponCode));
+
+  return {
+    success: true,
+    couponInfo: {
+      code: couponCode,
+      discount: result.discountValue,
+      type: result.discountType,
+    },
+  };
 };
