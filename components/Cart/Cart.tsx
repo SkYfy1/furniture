@@ -44,6 +44,14 @@ const Cart = () => {
     }
   };
 
+  const couponProps = {
+    value: coupon,
+    coupon: couponData?.code,
+    setValue: (value: string) => setCoupon(value),
+    handleAddCoupon,
+    couponActivated,
+  };
+
   return (
     <section className="flex flex-col gap-3 w-full">
       <h1 className="text-xl font-semibold mb-4">{t("title")}</h1>
@@ -52,13 +60,7 @@ const Cart = () => {
       ))}
       <div>
         <div className=" flex flex-col lg:flex-row gap-5 pl-2">
-          <Coupon
-            value={coupon}
-            coupon={couponData?.code}
-            setValue={(value) => setCoupon(value)}
-            handleAddCoupon={handleAddCoupon}
-            couponActivated={couponActivated}
-          />
+          <Coupon {...couponProps} />
           <CartSummary
             coupon={couponData?.code}
             summary={totalPrice}
