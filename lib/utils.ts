@@ -106,3 +106,37 @@ export const deleteDublicates = <T>(array: T[], filterKey: keyof T): T[] => {
 
   return result;
 };
+
+export const calculateCart = ({
+  cart,
+  couponData,
+}: {
+  cart: CartItem[];
+  couponData?: Coupon;
+}) => {
+  const couponActivated = couponData ? true : false;
+
+  const cartTotal = cart.reduce((cur, acc) => {
+    if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
+    return cur + acc.newPrice * acc.quantity;
+  }, 0);
+
+  const couponDiscount =
+    couponData?.type === "PERCENTAGE"
+      ? (cartTotal * couponData.discount) / 100
+      : couponData?.discount;
+
+  const totalPrice = couponActivated
+    ? Math.floor(cartTotal - couponDiscount!)
+    : cartTotal;
+
+  const totalDiscount =
+    cart.reduce((cur, acc) => {
+      if (!acc.discount) return cur + 0;
+      return cur + (acc.oldPrice - acc.newPrice) * acc.quantity;
+    }, 0) + Math.floor(couponDiscount ?? 0);
+
+  const tax = totalPrice > 1000 ? Math.floor((totalPrice * 12) / 100) : 0;
+
+  return { totalDiscount, totalPrice, tax, couponActivated };
+};
