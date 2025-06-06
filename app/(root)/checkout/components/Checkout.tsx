@@ -31,6 +31,17 @@ const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
     price: item.newPrice,
   }));
 
+  const defaultValues =
+    shippingData !== undefined
+      ? {
+          ...shippingData,
+          // zip number (in db) - z object waits string
+          zip: shippingData.zip.toString(),
+          paymentMethod: "CARD" as const,
+          default: false,
+        }
+      : undefined;
+
   // If cart is empty - redirect to main page!
 
   useEffect(() => {
@@ -41,17 +52,7 @@ const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
     <section className="flex flex-col md:flex-row md:gap-24 gap-8">
       <OrderForm
         cartItems={cartItems}
-        defaultValues={
-          shippingData !== undefined
-            ? {
-                ...shippingData,
-                // zip number (in db) - z object waits string
-                zip: shippingData.zip.toString(),
-                paymentMethod: "CARD",
-                default: false,
-              }
-            : undefined
-        }
+        defaultValues={defaultValues}
         userId={userId}
         action={action}
         summaryPrice={totalPrice + tax}
