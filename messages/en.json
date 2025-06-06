@@ -166,6 +166,7 @@
     "CartSummary": {
       "savings": "Savings",
       "tax": "Tax amount",
+      "coupon": "Coupon",
       "pay": "To pay"
     },
     "CartItem": {
@@ -242,6 +243,29 @@
         "button": "Show Details"
       }
     }
+  },
+  "CheckoutPage": {
+    "title": "Checkout",
+    "ShippingInfo": {
+      "title": "Shipping info",
+      "country": "Country / Region",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "address": "Adress",
+      "city": "City",
+      "state": "State",
+      "zip": "Zip"
+    },
+    "DeliveryPayment": {
+      "title": "Delivery and payment",
+      "placeholder": "Please Choose...",
+      "shippingService": "Shipping Service",
+      "paymentMethod": "Payment Method"
+    },
+    "OrderSummary": "Order Summary",
+    "saveDefault": "Save as default",
+    "reset": "Reset form",
+    "submit": "Submit"
   },
   "ProductPage": {
     "BuyBox": {

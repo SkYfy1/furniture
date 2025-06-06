@@ -1,5 +1,6 @@
 import CustomSelect from "@/components/forms/CustomSelect";
 import { orderType } from "@/lib/validations";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
@@ -16,14 +17,15 @@ const DeliveryPayment: React.FC<Props> = ({
   errors,
   disableForm,
 }) => {
+  const t = useTranslations("CheckoutPage.DeliveryPayment");
   return (
     <section className="flex flex-col gap-4 py-6 border-t">
-      <h2 className="text-xl font-semibold pl-2">Delivery and payment</h2>
+      <h2 className="text-xl font-semibold pl-2">{t("title")}</h2>
       <div className="flex gap-2">
         <CustomSelect
           register={register}
           disabled={disableForm}
-          label="Shipping Service"
+          label={t("shippingService")}
           name="shippingService"
           error={errors.shippingService as FieldError}
           options={["MEEST", "NOVAPOST", "UKRPOSTA"]}
@@ -31,7 +33,7 @@ const DeliveryPayment: React.FC<Props> = ({
         <CustomSelect
           register={register}
           disabled={disableForm}
-          label="Payment Method"
+          label={t("paymentMethod")}
           name="paymentMethod"
           error={errors.paymentMethod as FieldError}
           options={["CARD", "CASH", "CRYPTO"]}

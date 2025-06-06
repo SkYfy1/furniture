@@ -166,6 +166,7 @@
     "CartSummary": {
       "savings": "Économies",
       "tax": "Montant des taxes",
+      "coupon": "Code promo",
       "pay": "À payer"
     },
     "CartItem": {
@@ -242,6 +243,29 @@
         "button": "Voir le détail"
       }
     }
+  },
+  "CheckoutPage": {
+    "title": "Commande",
+    "ShippingInfo": {
+      "title": "Informations d'expédition",
+      "country": "Pays / Région",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "address": "Adresse",
+      "city": "Ville",
+      "state": "Région",
+      "zip": "Code postal"
+    },
+    "DeliveryPayment": {
+      "title": "Livraison et paiement",
+      "placeholder": "Veuillez choisir...",
+      "shippingService": "Mode de livraison",
+      "paymentMethod": "Moyen de paiement"
+    },
+    "OrderSummary": "Récapitulatif de la commande",
+    "saveDefault": "Enregistrer par défaut",
+    "reset": "Réinitialiser",
+    "submit": "Valider"
   },
   "ProductPage": {
     "BuyBox": {

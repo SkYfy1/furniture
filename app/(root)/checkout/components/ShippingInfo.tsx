@@ -1,5 +1,6 @@
 import CustomInput from "@/components/forms/CustomInput";
 import { orderType } from "@/lib/validations";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { FieldError, UseFormRegister } from "react-hook-form";
 
@@ -10,13 +11,14 @@ interface Props {
 }
 
 const ShippingInfo: React.FC<Props> = ({ register, errors, disableForm }) => {
+  const t = useTranslations("CheckoutPage.ShippingInfo");
   return (
     <section className="flex flex-col gap-4 py-6 border-t">
-      <h2 className="text-xl font-semibold pl-2">Shipping Info</h2>
+      <h2 className="text-xl font-semibold pl-2">{t("title")}</h2>
       <CustomInput
         disabled={disableForm}
         register={register}
-        label="Country / Region"
+        label={t("country")}
         name="country"
         error={errors.country as FieldError}
       />
@@ -24,22 +26,22 @@ const ShippingInfo: React.FC<Props> = ({ register, errors, disableForm }) => {
         <CustomInput
           disabled={disableForm}
           register={register}
-          label="First name"
+          label={t("firstName")}
           name="firstName"
           error={errors.firstName as FieldError}
         />
         <CustomInput
           disabled={disableForm}
           register={register}
-          label="Last name"
+          label={t("lastName")}
           name="lastName"
           error={errors.lastName as FieldError}
         />
       </div>
       <CustomInput
         disabled={disableForm}
-        label="Adress"
         register={register}
+        label={t("address")}
         name="address"
         error={errors.address as FieldError}
       />
@@ -47,21 +49,21 @@ const ShippingInfo: React.FC<Props> = ({ register, errors, disableForm }) => {
         <CustomInput
           disabled={disableForm}
           register={register}
-          label="City"
+          label={t("city")}
           name="city"
           error={errors.city as FieldError}
         />
         <CustomInput
           disabled={disableForm}
           register={register}
-          label="State"
+          label={t("state")}
           name="state"
           error={errors.state as FieldError}
         />
         <CustomInput
           disabled={disableForm}
           register={register}
-          label="Zip"
+          label={t("zip")}
           name="zip"
           error={errors.zip as FieldError}
         />

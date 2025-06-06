@@ -10,6 +10,7 @@ import DeliveryPayment from "./DeliveryPayment";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import CustomCheckbox from "@/components/forms/CustomCheckbox";
+import { useTranslations } from "next-intl";
 
 interface Props {
   userId: string;
@@ -36,6 +37,8 @@ const OrderForm: React.FC<Props> = ({
     defaultValues: defaultValues,
     resolver: zodResolver(orderSchema),
   });
+
+  const t = useTranslations("CheckoutPage");
 
   const submitForm: SubmitHandler<orderType> = async (data) => {
     const result = await action(
@@ -74,7 +77,7 @@ const OrderForm: React.FC<Props> = ({
         <CustomCheckbox
           control={control}
           disabled={isSubmitting}
-          text="Save as default"
+          text={t("saveDefault")}
           name="default"
           defaultValue={defaultValues?.default as boolean}
         />
@@ -89,14 +92,14 @@ const OrderForm: React.FC<Props> = ({
           size="sm"
           className="w-fit"
         >
-          Reset form
+          {t("reset")}
         </Button>
       </div>
       <Button
         disabled={isSubmitting}
         className="w-full bg-black text-white py-2 rounded-sm cursor-pointer text-base"
       >
-        Submit
+        {t("submit")}
       </Button>
     </form>
   );
