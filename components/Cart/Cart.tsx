@@ -10,6 +10,7 @@ import EmptyCart from "./EmptyCart";
 import { useTranslations } from "next-intl";
 import { checkCoupon } from "@/lib/actions/order";
 import { addCoupon } from "@/lib/features/cartSlice";
+import { calculateCart } from "@/lib/utils";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart.items);
@@ -27,19 +28,10 @@ const Cart = () => {
       />
     );
 
-  const totalPrice = cart.reduce((cur, acc) => {
-    if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
-    return cur + acc.newPrice * acc.quantity;
-  }, 0);
-
-  const totalDiscount = cart.reduce((cur, acc) => {
-    if (!acc.discount) return cur + 0;
-    return cur + (acc.oldPrice - acc.newPrice) * acc.quantity;
-  }, 0);
-
-  const couponActivated = couponData ? true : false;
-
-  const tax = totalPrice > 1000 ? Math.floor((totalPrice * 12) / 100) : 0;
+  const { totalDiscount, totalPrice, tax, couponActivated } = calculateCart({
+    cart,
+    couponData,
+  });
 
   const handleAddCoupon = async () => {
     const result = await checkCoupon(coupon, totalPrice);
@@ -61,12 +53,14 @@ const Cart = () => {
       <div>
         <div className=" flex flex-col lg:flex-row gap-5 pl-2">
           <Coupon
-            coupon={coupon}
-            setCoupon={(value) => setCoupon(value)}
+            value={coupon}
+            coupon={couponData?.code}
+            setValue={(value) => setCoupon(value)}
             handleAddCoupon={handleAddCoupon}
             couponActivated={couponActivated}
           />
           <CartSummary
+            coupon={couponData?.code}
             summary={totalPrice}
             discount={totalDiscount}
             tax={tax}

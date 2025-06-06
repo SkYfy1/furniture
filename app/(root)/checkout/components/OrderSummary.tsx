@@ -9,10 +9,12 @@ interface Props {
   totalPrice: number;
   totalDiscount: number;
   tax: number;
+  coupon?: Coupon;
 }
 
 const OrderSummary: React.FC<Props> = ({
   cart,
+  coupon,
   totalDiscount,
   totalPrice,
   tax,
@@ -24,7 +26,12 @@ const OrderSummary: React.FC<Props> = ({
         {cart?.map((item) => (
           <CartItem item={item} key={item.id} />
         ))}
-        <CartSummary summary={totalPrice} discount={totalDiscount} tax={tax} />
+        <CartSummary
+          coupon={coupon?.code}
+          summary={totalPrice}
+          discount={totalDiscount}
+          tax={tax}
+        />
       </div>
     </div>
   );

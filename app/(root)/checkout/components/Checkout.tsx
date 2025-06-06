@@ -7,6 +7,7 @@ import { CreateOrder } from "@/lib/actions/order";
 import { useRouter } from "next/navigation";
 import { useAppSelector } from "@/lib/hooks";
 import { shippingInfo } from "@/db/tableTypes";
+import { calculateCart } from "@/lib/utils";
 
 interface Props {
   userId: string;
@@ -16,19 +17,13 @@ interface Props {
 
 const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
   const cart = useAppSelector((state) => state.cart.items);
+  const couponData = useAppSelector((state) => state.cart.coupon);
   const router = useRouter();
 
-  const totalPrice = cart.reduce((cur, acc) => {
-    if (!acc.discount) return cur + acc.oldPrice * acc.quantity;
-    return cur + acc.newPrice * acc.quantity;
-  }, 0);
-
-  const totalDiscount = cart.reduce((cur, acc) => {
-    if (!acc.discount) return cur + 0;
-    return cur + (acc.oldPrice - acc.newPrice) * acc.quantity;
-  }, 0);
-
-  const tax = totalPrice > 1000 ? Math.floor((totalPrice * 12) / 100) : 0;
+  const { totalDiscount, totalPrice, tax } = calculateCart({
+    cart,
+    couponData,
+  });
 
   const cartItems = cart.map((item) => ({
     id: item.id,
@@ -62,6 +57,7 @@ const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
         summaryPrice={totalPrice + tax}
       />
       <OrderSummary
+        coupon={couponData}
         cart={cart}
         totalDiscount={totalDiscount}
         totalPrice={totalPrice}
