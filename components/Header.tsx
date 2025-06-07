@@ -139,33 +139,39 @@ const Header: React.FC = () => {
               onClick={handleClose}
             >
               <li>
-                <Link href="/shop">Shop</Link>
+                <Link href="/shop">{t("Nav.shop")}</Link>
               </li>
               <li>
-                <Link href="/stories">Stories</Link>
+                <Link href="/stories">{t("Nav.stories")}</Link>
               </li>
               <li className="flex flex-col gap-2">
-                <span>Promotions</span>
+                <span>{t("Nav.promotions.title")}</span>
+                <ul className="flex flex-col gap-3 capitalize text-xs">
+                  <Link href="/promotions/eco-friendly">
+                    {t("Nav.promotions.tag1")}
+                  </Link>
+                  <Link href="/promotions/vegan">
+                    {t("Nav.promotions.tag2")}
+                  </Link>
+                  <Link href="/promotions/new-arrival">
+                    {t("Nav.promotions.tag3")}
+                  </Link>
+                </ul>
+              </li>
+              <li className="flex flex-col gap-2">
+                <span>{t("Nav.rooms.title")}</span>
+                <ul className="flex flex-col gap-3 capitalize text-xs">
+                  <Link href="/rooms/kitchen">{t("Nav.rooms.tag1")}</Link>
+                  <Link href="/rooms/living-room">{t("Nav.rooms.tag2")}</Link>
+                  <Link href="/rooms/outdoors">{t("Nav.rooms.tag3")}</Link>
+                  <Link href="/rooms/furniture">{t("Nav.rooms.tag4")}</Link>
+                </ul>
+              </li>
+              <li className="flex flex-col gap-2">
+                <span>{t("Nav.specials.title")}</span>
                 <ul className="flex flex-col gap-3 text-xs">
-                  <Link href="/promotions/3-for-2">3 for 2</Link>
-                  <Link href="/promotions/stories">4 for 3</Link>
-                </ul>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span>Rooms</span>
-                <ul className="flex flex-col gap-3 capitalize text-xs">
-                  <Link href="/rooms/kitchen">kitchen</Link>
-                  <Link href="/rooms/living-room">living room</Link>
-                  <Link href="/rooms/outdoors">outdoors</Link>
-                  <Link href="/rooms/furniture">furniture</Link>
-                </ul>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span>Specials</span>
-                <ul className="flex flex-col gap-3 capitalize text-xs">
-                  <Link href="/specials/eco-friendly">eco friendly</Link>
-                  <Link href="/specials/vegan">vegan</Link>
-                  <Link href="/specials/new-arrival">newarrival</Link>
+                  <Link href="/specials/3-for-2">{t("Nav.specials.tag1")}</Link>
+                  <Link href="/specials/4-for-3">{t("Nav.specials.tag2")}</Link>
                 </ul>
               </li>
             </ul>
