@@ -5,7 +5,6 @@ const QueryProducts: React.FC<{ query?: string }> = ({ query }) => {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
     let abort = false;
-    let timer: NodeJS.Timeout;
 
     const fetchProds = async () => {
       try {
@@ -17,11 +16,10 @@ const QueryProducts: React.FC<{ query?: string }> = ({ query }) => {
       }
     };
 
-    timer = setTimeout(fetchProds, 300); // eslint-disable-line
+    fetchProds();
 
     return () => {
       abort = true;
-      clearTimeout(timer);
     };
   }, [query]);
 
