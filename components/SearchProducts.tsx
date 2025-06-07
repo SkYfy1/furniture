@@ -1,7 +1,7 @@
 import { debounce } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import QueryProducts from "./QueryProducts";
 
 interface Props {
@@ -21,9 +21,8 @@ const SearchProducts: React.FC<Props> = ({ placeholder }) => {
     setText(query);
   }, [query]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateQuery = useCallback(
-    debounce((term: string) => {
+    (term: string) => {
       const searchParams = new URLSearchParams(params);
 
       if (term) {
@@ -33,13 +32,18 @@ const SearchProducts: React.FC<Props> = ({ placeholder }) => {
       }
 
       replace(`${path}?${searchParams.toString()}`);
-    }, 700),
-    [path, params]
+    },
+    [path, params, replace]
+  );
+
+  const debouncedUpdateQuery = useMemo(
+    () => debounce(updateQuery, 700),
+    [updateQuery]
   );
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
-    updateQuery(e.target.value);
+    debouncedUpdateQuery(e.target.value);
   };
 
   return (
