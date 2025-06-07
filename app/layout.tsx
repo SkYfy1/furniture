@@ -6,6 +6,7 @@ import StoreProvider from "./StoreProvider";
 import { getLocale, getMessages } from "next-intl/server";
 import { Messages, NextIntlClientProvider } from "next-intl";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -49,7 +50,10 @@ export default async function RootLayout({
       <body className={`${montserrat.className} antialiased`}>
         <StoreProvider>
           <SessionProvider session={session}>
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            <NextIntlClientProvider>
+              {children}
+              <Analytics />
+            </NextIntlClientProvider>
           </SessionProvider>
         </StoreProvider>
       </body>
