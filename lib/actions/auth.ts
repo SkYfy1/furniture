@@ -75,3 +75,11 @@ export const signUp = async (credentials: AuthCredentials) => {
     return { success: false, message: "Signup exists" };
   }
 };
+
+export const signInGitHub = async () => {
+  await signIn("github", { redirectTo: "/" });
+};
+
+export const signInGoogle = async () => {
+  await signIn("google", { redirectTo: "/" });
+};
