@@ -11,11 +11,12 @@ import { calculateCart } from "@/lib/utils";
 
 interface Props {
   userId: string;
+  email: string;
   shippingData?: shippingInfo;
   action: CreateOrder;
 }
 
-const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
+const Checkout: React.FC<Props> = ({ email, userId, action, shippingData }) => {
   const cart = useAppSelector((state) => state.cart.items);
   const couponData = useAppSelector((state) => state.cart.coupon);
   const router = useRouter();
@@ -31,16 +32,18 @@ const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
     price: item.newPrice,
   }));
 
-  const defaultValues =
-    shippingData !== undefined
-      ? {
-          ...shippingData,
-          // zip number (in db) - z object waits string
-          zip: shippingData.zip.toString(),
-          paymentMethod: "CARD" as const,
-          default: false,
-        }
-      : undefined;
+  const defaultValues = {
+    firstName: shippingData?.firstName ?? "",
+    lastName: shippingData?.lastName ?? "",
+    country: shippingData?.country ?? "",
+    city: shippingData?.city ?? "",
+    state: shippingData?.state ?? "",
+    zip: shippingData?.zip.toString() ?? "",
+    address: shippingData?.address ?? "",
+    default: false,
+    shippingService: shippingData?.shippingService ?? ("MEEST" as const),
+    paymentMethod: "CARD" as const,
+  };
 
   // If cart is empty - redirect to main page!
 
@@ -54,6 +57,7 @@ const Checkout: React.FC<Props> = ({ userId, action, shippingData }) => {
         cartItems={cartItems}
         defaultValues={defaultValues}
         userId={userId}
+        email={email}
         action={action}
         summaryPrice={totalPrice + tax}
       />

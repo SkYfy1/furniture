@@ -31,6 +31,7 @@ const Page = async () => {
         {t("title")}
       </h2>
       <Checkout
+        email={session.user.email as string}
         userId={session.user.id as string}
         action={createOrder}
         shippingData={userShippingData}

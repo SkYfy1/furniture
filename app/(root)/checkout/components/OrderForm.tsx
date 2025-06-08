@@ -14,6 +14,7 @@ import { useTranslations } from "next-intl";
 
 interface Props {
   userId: string;
+  email: string;
   action: CreateOrder;
   cartItems: ProductInfo[];
   summaryPrice: number;
@@ -22,6 +23,7 @@ interface Props {
 
 const OrderForm: React.FC<Props> = ({
   userId,
+  email,
   cartItems,
   summaryPrice,
   defaultValues,
@@ -44,6 +46,7 @@ const OrderForm: React.FC<Props> = ({
     const result = await action(
       {
         userId,
+        email,
         ...data,
       },
       { products: cartItems, summaryPrice }
@@ -57,7 +60,6 @@ const OrderForm: React.FC<Props> = ({
       console.log(result.message);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit(submitForm)}
@@ -79,7 +81,7 @@ const OrderForm: React.FC<Props> = ({
           disabled={isSubmitting}
           text={t("saveDefault")}
           name="default"
-          defaultValue={defaultValues?.default as boolean}
+          defaultValue={false}
         />
         <Button
           disabled={isSubmitting}
