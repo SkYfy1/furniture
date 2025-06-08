@@ -59,7 +59,6 @@ const ProductMini: React.FC<Props> = ({
         </button>
         <input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            console.log(e.target.value);
             if (e.target.value === "") return changeQuantity(data.id, 1);
             changeQuantity(data.id, parseInt(e.target.value));
           }}
