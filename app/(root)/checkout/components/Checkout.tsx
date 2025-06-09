@@ -10,13 +10,12 @@ import { shippingInfo } from "@/db/tableTypes";
 import { calculateCart } from "@/lib/utils";
 
 interface Props {
-  userId: string;
   email: string;
   shippingData?: shippingInfo;
   action: CreateOrder;
 }
 
-const Checkout: React.FC<Props> = ({ email, userId, action, shippingData }) => {
+const Checkout: React.FC<Props> = ({ email, action, shippingData }) => {
   const cart = useAppSelector((state) => state.cart.items);
   const couponData = useAppSelector((state) => state.cart.coupon);
   const router = useRouter();
@@ -56,7 +55,6 @@ const Checkout: React.FC<Props> = ({ email, userId, action, shippingData }) => {
       <OrderForm
         cartItems={cartItems}
         defaultValues={defaultValues}
-        userId={userId}
         email={email}
         action={action}
         summaryPrice={totalPrice + tax}

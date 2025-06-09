@@ -13,7 +13,6 @@ import CustomCheckbox from "@/components/forms/CustomCheckbox";
 import { useTranslations } from "next-intl";
 
 interface Props {
-  userId: string;
   email: string;
   action: CreateOrder;
   cartItems: ProductInfo[];
@@ -22,7 +21,6 @@ interface Props {
 }
 
 const OrderForm: React.FC<Props> = ({
-  userId,
   email,
   cartItems,
   summaryPrice,
@@ -45,7 +43,6 @@ const OrderForm: React.FC<Props> = ({
   const submitForm: SubmitHandler<orderType> = async (data) => {
     const result = await action(
       {
-        userId,
         email,
         ...data,
       },
