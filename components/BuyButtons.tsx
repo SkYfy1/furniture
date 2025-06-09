@@ -36,7 +36,6 @@ const BuyButtons: React.FC<Props> = ({ payload, type, userId, disabled }) => {
     }
   };
 
-  // const notAvailable =
   return (
     <div className="flex flex-col lg:flex-row gap-1.5 mb-3">
       <Button

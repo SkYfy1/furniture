@@ -22,6 +22,7 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected, userId }) => {
     discount: source.discount ?? 0,
     quantity: 1,
     image: source.imageUrl,
+    available: source.availableQuantity,
   };
 
   const notAvailable = source.availableQuantity === 0;

@@ -45,6 +45,7 @@ interface CartItem {
   discount: number;
   quantity: number;
   image: string;
+  available: number;
 }
 
 interface Variant {
