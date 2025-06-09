@@ -20,6 +20,9 @@ export const cartSlice = createSlice({
     addItem: (state, action: PayloadAction<CartItem>) => {
       const exists = state.items.find((el) => el.id === action.payload.id);
       if (exists) {
+        if (exists.quantity === exists.available) {
+          return;
+        }
         exists.quantity += 1;
         return;
       }
@@ -36,7 +39,7 @@ export const cartSlice = createSlice({
       //       : item
       //   );
       const item = state.items.find((item) => item.id === action.payload);
-      if (item) {
+      if (item && item.quantity < item.available) {
         item.quantity += 1;
       }
     },
