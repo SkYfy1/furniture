@@ -28,14 +28,15 @@ interface OrderData {
 }
 
 interface FormData extends orderType {
-  userId: string;
   email: string;
 }
 
-export const createOrder = async (formData: FormData, orderData: OrderData) => {
+export const createOrder = async (
+  formData: FormData,
+  orderData: OrderData
+): Promise<{ success: boolean; url?: string | null; message: string }> => {
   const {
     email,
-    userId,
     firstName,
     lastName,
     city,
@@ -49,43 +50,16 @@ export const createOrder = async (formData: FormData, orderData: OrderData) => {
   } = formData;
   const { products, summaryPrice } = orderData;
 
-  const [userById] = await db
-    .select()
-    .from(usersTable)
-    .where(eq(usersTable.id, userId));
-
-  const [userByEmail] = await db
-    .select()
-    .from(usersTable)
-    .where(eq(usersTable.email, email));
-
-  if (!userById && !userByEmail) {
-    const userName = email.split("@")[0];
-    try {
-      await db.insert(usersTable).values({
-        id: userId,
-        name: userName,
-        email: email,
-        password: "123456", // placeholder
-      });
-    } catch (error) {
-      console.log(error);
-      return { success: false, message: "Error" };
-    }
-  }
-
-  if (userByEmail && !userById) {
-    return {
-      success: false,
-      message: "You have another (credentials) account with associated email",
-    };
-    // !!!!!!
-    // Fix if user use Provider after credentials register
-  }
-
   try {
     return await db.transaction(async (tx) => {
       const productIds = products.map((p) => p.id);
+
+      const [user] = await db
+        .select()
+        .from(usersTable)
+        .where(eq(usersTable.email, email));
+
+      const userId = user.id;
 
       const [variantArray, productArray] = await Promise.all([
         tx
