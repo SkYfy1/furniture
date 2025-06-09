@@ -9,6 +9,7 @@ const ClearCart = () => {
 
   useEffect(() => {
     dispatch(clearCart());
+    window.localStorage.setItem("cart", "[]");
   }, [dispatch]);
   return null;
 };

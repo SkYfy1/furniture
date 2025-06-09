@@ -1,4 +1,5 @@
 import React from "react";
+import ClearCart from "../success/components/ClearCart";
 
 const Page = () => {
   return (
@@ -9,6 +10,7 @@ const Page = () => {
       <p className="mt-4 text-sm lg:text-base">
         Try again later in orders page!
       </p>
+      <ClearCart />
     </div>
   );
 };
