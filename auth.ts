@@ -65,5 +65,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return session;
     },
+    signIn: async ({ user, account }) => {
+      if (account?.provider === "google" || account?.provider === "github") {
+        const email = user.email!;
+
+        const [userAccount] = await db
+          .select()
+          .from(usersTable)
+          .where(eq(usersTable.email, email));
+
+        if (!userAccount) {
+          const userName = email.split("@")[0];
+          try {
+            await db.insert(usersTable).values({
+              name: userName,
+              email: email,
+              password: "wSad9sd@SDA2Ddfdsafc1ce9as", // placeholder
+            });
+          } catch (error) {
+            console.log(error);
+            return false;
+          }
+        }
+        return true;
+      }
+      return true;
+    },
   },
 });
