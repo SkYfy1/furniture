@@ -9,12 +9,13 @@ import { redirect } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 interface Props {
+  disabled: boolean;
   payload: CartItem;
   userId: string;
   type: "variant" | "product";
 }
 
-const BuyButtons: React.FC<Props> = ({ payload, type, userId }) => {
+const BuyButtons: React.FC<Props> = ({ payload, type, userId, disabled }) => {
   const dispatch = useAppDispatch();
   const t = useTranslations("ProductPage.BuyBox");
   const handleStripeBuy = async () => {
@@ -34,9 +35,12 @@ const BuyButtons: React.FC<Props> = ({ payload, type, userId }) => {
       console.log(result.message);
     }
   };
+
+  // const notAvailable =
   return (
     <div className="flex flex-col lg:flex-row gap-1.5 mb-3">
       <Button
+        disabled={disabled}
         size="lg"
         className="w-full"
         onClick={() => {
@@ -45,7 +49,12 @@ const BuyButtons: React.FC<Props> = ({ payload, type, userId }) => {
       >
         {t("addButton")}
       </Button>
-      <Button className="w-full" size="lg" onClick={handleStripeBuy}>
+      <Button
+        disabled={disabled}
+        className="w-full"
+        size="lg"
+        onClick={handleStripeBuy}
+      >
         {t("stripeButton")}
       </Button>
     </div>

@@ -23,6 +23,9 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected, userId }) => {
     quantity: 1,
     image: source.imageUrl,
   };
+
+  const notAvailable = source.availableQuantity === 0;
+
   return (
     <section className="lg:w-2/3">
       <div className="sticky top-22 flex flex-col gap-4">
@@ -70,6 +73,7 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected, userId }) => {
           )}
         </div>
         <BuyButtons
+          disabled={notAvailable}
           payload={payload}
           userId={userId}
           type={selected ? "variant" : "product"}

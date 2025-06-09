@@ -20,12 +20,18 @@ const ProductStockStatus: React.FC<{ quantity: number }> = async ({
         <div
           className={cn(
             "size-2.5 rounded-full bg-green-price",
-            quantity < 20 && "bg-yellow-500"
+            quantity < 20 && "bg-yellow-500",
+            quantity === 0 && "bg-red-800"
           )}
         ></div>
       </div>
       <p>
-        {quantity < 20 ? `${t("less")} 20` : "20+"} {t("stock")}
+        {quantity < 20 && quantity !== 0
+          ? `${t("less")} 20`
+          : quantity > 20
+          ? "20+"
+          : "Out of"}{" "}
+        {t("stock")}
       </p>
     </div>
   );
