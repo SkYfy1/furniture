@@ -29,9 +29,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const Page = async () => {
   const session = await auth();
 
-  const id = session?.user?.id as string;
+  const email = session?.user?.email as string;
 
-  const orders = await getOrderData(id);
+  const orders = await getOrderData(email);
   const t = await getTranslations("OrdersPage.Orders.empty");
 
   if (!orders.length) {

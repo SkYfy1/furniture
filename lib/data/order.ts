@@ -11,7 +11,7 @@ import {
 import { Order, result } from "@/db/tableTypes";
 import { and, eq } from "drizzle-orm";
 
-export const getOrderData = async (userId: string) => {
+export const getOrderData = async (email: string) => {
   const query = await db
     .select({
       order: ordersTable,
@@ -24,7 +24,7 @@ export const getOrderData = async (userId: string) => {
     .innerJoin(orderItemsTable, eq(ordersTable.id, orderItemsTable.orderId))
     .leftJoin(variantsTable, eq(orderItemsTable.variantId, variantsTable.id))
     .leftJoin(productsTable, eq(orderItemsTable.productId, productsTable.id))
-    .where(eq(usersTable.id, userId));
+    .where(eq(usersTable.email, email));
 
   const result = query.reduce<result>((acc, row) => {
     const order = row.order;
