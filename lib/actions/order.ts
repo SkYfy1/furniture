@@ -50,6 +50,11 @@ export const createOrder = async (
   } = formData;
   const { products, summaryPrice } = orderData;
 
+  const length = products.reduce((acc, cur) => acc + cur.quantity, 0);
+
+  const eachProductDiscount =
+    (products.reduce((acc, cur) => acc + cur.price, 0) - summaryPrice) / length;
+
   try {
     return await db.transaction(async (tx) => {
       const productIds = products.map((p) => p.id);
@@ -162,7 +167,8 @@ export const createOrder = async (
 
       const line_items = [
         ...variantArray.map((item) => {
-          const quantity = products.find((el) => el.id === item.id)?.quantity;
+          const cur = products.find((el) => el.id === item.id);
+          const productPrice = (cur!.price - eachProductDiscount) * 100;
 
           return {
             price_data: {
@@ -171,13 +177,14 @@ export const createOrder = async (
                 name: item.sku,
                 images: [item.imageUrl],
               },
-              unit_amount: item.price * 100,
+              unit_amount: productPrice,
             },
-            quantity: quantity,
+            quantity: cur!.quantity,
           };
         }),
         ...productArray.map((item) => {
-          const quantity = products.find((el) => el.id === item.id)?.quantity;
+          const cur = products.find((el) => el.id === item.id);
+          const productPrice = (cur!.price - eachProductDiscount) * 100;
 
           return {
             price_data: {
@@ -186,9 +193,9 @@ export const createOrder = async (
                 name: item.name,
                 images: [item.imageUrl],
               },
-              unit_amount: item.price * 100,
+              unit_amount: productPrice,
             },
-            quantity: quantity,
+            quantity: cur!.quantity,
           };
         }),
       ];
