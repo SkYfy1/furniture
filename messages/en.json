@@ -100,6 +100,11 @@
           "title": "Houseplant Care",
           "tipText": "Group plants with other plants that share the same needs in terms of sunlight, water, climate, and so on."
         }
+      },
+      "Offer": {
+        "tax": "approximate price without tax",
+        "addToCart": "Add to cart",
+        "buyWithStripe": "Buy with stripe"
       }
     }
   },

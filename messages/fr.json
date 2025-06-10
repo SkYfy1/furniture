@@ -100,6 +100,11 @@
           "title": "Soins des Plantes",
           "tipText": "Regroupez les plantes ayant les mêmes besoins en lumière, eau et humidité pour faciliter leur entretien."
         }
+      },
+      "Offer": {
+        "tax": "prix approximatif HT",
+        "addToCart": "Ajouter au panier",
+        "buyWithStripe": "Acheter avec Stripe"
       }
     }
   },
