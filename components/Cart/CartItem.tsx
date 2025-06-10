@@ -61,9 +61,16 @@ const CartItem = ({ item }: { item: CartItem }) => {
         >
           +
         </button>
-        <p className="font-semibold h-[25] w-[25] text-center">
-          {item.quantity}
-        </p>
+        <div className="relative">
+          <p className="font-semibold h-[25] w-[25] text-center">
+            {item.quantity}
+          </p>
+          {item.quantity === item.available && (
+            <span className="text-[0.5rem]  font-semibold absolute top-0 left-1/2 translate-x-1/2">
+              MAX
+            </span>
+          )}
+        </div>
         {item.quantity > 1 ? (
           <button
             onClick={() => dispatch(decreaseQuantity(item.id))}
