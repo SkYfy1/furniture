@@ -15,6 +15,7 @@ const ProductMini: React.FC<Props> = ({
   quantity,
   changeQuantity,
 }) => {
+  const available = data.availableQuantity;
   return (
     <div
       className={cn(
@@ -53,19 +54,23 @@ const ProductMini: React.FC<Props> = ({
       <div className="flex flex-col">
         <button
           className="py-1 px-3 cursor-pointer hover:bg-gray"
-          onClick={() => changeQuantity(data.id, quantity + 1)}
+          onClick={() => {
+            if (available > quantity) changeQuantity(data.id, quantity + 1);
+          }}
         >
           +
         </button>
         <input
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (e.target.value === "") return changeQuantity(data.id, 1);
-            changeQuantity(data.id, parseInt(e.target.value));
+            if (available >= Number(e.target.value)) {
+              changeQuantity(data.id, parseInt(e.target.value));
+            }
           }}
           value={quantity}
           type="number"
           className="text-center text-sm py-2 hover:bg-gray"
-          max={10}
+          max={available}
           min={1}
         />
         <button
