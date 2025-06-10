@@ -272,8 +272,9 @@
       "addButton": "Ajouter au panier",
       "stripeButton": "Acheter avec Stripe",
       "productStatus": "En ligne",
-      "stock": "en stock",
-      "less": "Plus que"
+      "inStock": "20+ en stock",
+      "lessStock": "Plus que 20 en stock",
+      "outStock": "En rupture de stock"
     },
     "Dimensions": {
       "title": "Dimensions",

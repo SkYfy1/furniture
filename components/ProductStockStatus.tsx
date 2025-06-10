@@ -27,11 +27,10 @@ const ProductStockStatus: React.FC<{ quantity: number }> = async ({
       </div>
       <p>
         {quantity < 20 && quantity !== 0
-          ? `${t("less")} 20`
-          : quantity > 20
-          ? "20+"
-          : "Out of"}{" "}
-        {t("stock")}
+          ? t("lessStock")
+          : quantity >= 20
+          ? t("inStock")
+          : t("outStock")}
       </p>
     </div>
   );

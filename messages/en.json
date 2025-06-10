@@ -272,8 +272,9 @@
       "addButton": "Add to cart",
       "stripeButton": "Buy with stripe",
       "productStatus": "Online",
-      "stock": "in stock",
-      "less": "Less than"
+      "inStock": "20+ in stock",
+      "lessStock": "Less than 20 in stock",
+      "outStock": "Out of stock"
     },
     "Dimensions": {
       "title": "Dimensions",
