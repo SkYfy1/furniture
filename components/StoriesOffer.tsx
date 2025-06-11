@@ -68,8 +68,8 @@ const StoriesOffer: React.FC<Props> = ({
             );
           })}
         </section>
-        <div className="flex justify-between mt-5 pt-5 items-center">
-          <div className="text-green-900">
+        <div className="flex flex-col lg:flex-row justify-between mt-5 md:pt-5 lg:items-center">
+          <div className="text-green-900 pb-5 md:pb-0">
             <span className="text-2xl font-semibold text-green-900">
               €{fullPrice}.00
             </span>
@@ -78,7 +78,7 @@ const StoriesOffer: React.FC<Props> = ({
           <div className="flex flex-col lg:flex-row gap-1.5">
             <Button
               className={cn(
-                "lg:text-base font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black duration-150"
+                "md:text-base text-xs font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black duration-150"
               )}
               onClick={() => dispatch(addItemsKit(offerObjects))}
             >
@@ -86,7 +86,7 @@ const StoriesOffer: React.FC<Props> = ({
             </Button>
             <Button
               className={cn(
-                "lg:text-base font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black duration-150"
+                "md:text-base text-xs font-semibold hover:bg-gray-100 px-5 py-3 rounded-md bg-black text-white hover:text-black duration-150"
               )}
             >
               {t("buyWithStripe")}
