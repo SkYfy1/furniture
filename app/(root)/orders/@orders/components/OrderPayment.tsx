@@ -56,13 +56,13 @@ const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
           }}
         >
           {isPaid ? (
-            <Button asChild className="flex mb-2">
+            <Button asChild className="flex my-2">
               <Link href="/receipt">{t("buttons.receipt")}</Link>
             </Button>
           ) : (
             <Button
               onClick={retryAction}
-              className="flex w-full mb-2 hover:border-green-600 hover:text-green-600"
+              className="flex w-full my-2 hover:border-green-600 hover:text-green-600"
             >
               {t("buttons.payNow")}
             </Button>

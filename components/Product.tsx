@@ -16,7 +16,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
   return (
     <Link
       href={link}
-      className="flex flex-col h-full pb-10 min-h-[351] min-w-fit 2xl:min-w-[300] "
+      className="flex flex-col h-full pb-2 md:pb-10 min-h-[351] min-w-fit 2xl:min-w-[300] "
     >
       <div className="h-[300] w-[180] xl:h-[300] xl:w-[230] 2xl:size-[300] relative ">
         {data.discount && (
