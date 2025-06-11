@@ -15,6 +15,7 @@ import { eq, inArray, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { stripe } from "../stripe";
 import { orderType } from "../validations";
+import { workflow } from "../workflow";
 
 export interface ProductInfo {
   id: string;
@@ -212,6 +213,13 @@ export const createOrder = async (
         },
       });
 
+      await workflow.trigger({
+        url: `${process.env.NEXT_PUBLIC_URL}/api/workflow/orders`,
+        body: {
+          id: orderId,
+        },
+      });
+
       return {
         success: true,
         url: session.url,
@@ -275,7 +283,7 @@ export const cancelOrder = async (orderId: string) => {
 
       const [{ shippingId, paymentId }] = await tx
         .update(ordersTable)
-        .set({ orderStatus: "REJECTED" })
+        .set({ orderStatus: "CANCELLED" })
         .where(eq(ordersTable.id, orderId))
         .returning({
           shippingId: ordersTable.shippingInfo,
@@ -285,11 +293,11 @@ export const cancelOrder = async (orderId: string) => {
       await Promise.all([
         tx
           .update(paymentTable)
-          .set({ paymentStatus: "REJECTED" })
+          .set({ paymentStatus: "CANCELLED" })
           .where(eq(paymentTable.id, paymentId)),
         tx
           .update(deliveryTable)
-          .set({ deliveryStatus: "REJECTED" })
+          .set({ deliveryStatus: "CANCELLED" })
           .where(eq(deliveryTable.id, shippingId)),
       ]);
     });
