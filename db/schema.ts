@@ -17,16 +17,16 @@ export const SIZE_ENUM = pgEnum("size", ["small", "medium", "large"]);
 export const ORDER_STATUS_ENUM = pgEnum("ORDER_STATUS", [
   "CREATED",
   "PROCESSING",
-  "FULLFILLED",
-  "REJECTED",
+  "FULFILLED",
+  "CANCELLED",
 ]);
 
 export const DELIVERY_STATUS_ENUM = pgEnum("DELIVERY_STATUS", [
   "PENDING",
-  "SENDED",
+  "SENT",
   "WAITING",
   "FULFILLED",
-  "REJECTED",
+  "CANCELLED",
 ]);
 
 export const SHIPPING_SERVICE_ENUM = pgEnum("SHIPPING_SERVICE", [
@@ -49,7 +49,7 @@ export const DISCOUNT_TYPE_ENUM = pgEnum("DISCOUNT_TYPE_ENUM", [
 export const PAYMENT_STATUS_ENUM = pgEnum("PAYMENT_STATUS", [
   "PENDING",
   "PAID",
-  "REJECTED",
+  "CANCELLED",
 ]);
 
 export const usersTable = table("user_table", {
