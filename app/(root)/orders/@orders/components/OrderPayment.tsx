@@ -14,7 +14,7 @@ interface Props {
 }
 
 const OrderPayment: React.FC<Props> = ({ payment, orderId, retryAction }) => {
-  const cancelled = payment.paymentStatus === "REJECTED";
+  const cancelled = payment.paymentStatus === "CANCELLED";
   const isPaid = payment.paymentStatus === "PAID";
   const t = useTranslations("OrdersPage.Orders.Order.OrderDetails.Payment");
   return (

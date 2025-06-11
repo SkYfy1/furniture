@@ -28,7 +28,7 @@ const Order: React.FC<Props> = ({
 
   const orderInfo = order.order;
   const products = order.items;
-  const cancelled = paymentInfo.paymentStatus === "REJECTED";
+  const cancelled = paymentInfo.paymentStatus === "CANCELLED";
 
   const retryAction = async () => {
     const url = await retryPayment({
