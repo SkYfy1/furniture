@@ -2,6 +2,7 @@ import { db } from "@/db/drizzle";
 import { deliveryTable, ordersTable, paymentTable } from "@/db/schema";
 import { serve } from "@upstash/workflow/nextjs";
 import { eq } from "drizzle-orm";
+import { Receiver } from "@upstash/qstash";
 
 type contextPayload = {
   id: string;
@@ -22,80 +23,88 @@ const checkOrder = async (id: string) => {
   return result;
 };
 
-export const { POST } = serve<contextPayload>(async (context) => {
-  const { id } = context.requestPayload;
+export const { POST } = serve<contextPayload>(
+  async (context) => {
+    const { id } = context.requestPayload;
 
-  const { payment, delivery } = await context.run(
-    "check-payment-status",
-    async () => {
-      const result = await checkOrder(id);
+    const { payment, delivery } = await context.run(
+      "check-payment-status",
+      async () => {
+        const result = await checkOrder(id);
 
-      console.log(result);
+        console.log(result);
 
-      return result;
+        return result;
+      }
+    );
+
+    await context.run("change-order-status", async () => {
+      await db
+        .update(ordersTable)
+        .set({
+          orderStatus: "PROCESSING",
+        })
+        .where(eq(ordersTable.id, id));
+    });
+
+    await context.sleep("wait-one-day", 60 * 60 * 24);
+
+    if (payment.paymentStatus === "PAID" || payment.paymentType === "CASH") {
+      await context.run("send-order", async () => {
+        await db
+          .update(deliveryTable)
+          .set({ sendDate: new Date(), deliveryStatus: "SENT" })
+          .where(eq(deliveryTable.id, delivery.id));
+      });
     }
-  );
 
-  await context.run("change-order-status", async () => {
-    await db
-      .update(ordersTable)
-      .set({
-        orderStatus: "PROCESSING",
-      })
-      .where(eq(ordersTable.id, id));
-  });
+    await context.sleep("wait-three-days", 60 * 60 * 24 * 3);
 
-  await context.sleep("wait-one-day", 60 * 60 * 24);
+    const status = await context.run("check-order", async () => {
+      const { payment, delivery } = await checkOrder(id);
 
-  if (payment.paymentStatus === "PAID" || payment.paymentType === "CASH") {
-    await context.run("send-order", async () => {
-      await db
-        .update(deliveryTable)
-        .set({ sendDate: new Date(), deliveryStatus: "SENT" })
-        .where(eq(deliveryTable.id, delivery.id));
+      return { payment, delivery };
     });
+
+    if (
+      status.payment.paymentStatus === "PENDING" &&
+      (status.payment.paymentType === "CARD" ||
+        status.payment.paymentType === "CRYPTO")
+    ) {
+      await context.run("cancel-order", async () => {
+        await db
+          .update(deliveryTable)
+          .set({ deliveryStatus: "CANCELLED" })
+          .where(eq(deliveryTable.id, delivery.id));
+
+        await db
+          .update(ordersTable)
+          .set({ orderStatus: "CANCELLED" })
+          .where(eq(ordersTable.id, id));
+
+        await db
+          .update(paymentTable)
+          .set({ paymentStatus: "CANCELLED" })
+          .where(eq(paymentTable.id, payment.id));
+      });
+    } else if (status.payment.paymentStatus === "PAID") {
+      await context.run("fulfill-order", async () => {
+        await db
+          .update(deliveryTable)
+          .set({ deliveryStatus: "FULFILLED", arrivalDate: new Date() })
+          .where(eq(deliveryTable.id, delivery.id));
+
+        await db
+          .update(ordersTable)
+          .set({ orderStatus: "FULFILLED" })
+          .where(eq(ordersTable.id, id));
+      });
+    }
+  },
+  {
+    receiver: new Receiver({
+      currentSigningKey: process.env.QSTASH_CURRENT_SIGNING_KEY!,
+      nextSigningKey: process.env.QSTASH_NEXT_SIGNING_KEY!,
+    }),
   }
-
-  await context.sleep("wait-three-days", 60 * 60 * 24 * 3);
-
-  const status = await context.run("check-order", async () => {
-    const { payment, delivery } = await checkOrder(id);
-
-    return { payment, delivery };
-  });
-
-  if (
-    status.payment.paymentStatus === "PENDING" &&
-    (status.payment.paymentType === "CARD" ||
-      status.payment.paymentType === "CRYPTO")
-  ) {
-    await context.run("cancel-order", async () => {
-      await db
-        .update(deliveryTable)
-        .set({ deliveryStatus: "CANCELLED" })
-        .where(eq(deliveryTable.id, delivery.id));
-
-      await db
-        .update(ordersTable)
-        .set({ orderStatus: "CANCELLED" })
-        .where(eq(ordersTable.id, id));
-
-      await db
-        .update(paymentTable)
-        .set({ paymentStatus: "CANCELLED" })
-        .where(eq(paymentTable.id, payment.id));
-    });
-  } else if (status.payment.paymentStatus === "PAID") {
-    await context.run("fulfill-order", async () => {
-      await db
-        .update(deliveryTable)
-        .set({ deliveryStatus: "FULFILLED", arrivalDate: new Date() })
-        .where(eq(deliveryTable.id, delivery.id));
-
-      await db
-        .update(ordersTable)
-        .set({ orderStatus: "FULFILLED" })
-        .where(eq(ordersTable.id, id));
-    });
-  }
-});
+);
