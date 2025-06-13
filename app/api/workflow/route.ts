@@ -28,9 +28,11 @@ export const { POST } = serve<contextPayload>(async (context) => {
   const { payment, delivery } = await context.run(
     "check-payment-status",
     async () => {
-      const { payment, delivery } = await checkOrder(id);
+      const result = await checkOrder(id);
 
-      return { payment, delivery };
+      console.log(result);
+
+      return result;
     }
   );
 

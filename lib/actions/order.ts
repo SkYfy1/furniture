@@ -214,7 +214,7 @@ export const createOrder = async (
       });
 
       await workflow.trigger({
-        url: `${process.env.NEXT_PUBLIC_URL}/api/workflow/orders`,
+        url: `${process.env.NEXT_PUBLIC_URL}/api/workflow`,
         body: {
           id: orderId,
         },
