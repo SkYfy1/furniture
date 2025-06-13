@@ -2,7 +2,7 @@ import { Client } from "@upstash/workflow";
 import { Client as QStashClient } from "@upstash/qstash";
 
 export const workflow = new Client({
-  baseUrl: process.env.QSTASH_URL,
+  baseUrl: "https://qstash.upstash.io",
   token: process.env.QSTASH_TOKEN,
 });
 
