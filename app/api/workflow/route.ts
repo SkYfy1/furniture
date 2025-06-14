@@ -7,7 +7,7 @@ type contextPayload = {
   id: string;
 };
 
-export const checkOrder = async (id: string) => {
+const checkOrder = async (id: string) => {
   const [result] = await db
     .select({
       order: ordersTable,
