@@ -203,7 +203,11 @@
       "Order": {
         "title": "N° de commande",
         "placed": "Passée le",
-        "sendState": "Expédition prévue",
+        "orderStatus": {
+          "sent": "Colis en cours de livraison",
+          "pending": "Expédition prévue demain",
+          "cancel": "Expédition annulée"
+        },
         "OrderDetails": {
           "Items": {
             "title": "Articles commandés",

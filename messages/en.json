@@ -203,7 +203,11 @@
       "Order": {
         "title": "Order ID",
         "placed": "Placed on",
-        "sendState": "Will be sent",
+        "orderStatus": {
+          "sent": "Parcel on the way",
+          "pending": "Will be sent Tomorrow",
+          "cancel": "Sending canceled"
+        },
         "OrderDetails": {
           "Items": {
             "title": "Order Items",
