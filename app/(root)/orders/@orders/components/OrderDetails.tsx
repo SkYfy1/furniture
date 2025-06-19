@@ -6,20 +6,21 @@ import OrderPayment from "./OrderPayment";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 
-interface Props {
+interface OrderDetails {
   items: Variants[] | Products[];
   shipping: shippingInfo;
   payment: paymentInfo;
   orderId: string;
+  orderStatus: "CANCELLED" | "FULFILLED" | "CREATED" | "PROCESSING" | null;
   retryAction: () => Promise<void>;
 }
 
+interface Props {
+  details: OrderDetails;
+}
+
 const OrderDetails: React.FC<Props> = ({
-  items,
-  shipping,
-  payment,
-  orderId,
-  retryAction,
+  details: { items, shipping, payment, orderId, retryAction, orderStatus },
 }) => {
   const t = useTranslations("OrdersPage.Orders.Order.OrderDetails");
   return (
@@ -43,11 +44,13 @@ const OrderDetails: React.FC<Props> = ({
         ))}
       </div>
       <OrderShipping shipping={shipping} />
-      <OrderPayment
-        retryAction={retryAction}
-        orderId={orderId}
-        payment={payment}
-      />
+      {orderStatus !== "CANCELLED" && (
+        <OrderPayment
+          retryAction={retryAction}
+          orderId={orderId}
+          payment={payment}
+        />
+      )}
     </motion.div>
   );
 };

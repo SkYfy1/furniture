@@ -30,6 +30,17 @@ const Order: React.FC<Props> = ({
   const products = order.items;
   const cancelled = paymentInfo.paymentStatus === "CANCELLED";
 
+  const orderStatus = orderInfo.orderStatus;
+
+  const statusText = {
+    FULFILLED:
+      shippingInfo?.arrivalDate &&
+      formatDate(shippingInfo.arrivalDate.toDateString()),
+    CREATED: t("orderStatus.pending"),
+    CANCELLED: t("orderStatus.cancel"),
+    PROCESSING: t("orderStatus.sent"),
+  };
+
   const retryAction = async () => {
     const url = await retryPayment({
       userId: orderInfo.clientId,
@@ -58,11 +69,8 @@ const Order: React.FC<Props> = ({
                 {formatDate(orderInfo.orderDate?.toDateString() as string)}
               </span>
             </p>
-            <p>
-              {t("sendState")}{" "}
-              <span className="text-blue-600 uppercase font-semibold">
-                tomorrow
-              </span>
+            <p className="font-semibold">
+              {statusText[orderStatus ?? "CREATED"]}
             </p>
           </div>
         </div>
@@ -87,11 +95,14 @@ const Order: React.FC<Props> = ({
       <AnimatePresence>
         {showDetails && (
           <OrderDetails
-            items={products}
-            shipping={shippingInfo}
-            payment={paymentInfo}
-            orderId={orderInfo.id}
-            retryAction={retryAction}
+            details={{
+              items: products,
+              orderStatus,
+              shipping: shippingInfo,
+              payment: paymentInfo,
+              orderId: orderInfo.id,
+              retryAction,
+            }}
           />
         )}
       </AnimatePresence>
