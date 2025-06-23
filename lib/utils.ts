@@ -20,11 +20,11 @@ export function debounce<T extends (...args: Parameters<T>) => void>(
 }
 
 export const isVariant = (item: Product | Variant): item is Variant => {
-  return (item as Variant).sku !== undefined;
+  return "sku" in item;
 };
 
 export const isProductTable = (item: Products | Variants): item is Products => {
-  return (item as Products).name !== undefined;
+  return "name" in item;
 };
 
 export const filterSku = (sku: string) => {
