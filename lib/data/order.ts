@@ -20,7 +20,7 @@ export const getOrderData = async (email: string) => {
       product: productsTable,
     })
     .from(usersTable)
-    .leftJoin(ordersTable, eq(usersTable.id, ordersTable.clientId))
+    .innerJoin(ordersTable, eq(usersTable.id, ordersTable.clientId))
     .innerJoin(orderItemsTable, eq(ordersTable.id, orderItemsTable.orderId))
     .leftJoin(variantsTable, eq(orderItemsTable.variantId, variantsTable.id))
     .leftJoin(productsTable, eq(orderItemsTable.productId, productsTable.id))
@@ -32,8 +32,8 @@ export const getOrderData = async (email: string) => {
     const variant = row.variant;
     const product = row.product;
 
-    if (!acc[order!.id]) {
-      acc[order!.id] = { order: order as Order, items: [] };
+    if (!acc[order.id]) {
+      acc[order.id] = { order: order as Order, items: [] };
     }
 
     if (variant) {
