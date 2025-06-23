@@ -66,10 +66,10 @@ const Order: React.FC<Props> = ({
             <p className="sm:after:content-['|'] sm:after:pl-2">
               {t("placed")}{" "}
               <span className="font-semibold">
-                {formatDate(orderInfo.orderDate?.toDateString() as string)}
+                {formatDate(orderInfo.orderDate?.toDateString())}
               </span>
             </p>
-            <p className="font-semibold">
+            <p className="font-semibold text-blue-600">
               {statusText[orderStatus ?? "CREATED"]}
             </p>
           </div>
