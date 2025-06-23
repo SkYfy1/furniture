@@ -105,7 +105,9 @@ export const ordersTable = table("orders_table", {
     .notNull(),
   orderDate: timestamp("order_date", {
     withTimezone: true,
-  }).defaultNow(),
+  })
+    .notNull()
+    .defaultNow(),
   summaryPrice: integer("summary_price").notNull(),
   orderStatus: ORDER_STATUS_ENUM("order_status").default("CREATED"),
 });
