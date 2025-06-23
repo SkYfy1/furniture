@@ -1,0 +1,1 @@
+ALTER TABLE "orders_table" ALTER COLUMN "order_date" SET NOT NULL;
