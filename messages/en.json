@@ -150,7 +150,8 @@
           "label": "Change Range"
         }
       }
-    }
+    },
+    "OutOfStock": "Out of stock"
   },
   "CartPage": {
     "title": "Cart",

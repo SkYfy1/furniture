@@ -1,4 +1,5 @@
 import { cn, isVariant } from "@/lib/utils";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,10 +10,12 @@ interface Props {
   name: string;
 }
 
-const Product: React.FC<Props> = ({ data, category, name }) => {
+const Product: React.FC<Props> = async ({ data, category, name }) => {
   const link = isVariant(data)
     ? `/shop/${category!.toLowerCase()}/${data.productId}?sku=${data.sku}`
     : `/shop/${data.category.toLowerCase()}/${data.id}`;
+
+  const t = await getTranslations("ShopPage");
 
   const notAvailable = data.availableQuantity === 0;
 
@@ -20,7 +23,9 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
 
   if (notAvailable) {
     priceBlock = (
-      <span className="font-semibold text-sm text-gray-700">OUT OF STOCK</span>
+      <span className="font-semibold text-sm text-gray-700 uppercase">
+        {t("OutOfStock")}
+      </span>
     );
   } else if (data.discount) {
     priceBlock = (

@@ -150,7 +150,8 @@
           "label": "Modifier la plage"
         }
       }
-    }
+    },
+    "OutOfStock": "Rupture de stock"
   },
   "CartPage": {
     "title": "Panier",
