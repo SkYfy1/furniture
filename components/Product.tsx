@@ -1,5 +1,5 @@
 import { cn, isVariant } from "@/lib/utils";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -10,12 +10,12 @@ interface Props {
   name: string;
 }
 
-const Product: React.FC<Props> = async ({ data, category, name }) => {
+const Product: React.FC<Props> = ({ data, category, name }) => {
   const link = isVariant(data)
     ? `/shop/${category!.toLowerCase()}/${data.productId}?sku=${data.sku}`
     : `/shop/${data.category.toLowerCase()}/${data.id}`;
 
-  const t = await getTranslations("ShopPage");
+  const t = useTranslations("ShopPage");
 
   const notAvailable = data.availableQuantity === 0;
 
