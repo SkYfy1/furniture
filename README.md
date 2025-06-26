@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1 align="center">NEXT.JS E-COMMERCE APP</h3>
+</div>
 
-## Getting Started
 
-First, run the development server:
+## 🤖 Introduction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Built with NEXT.JS, UPSTASH, STRIPE, REDUX-toolkit, NextAuth.js, Drizzle-ORM, Next-intl and Supabase e-commerce application with i18n.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- NEXT.JS
+- Upstash
+- Stripe
+- Redux-toolkit
+- React-hook-form
+- PostgreSQL (+ Drizzle ORM)
+- NextAuth.js
+- Motion
+- Next-intl
 
-## Learn More
+## 🔋 Features
 
-To learn more about Next.js, take a look at the following resources:
+### Features of the FRNTR E-commerce APP Project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+👉 **Authentication**: Implemented with NextAuth.js via Email/password or GitHub/Google Provider.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+👉 **Internationalization**: Application fully translated to FR/EN using next-intl.
 
-## Deploy on Vercel
+👉 **Order Details**: Check order details, such as: ordered items, payment information, delivery information. Change default delivery address, perform payment or cancel order.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+👉 **Database Management**: PostgreSQL Database with Drizzle ORM via Neon serverless provider.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👉 **Real-time Media Processing**: Supabase for product images. 
+
+👉 **Redux-Toolkit**: For simplified and efficient global state management (CART).  
+
+👉 **UI/UX**: Built with Shadcn-ui.  
+
+👉 **Animation**: Motion. 
+
+<h1>Screenshots</h1>
