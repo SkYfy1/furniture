@@ -65,7 +65,9 @@ const Header: React.FC = () => {
             <SearchProducts placeholder={placeholder} />
             <ul className="flex xl:gap-12 gap-4 items-center">
               <li className="cursor-pointer hover:underline">
-                <Link href="/shop">{t("Nav.shop")}</Link>
+                <Link data-id="desktop-shop-link" href="/shop">
+                  {t("Nav.shop")}
+                </Link>
               </li>
               <li className="cursor-pointer hover:underline">
                 <Link href="/stories">{t("Nav.stories")}</Link>
@@ -111,6 +113,7 @@ const Header: React.FC = () => {
           <button
             className="lg:hidden"
             onClick={() => setShowMenu((prev) => !prev)}
+            data-id="menu-toggle-btn"
           >
             {!showMenu ? (
               <Image
@@ -131,7 +134,10 @@ const Header: React.FC = () => {
         </div>
       </div>
       {showMenu && (
-        <div className="absolute top-0 left-0 mt-15 h-screen w-full bg-white">
+        <div
+          className="absolute top-0 left-0 mt-15 h-screen w-full bg-white"
+          data-id="open-menu"
+        >
           <div className="justify-between items-start pl-10 gap-12 flex flex-col pt-12">
             <SearchProducts placeholder={placeholder} />
             <ul
@@ -139,7 +145,9 @@ const Header: React.FC = () => {
               onClick={handleClose}
             >
               <li>
-                <Link href="/shop">{t("Nav.shop")}</Link>
+                <Link data-id="mobile-shop-link" href="/shop">
+                  {t("Nav.shop")}
+                </Link>
               </li>
               <li>
                 <Link href="/stories">{t("Nav.stories")}</Link>
