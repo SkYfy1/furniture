@@ -52,7 +52,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
       href={link}
       className="flex flex-col h-full pb-2 md:pb-10 min-h-[351]"
     >
-      <div className="h-[300] xs:w-fit sm:w-[180] xl:h-[300] xl:w-[230] 2xl:size-[285] relative">
+      <div className="h-[260] w-[160] sm:w-[180] xl:h-[300] xl:w-[230] 2xl:size-[285] relative">
         {data.discount && !notAvailable && (
           <div className="absolute -translate-x-1/4 translate-y-1/4 top-0 right-0 size-10 flex justify-center items-center bg-green-900 z-10 rounded-full text-xs text-white">
             -{data.discount}%
