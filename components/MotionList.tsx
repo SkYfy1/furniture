@@ -26,7 +26,7 @@ const MotionList: React.FC<Props> = ({ children, className }) => {
         initial={false}
         drag="x"
         dragConstraints={{
-          left: -width * 1.2,
+          left: -width,
           right: 0,
         }}
         className={cn("flex gap-3 w-full justify-between", className)}
