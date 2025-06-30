@@ -24,6 +24,7 @@ const CustomSelect: React.FC = () => {
         onChange={updateParams}
         name="orderBy"
         id="orderBy"
+        defaultValue={searchParams.get("orderBy") ?? "NAME_ASC"}
         className="appearance-none w-full px-4 py-1.5 cursor-pointer"
       >
         <option value={"NAME_ASC"}>{t("nameAsc")}</option>
