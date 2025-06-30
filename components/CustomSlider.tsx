@@ -3,7 +3,7 @@ import { Slider } from "@mui/material";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 const CustomSlider: React.FC = () => {
   const searchParams = useSearchParams();
@@ -21,22 +21,26 @@ const CustomSlider: React.FC = () => {
     setRange([+min, +max]);
   }, [min, max]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const updateParams = useCallback(
-    debounce((values: number[]) => {
+  const updateSlider = useCallback(
+    (values: number[]) => {
       const params = new URLSearchParams(searchParams);
       params.set("min", values[0].toString());
       params.set("max", values[1].toString());
 
       replace(`${pathname}/?${params.toString()}`);
-    }, 700),
-    [pathname, searchParams]
+    },
+    [pathname, searchParams, replace]
+  );
+
+  const debouncedUpdateSlider = useMemo(
+    () => debounce(updateSlider, 700),
+    [updateSlider]
   );
 
   const changeRangeValue = (e: Event, newValue: number[]) => {
     if (newValue) {
       setRange(newValue);
-      updateParams(newValue);
+      debouncedUpdateSlider(newValue);
     }
   };
 
