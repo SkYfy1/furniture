@@ -17,6 +17,7 @@ const Cart = () => {
   const couponData = useAppSelector((state) => state.cart.coupon);
   const dispatch = useAppDispatch();
   const [coupon, setCoupon] = useState("");
+  const [couponError, setCouponError] = useState<string | null>(null);
   const t = useTranslations("CartPage");
 
   if (!cart.length)
@@ -38,8 +39,10 @@ const Cart = () => {
 
     if (!result.success) {
       console.log(result.message);
+      setCouponError(result.message!);
     } else {
       const couponInfo = result.couponInfo as Coupon;
+      setCouponError(null);
       dispatch(addCoupon(couponInfo));
     }
   };
@@ -50,6 +53,7 @@ const Cart = () => {
     setValue: (value: string) => setCoupon(value),
     handleAddCoupon,
     couponActivated,
+    error: couponError,
   };
 
   return (

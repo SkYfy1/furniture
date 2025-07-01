@@ -7,6 +7,7 @@ interface Props {
   setValue: (text: string) => void;
   handleAddCoupon: () => void;
   couponActivated: boolean;
+  error: string | null;
 }
 
 const Coupon: React.FC<Props> = ({
@@ -15,6 +16,7 @@ const Coupon: React.FC<Props> = ({
   setValue,
   handleAddCoupon,
   couponActivated,
+  error,
 }) => {
   const t = useTranslations("CartPage.Coupon");
   return (
@@ -23,7 +25,11 @@ const Coupon: React.FC<Props> = ({
         htmlFor="coupon"
         className="w-full px-4 py-2.5 bg-gray border border-gray focus-within:border-black rounded-sm flex flex-col gap-1.5 has-[input:disabled]:bg-gray-200"
       >
-        <p className="text-xs font-semibold capitalize">{t("label")}*</p>
+        <p className="text-xs font-semibold capitalize">
+          <span>{t("label")}*</span>
+          <span className="font-medium pl-1.5 text-red-700">{error}</span>
+        </p>
+
         {couponActivated ? (
           <div className="w-full rounded-xs px-2">{coupon}</div>
         ) : (
