@@ -29,6 +29,7 @@ const SearchOverlay = () => {
   if (!query) return null;
   return (
     <div
+      data-id="search-overlay"
       className="top-0 left-0 h-full w-screen absolute bg-black/75 z-50"
       onClick={closeSearch}
     ></div>

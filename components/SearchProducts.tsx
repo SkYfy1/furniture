@@ -54,6 +54,7 @@ const SearchProducts: React.FC<Props> = ({ placeholder }) => {
         onChange={handleChangeInput}
         placeholder={placeholder}
         className="bg-gray-50 rounded-full pl-6 pr-4 xl:pr-22 py-2 focus:outline-1"
+        data-id="search-input"
       />
       <Image
         className="absolute top-1/2 right-3 -translate-y-1/2"
