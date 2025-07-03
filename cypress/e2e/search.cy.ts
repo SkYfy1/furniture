@@ -42,4 +42,21 @@ describe("search product tests", () => {
 
     cy.url().should("not.include", "?query");
   });
+
+  it("redirect to item", () => {
+    cy.viewport(1440, 900);
+    cy.visit("/");
+
+    cy.contains(/add to cart/i).should("not.exist");
+    cy.get('[data-id="search-input"]').type("F");
+
+    cy.get('[data-id="search-products"]')
+      .should("exist")
+      .children()
+      .first()
+      .click();
+
+    cy.url().should("contain", "/shop/plants");
+    cy.contains(/add to cart/i);
+  });
 });
