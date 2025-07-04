@@ -1,5 +1,6 @@
 import Category from "@/components/Category";
 import {
+  getCategoryPriceRange,
   getFilteredVariants,
   getProductsByCategory,
 } from "@/lib/data/products";
@@ -34,12 +35,20 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
   const filters = await searchParams;
   const category = type.charAt(0).toUpperCase() + type.slice(1);
 
-  const [products, variants] = await Promise.all([
+  const [products, variants, categoryPriceRange] = await Promise.all([
     getProductsByCategory(category, filters),
     getFilteredVariants(category, filters),
+    getCategoryPriceRange(category),
   ]);
 
-  return <Category title={type} products={products} variants={variants} />;
+  return (
+    <Category
+      title={type}
+      products={products}
+      variants={variants}
+      priceRange={categoryPriceRange}
+    />
+  );
 };
 
 export default Page;

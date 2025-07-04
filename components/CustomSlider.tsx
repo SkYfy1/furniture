@@ -5,20 +5,27 @@ import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
-const CustomSlider: React.FC = () => {
+interface Props {
+  sliderRange: number[];
+}
+
+const CustomSlider: React.FC<Props> = ({ sliderRange }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
   const t = useTranslations("ShopPage.Filtration.Filters.Slider");
 
-  const min = searchParams.get("min") ?? 0;
-  const max = searchParams.get("max") ?? 1000;
+  const minInitial = sliderRange[0];
+  const maxInitial = sliderRange[1];
 
-  const [range, setRange] = useState([+min, +max]);
+  const max = searchParams.get("max") ?? maxInitial;
+  const min = searchParams.get("min") ?? minInitial;
+
+  const [value, setValue] = useState([+min, +max]);
   const [showSlider, setShowSlider] = useState(false);
 
   useEffect(() => {
-    setRange([+min, +max]);
+    setValue([+min, +max]);
   }, [min, max]);
 
   const updateSlider = useCallback(
@@ -39,26 +46,27 @@ const CustomSlider: React.FC = () => {
 
   const changeRangeValue = (e: Event, newValue: number[]) => {
     if (newValue) {
-      setRange(newValue);
+      setValue(newValue);
       debouncedUpdateSlider(newValue);
     }
   };
 
   return (
     <div className="bg-gray-100 px-4 py-1.5 text-sm font-bold w-60 relative">
-      <div
-        className="flex justify-between cursor-pointer"
+      <button
+        data-id="slider-open-btn"
+        className="flex w-full justify-between items-center cursor-pointer"
         onClick={() => setShowSlider((prev) => !prev)}
       >
-        <p>{t("label")}</p>
+        <p className="block">{t("label")}</p>
         <Image
           width={10}
           height={10}
-          className=" rotate-90"
+          className="rotate-90"
           src="/svg/b9f50123-f337-49a6-b90e-bb3fdf52bbab.svg"
           alt="arrow"
         />
-      </div>
+      </button>
       {showSlider && (
         <div className="pb-1.5 absolute top-0 left-0 w-full px-4 bg-inherit translate-y-1/3 md:translate-y-1/2">
           <Slider
@@ -81,16 +89,17 @@ const CustomSlider: React.FC = () => {
               },
             }}
             getAriaLabel={() => "Price Range"}
-            value={range}
-            max={1000}
-            min={20}
+            data-id="slider"
+            value={value}
+            min={minInitial}
+            max={maxInitial}
             onChange={changeRangeValue}
             valueLabelDisplay="auto"
             disableSwap
           />
           <div className="flex justify-between text-xs">
-            <span>€{range[0]}.00</span>
-            <span>€{range[1]}.00</span>
+            <span data-id="select-min">€{value[0]}.00</span>
+            <span data-id="select-max">€{value[1]}.00</span>
           </div>
         </div>
       )}

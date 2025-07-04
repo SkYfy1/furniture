@@ -9,13 +9,23 @@ interface Props {
   title: string;
   products: Product[];
   variants: Variant[];
+  priceRange: number[];
 }
 
-const Category: React.FC<Props> = ({ title, products, variants }) => {
+const Category: React.FC<Props> = ({
+  title,
+  products,
+  variants,
+  priceRange,
+}) => {
   const [showVariants, setShowVariants] = useState(false);
   const t = useTranslations("ShopPage.Categories.category");
 
-  const goods = showVariants ? [...(variants ?? [])] : [...products];
+  const goods = showVariants ? variants ?? [] : products;
+
+  const handleToggle = () => {
+    setShowVariants((prev) => !prev);
+  };
 
   const capTitle = title.charAt(0).toUpperCase() + title.slice(1);
 
@@ -28,9 +38,10 @@ const Category: React.FC<Props> = ({ title, products, variants }) => {
         {t(`${capTitle}.description` as "Sofas.description")}
       </p>
       <CategoryFiltration
+        range={priceRange}
         quantity={goods.length}
         showVariants={showVariants}
-        changeShow={setShowVariants}
+        toggleSwitch={handleToggle}
       />
       <ProductsGridSection products={goods} categoryName={title} />
     </section>
