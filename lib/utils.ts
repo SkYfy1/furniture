@@ -140,3 +140,36 @@ export const calculateCart = ({
 
   return { totalDiscount, totalPrice, tax, couponActivated };
 };
+
+export const getMinMaxValue = (
+  array: Partial<Product>[] | Partial<Variant>[]
+): number[] => {
+  if (array.length === 0) return [0, 1000];
+
+  // 1 first variant
+  // const prices = array
+  //   .sort((a, b) => a.discountedPrice! - b.discountedPrice!)
+  //   ?.filter((el, ind) => ind === 0 || ind === array.length - 1)
+  //   .map((el) => el.discountedPrice!);
+
+  // return prices;
+
+  // 2nd
+  // return [
+  //   Math.max(...array.map((el) => el.discountedPrice!)),
+  //   Math.min(...array.map((el) => el.discountedPrice!)),
+  // ];
+
+  // AI fastest
+
+  let min = array[0].discountedPrice!;
+  let max = array[0].discountedPrice!;
+
+  for (let i = 0; i < array.length; i++) {
+    const price = array[i].discountedPrice!;
+    if (price < min) min = price;
+    if (price > max) max = price;
+  }
+
+  return [min, max];
+};
