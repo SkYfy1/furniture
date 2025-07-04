@@ -3,7 +3,7 @@ import { hasValueInArray } from "@/db/helpers";
 import { productsTable, variantsTable } from "@/db/schema";
 import { and, asc, desc, eq, gte, ilike, lte, or, sql } from "drizzle-orm";
 import { blackList } from "@/constants";
-import { deleteDublicates } from "../utils";
+import { deleteDublicates, getMinMaxValue } from "../utils";
 
 export const getVariants = async (id: string) => {
   const variants = await db
@@ -198,4 +198,17 @@ export const getQueryProduct = async (query: string) => {
     .where(ilike(productsTable.name, `${query}%`));
 
   return products;
+};
+
+export const getCategoryPriceRange = async (
+  category: string
+): Promise<number[]> => {
+  const [products, variants] = await Promise.all([
+    getProductsByCategory(category),
+    getFilteredVariants(category),
+  ]);
+
+  const rangeProducts = getMinMaxValue([...products, ...variants]);
+
+  return rangeProducts;
 };
