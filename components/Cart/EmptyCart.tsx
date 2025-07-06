@@ -10,7 +10,7 @@ interface Props {
 
 const EmptyCart: React.FC<Props> = ({ title, subTitle, button }) => {
   return (
-    <div className="w-full flex items-center gap-6">
+    <div className="w-full flex items-center gap-6" data-id="cart-empty">
       <Image
         src="/svg/empty-cart.svg"
         width={150}

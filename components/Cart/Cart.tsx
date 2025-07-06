@@ -57,7 +57,7 @@ const Cart = () => {
   };
 
   return (
-    <section className="flex flex-col gap-3 w-full">
+    <section className="flex flex-col gap-3 w-full" data-id="cart-block">
       <h1 className="text-xl font-semibold mb-4">{t("title")}</h1>
       {cart?.map((item) => (
         <CartItem item={item} key={item.id} />

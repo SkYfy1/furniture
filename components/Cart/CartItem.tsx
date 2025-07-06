@@ -58,11 +58,15 @@ const CartItem = ({ item }: { item: CartItem }) => {
         <button
           onClick={() => dispatch(increaseQuantity(item.id))}
           className="cursor-pointer hover:bg-gray h-[25] w-[25]"
+          data-id="increase-quantity"
         >
           +
         </button>
         <div className="relative">
-          <p className="font-semibold h-[25] w-[25] text-center">
+          <p
+            className="font-semibold h-[25] w-[25] text-center"
+            data-id="cart-item-quantity"
+          >
             {item.quantity}
           </p>
           {item.quantity === item.available && (
@@ -75,6 +79,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
           <button
             onClick={() => dispatch(decreaseQuantity(item.id))}
             className="cursor-pointer hover:bg-gray h-[25] w-[25]"
+            data-id="decrease-quantity"
           >
             -
           </button>
@@ -82,6 +87,7 @@ const CartItem = ({ item }: { item: CartItem }) => {
           <button
             onClick={() => dispatch(deleteItem(item.id))}
             className="cursor-pointer hover:bg-gray h-[25] w-[25]"
+            data-id="remove-item"
           >
             <Image
               src="/svg/trashIcon.svg"
