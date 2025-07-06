@@ -23,6 +23,7 @@ const MotionList: React.FC<Props> = ({ children, className }) => {
   return (
     <motion.div ref={ref} className="w-full overflow-hidden">
       <motion.div
+        data-id="drag-div"
         initial={false}
         drag="x"
         dragConstraints={{

@@ -36,7 +36,7 @@ const BuyBox: React.FC<Props> = ({ product, variants, selected, userId }) => {
           <h2 className="text-sm">{product.description}</h2>
         </div>
         {variants.length > 1 && (
-          <div className="flex gap-2 pb-2 border-b-3">
+          <div className="flex gap-2 pb-2 border-b-3" data-id="variants-box">
             {variants?.map((variant) => (
               <VariantButton
                 key={variant.id}

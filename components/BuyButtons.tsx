@@ -45,6 +45,7 @@ const BuyButtons: React.FC<Props> = ({ payload, type, userId, disabled }) => {
         onClick={() => {
           dispatch(addItem(payload));
         }}
+        data-id="add-btn"
       >
         {t("addButton")}
       </Button>

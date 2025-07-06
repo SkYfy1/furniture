@@ -87,7 +87,11 @@ const Header: React.FC = () => {
               alt="user icon"
             />
           </Link>
-          <Link href="/cart" className="hover:bg-gray p-2 relative">
+          <Link
+            href="/cart"
+            className="hover:bg-gray p-2 relative"
+            data-id="cart-link"
+          >
             <Image
               src="/svg/basketIcon.svg"
               width={32}
@@ -95,7 +99,10 @@ const Header: React.FC = () => {
               alt="basket"
             />
             {cartSize > 0 && (
-              <span className="absolute top-1.5 right-1 text-xs size-4 text-center text-white bg-red-600 rounded-full">
+              <span
+                className="absolute top-1.5 right-1 text-xs size-4 text-center text-white bg-red-600 rounded-full"
+                data-id="cart-size"
+              >
                 {cartSize}
               </span>
             )}
