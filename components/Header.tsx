@@ -2,40 +2,20 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import FlyOut from "./FlyOut";
 import { FlyOutLinks } from "@/constants";
 import { useAppSelector } from "@/lib/hooks";
 import SearchProducts from "./SearchProducts";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import LocaleSelect from "./LocaleSelect";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const cartSize = useAppSelector((state) => state.cart.items.length);
-  const [locale, setLocale] = useState<string>("");
-  const router = useRouter();
   const t = useTranslations("Header");
 
   const placeholder = t("Search");
-
-  useEffect(() => {
-    const cookieLocale = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("FRNTR_LOCALE="))
-      ?.split("=")[1];
-
-    if (cookieLocale) {
-      setLocale(cookieLocale);
-    } else {
-      // Get browser locale (not using bc my locale UA(Not implemented locale))
-      // const browseLocale = navigator.language.slice(0, 2);
-
-      setLocale("en");
-      document.cookie = `FRNTR_LOCALE=en; path=/; SameSite=Lax; Secure;`;
-      router.refresh();
-    }
-  }, [router]);
 
   const handleClose = (e: React.MouseEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).tagName === "A") {
@@ -43,15 +23,9 @@ const Header: React.FC = () => {
     }
   };
 
-  const handleChangeLocale = (value: string) => {
-    setLocale(value);
-    document.cookie = `FRNTR_LOCALE=${value}; path=/; SameSite=Lax; Secure;`;
-    router.refresh();
-  };
-
   return (
     <header className="lg:pt-4 lg:pb-5 py-4 px-5 xl:px-0 fixed top-0 left-0 w-full bg-white z-50">
-      <div className="container flex justify-between items-center">
+      <div className="container flex gap-5 md:gap-0 justify-between items-center">
         <div className="flex gap-12 items-center">
           <Link href="/">
             <Image
@@ -78,8 +52,8 @@ const Header: React.FC = () => {
             </ul>
           </div>
         </div>
-        <div className="flex gap-2 lg:gap-3 items-center">
-          <Link href="/orders" className="hover:bg-gray p-2">
+        <div className="flex gap-1 lg:gap-3 items-center">
+          <Link href="/orders" className="hover:bg-gray p-1 md:p-2">
             <Image
               src="/svg/userIcon.svg"
               width={32}
@@ -89,7 +63,7 @@ const Header: React.FC = () => {
           </Link>
           <Link
             href="/cart"
-            className="hover:bg-gray p-2 relative"
+            className="hover:bg-gray p-1 md:p-2 relative"
             data-id="cart-link"
           >
             <Image
@@ -100,23 +74,14 @@ const Header: React.FC = () => {
             />
             {cartSize > 0 && (
               <span
-                className="absolute top-1.5 right-1 text-xs size-4 text-center text-white bg-red-600 rounded-full"
+                className="absolute top-1 right-0.5 md:top-1.5 md:right-1 text-[0.6rem] md:text-xs size-3 text-center text-white bg-red-600 rounded-full"
                 data-id="cart-size"
               >
                 {cartSize}
               </span>
             )}
           </Link>
-          <select
-            name="lang"
-            id="lang"
-            value={locale}
-            onChange={(e) => handleChangeLocale(e.target.value)}
-            className="p-0.5 pr-2 border-2 rounded-sm"
-          >
-            <option value="en">En</option>
-            <option value="fr">Fr</option>
-          </select>
+          <LocaleSelect />
           <button
             className="lg:hidden"
             onClick={() => setShowMenu((prev) => !prev)}
@@ -124,15 +89,15 @@ const Header: React.FC = () => {
           >
             {!showMenu ? (
               <Image
-                width={25}
-                height={25}
+                width={28}
+                height={28}
                 src="/svg/d788420a-4e6e-42cc-be4a-d276659a9021.svg"
                 alt="basket"
               />
             ) : (
               <Image
-                width={25}
-                height={25}
+                width={28}
+                height={28}
                 src="/svg/delete.svg"
                 alt="basket"
               />
