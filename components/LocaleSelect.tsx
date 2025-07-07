@@ -33,6 +33,7 @@ const LocaleSelect = () => {
 
   return (
     <select
+      data-id="lang-select"
       name="lang"
       id="lang"
       value={locale}
