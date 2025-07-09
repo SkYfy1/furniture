@@ -1,23 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import CartItem from "./CartItem";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppSelector } from "@/lib/hooks";
 import Coupon from "./Coupon";
 import CartSummary from "./CartSummary";
 import Link from "next/link";
 import EmptyCart from "./EmptyCart";
 import { useTranslations } from "next-intl";
-import { checkCoupon } from "@/lib/actions/order";
-import { addCoupon } from "@/lib/features/cartSlice";
 import { calculateCart } from "@/lib/utils";
 
 const Cart = () => {
   const cart = useAppSelector((state) => state.cart.items);
   const couponData = useAppSelector((state) => state.cart.coupon);
-  const dispatch = useAppDispatch();
-  const [coupon, setCoupon] = useState("");
-  const [couponError, setCouponError] = useState<string | null>(null);
   const t = useTranslations("CartPage");
 
   if (!cart.length)
@@ -34,28 +29,6 @@ const Cart = () => {
     couponData,
   });
 
-  const handleAddCoupon = async () => {
-    const result = await checkCoupon(coupon, totalPrice);
-
-    if (!result.success) {
-      console.log(result.message);
-      setCouponError(result.message!);
-    } else {
-      const couponInfo = result.couponInfo as Coupon;
-      setCouponError(null);
-      dispatch(addCoupon(couponInfo));
-    }
-  };
-
-  const couponProps = {
-    value: coupon,
-    coupon: couponData?.code,
-    setValue: (value: string) => setCoupon(value),
-    handleAddCoupon,
-    couponActivated,
-    error: couponError,
-  };
-
   return (
     <section className="flex flex-col gap-3 w-full" data-id="cart-block">
       <h1 className="text-xl font-semibold mb-4">{t("title")}</h1>
@@ -64,7 +37,7 @@ const Cart = () => {
       ))}
       <div>
         <div className=" flex flex-col lg:flex-row gap-5 pl-2">
-          <Coupon {...couponProps} />
+          <Coupon couponActivated={couponActivated} totalPrice={totalPrice} />
           <CartSummary
             coupon={couponData?.code}
             summary={totalPrice}
