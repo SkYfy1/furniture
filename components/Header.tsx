@@ -53,28 +53,35 @@ const Header: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-1 lg:gap-3 items-center">
-          <Link href="/orders" className="hover:bg-gray p-1 md:p-2">
+          <Link
+            href="/orders"
+            className="hover:bg-gray p-1 md:p-2"
+            aria-label="Go to user page"
+          >
             <Image
               src="/svg/userIcon.svg"
               width={32}
               height={32}
-              alt="user icon"
+              alt=""
+              role="presentation"
             />
           </Link>
           <Link
             href="/cart"
             className="hover:bg-gray p-1 md:p-2 relative"
             data-id="cart-link"
+            aria-label="Go to shopping cart"
           >
             <Image
               src="/svg/basketIcon.svg"
               width={32}
               height={32}
-              alt="basket"
+              alt=""
+              role="presentation"
             />
             {cartSize > 0 && (
               <span
-                className="absolute top-1 right-0.5 md:top-1.5 md:right-1 text-[0.6rem] md:text-xs size-3 text-center text-white bg-red-600 rounded-full"
+                className="absolute top-1 right-0.5 md:top-1.5 md:right-1 text-[0.6rem] md:text-xs size-3 md:size-4 text-center text-white bg-red-600 rounded-full"
                 data-id="cart-size"
               >
                 {cartSize}
@@ -83,6 +90,9 @@ const Header: React.FC = () => {
           </Link>
           <LocaleSelect />
           <button
+            aria-expanded={showMenu}
+            aria-controls="menu-mobile"
+            aria-label={showMenu ? "Close navigation" : "Open navigation"}
             className="lg:hidden"
             onClick={() => setShowMenu((prev) => !prev)}
             data-id="menu-toggle-btn"
@@ -108,6 +118,9 @@ const Header: React.FC = () => {
       {showMenu && (
         <div
           className="absolute top-0 left-0 mt-15 h-screen w-full bg-white"
+          id="mobile-menu"
+          role="navigation"
+          aria-label="Main mobile navigation menu"
           data-id="open-menu"
         >
           <div className="justify-between items-start pl-10 gap-12 flex flex-col pt-12">

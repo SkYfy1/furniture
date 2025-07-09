@@ -37,6 +37,8 @@ const CustomInput = <T extends FieldValues>({
         <p className="text-sm font-semibold capitalize">{label}*</p>
         {name == "password" ? (
           <input
+            aria-invalid={!!error}
+            aria-describedby={error ? `${name}-error` : undefined}
             disabled={disabled}
             className="bg-gray-200/20 w-full rounded-xs focus:outline-none"
             type={showPass ? "text" : "password"}
@@ -45,6 +47,8 @@ const CustomInput = <T extends FieldValues>({
           />
         ) : (
           <input
+            aria-invalid={!!error}
+            aria-describedby={error ? `${name}-error` : undefined}
             className="bg-gray-200/20 w-full rounded-xs focus:outline-none"
             type="text"
             disabled={disabled}
@@ -54,7 +58,9 @@ const CustomInput = <T extends FieldValues>({
         )}
       </label>
       {error && (
-        <span className="text-xs text-red-600 ml-3">{error.message}</span>
+        <span id={`${name}-error`} className="text-xs text-red-600 ml-3">
+          {error.message}
+        </span>
       )}
     </div>
   );

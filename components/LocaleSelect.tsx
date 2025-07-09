@@ -32,17 +32,22 @@ const LocaleSelect = () => {
   };
 
   return (
-    <select
-      data-id="lang-select"
-      name="lang"
-      id="lang"
-      value={locale}
-      onChange={(e) => handleChangeLocale(e.target.value)}
-      className="p-0.5 pr-2 border-2 rounded-sm"
-    >
-      <option value="en">EN</option>
-      <option value="fr">FR</option>
-    </select>
+    <>
+      <label htmlFor="lang" className="sr-only">
+        Select language
+      </label>
+      <select
+        data-id="lang-select"
+        name="lang"
+        id="lang"
+        value={locale}
+        onChange={(e) => handleChangeLocale(e.target.value)}
+        className="p-0.5 pr-2 border-2 rounded-sm"
+      >
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+      </select>
+    </>
   );
 };
 
