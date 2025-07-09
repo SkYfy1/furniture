@@ -34,7 +34,10 @@ const CustomInput = <T extends FieldValues>({
           disabled && "bg-gray-200"
         )}
       >
-        <p className="text-sm font-semibold capitalize">{label}*</p>
+        <p className="text-sm font-semibold capitalize">
+          {label}
+          <span aria-hidden="true">*</span>
+        </p>
         {name == "password" ? (
           <input
             aria-invalid={!!error}
