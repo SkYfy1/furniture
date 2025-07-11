@@ -9,6 +9,7 @@ import { useAppSelector } from "@/lib/hooks";
 import SearchProducts from "./SearchProducts";
 import { useTranslations } from "next-intl";
 import LocaleSelect from "./LocaleSelect";
+import MobileNav from "./MobileNav";
 
 const Header: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -37,19 +38,25 @@ const Header: React.FC = () => {
           </Link>
           <div className="justify-between items-center gap-12 hidden lg:flex">
             <SearchProducts placeholder={placeholder} />
-            <ul className="flex xl:gap-12 gap-4 items-center">
-              <li className="cursor-pointer hover:underline">
-                <Link data-id="desktop-shop-link" href="/shop">
-                  {t("Nav.shop")}
-                </Link>
-              </li>
-              <li className="cursor-pointer hover:underline">
-                <Link href="/stories">{t("Nav.stories")}</Link>
-              </li>
-              {FlyOutLinks.map((link) => (
-                <FlyOut key={link.title} title={link.title} links={link.tags} />
-              ))}
-            </ul>
+            <nav aria-label="Desktop navigation">
+              <ul className="flex xl:gap-12 gap-4 items-center">
+                <li className="cursor-pointer hover:underline">
+                  <Link data-id="desktop-shop-link" href="/shop">
+                    {t("Nav.shop")}
+                  </Link>
+                </li>
+                <li className="cursor-pointer hover:underline">
+                  <Link href="/stories">{t("Nav.stories")}</Link>
+                </li>
+                {FlyOutLinks.map((link) => (
+                  <FlyOut
+                    key={link.title}
+                    title={link.title}
+                    links={link.tags}
+                  />
+                ))}
+              </ul>
+            </nav>
           </div>
         </div>
         <div className="flex gap-1 lg:gap-3 items-center">
@@ -115,62 +122,7 @@ const Header: React.FC = () => {
           </button>
         </div>
       </div>
-      {showMenu && (
-        <div
-          className="absolute top-0 left-0 mt-15 h-screen w-full bg-white"
-          id="mobile-menu"
-          role="navigation"
-          aria-label="Main mobile navigation menu"
-          data-id="open-menu"
-        >
-          <div className="justify-between items-start pl-10 gap-12 flex flex-col pt-12">
-            <SearchProducts placeholder={placeholder} />
-            <ul
-              className="flex flex-col gap-12 items-start"
-              onClick={handleClose}
-            >
-              <li>
-                <Link data-id="mobile-shop-link" href="/shop">
-                  {t("Nav.shop")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/stories">{t("Nav.stories")}</Link>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span>{t("Nav.promotions.title")}</span>
-                <ul className="flex flex-col gap-3 capitalize text-xs">
-                  <Link href="/promotions/eco-friendly">
-                    {t("Nav.promotions.tag1")}
-                  </Link>
-                  <Link href="/promotions/vegan">
-                    {t("Nav.promotions.tag2")}
-                  </Link>
-                  <Link href="/promotions/new-arrival">
-                    {t("Nav.promotions.tag3")}
-                  </Link>
-                </ul>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span>{t("Nav.rooms.title")}</span>
-                <ul className="flex flex-col gap-3 capitalize text-xs">
-                  <Link href="/rooms/kitchen">{t("Nav.rooms.tag1")}</Link>
-                  <Link href="/rooms/living-room">{t("Nav.rooms.tag2")}</Link>
-                  <Link href="/rooms/outdoors">{t("Nav.rooms.tag3")}</Link>
-                  <Link href="/rooms/furniture">{t("Nav.rooms.tag4")}</Link>
-                </ul>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span>{t("Nav.specials.title")}</span>
-                <ul className="flex flex-col gap-3 text-xs">
-                  <Link href="/specials/3-for-2">{t("Nav.specials.tag1")}</Link>
-                  <Link href="/specials/4-for-3">{t("Nav.specials.tag2")}</Link>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
+      {showMenu && <MobileNav closeMenu={handleClose} />}
     </header>
   );
 };
