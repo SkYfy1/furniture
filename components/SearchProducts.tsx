@@ -48,8 +48,12 @@ const SearchProducts: React.FC<Props> = ({ placeholder }) => {
 
   return (
     <div className="relative">
+      <label htmlFor="search" className="sr-only">
+        Search
+      </label>
       <input
         type="text"
+        id="search"
         value={text}
         onChange={handleChangeInput}
         placeholder={placeholder}

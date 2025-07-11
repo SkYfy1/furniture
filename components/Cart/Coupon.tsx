@@ -48,7 +48,10 @@ const Coupon: React.FC<Props> = ({ totalPrice, couponActivated }) => {
         className="w-full px-4 py-2.5 bg-gray border border-gray focus-within:border-black rounded-sm flex flex-col gap-1.5 has-[input:disabled]:bg-gray-200"
       >
         <p className="text-xs font-semibold capitalize">
-          <span>{t("label")}*</span>
+          <span>
+            {t("label")}
+            <span aria-hidden="true">*</span>
+          </span>
           <span
             id="coupon-error"
             aria-live="assertive"
