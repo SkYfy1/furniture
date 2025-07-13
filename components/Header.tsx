@@ -109,14 +109,18 @@ const Header: React.FC = () => {
                 width={28}
                 height={28}
                 src="/svg/d788420a-4e6e-42cc-be4a-d276659a9021.svg"
-                alt="basket"
+                alt=""
+                aria-hidden="true"
+                role="presentation"
               />
             ) : (
               <Image
                 width={28}
                 height={28}
                 src="/svg/delete.svg"
-                alt="basket"
+                alt=""
+                aria-hidden="true"
+                role="presentation"
               />
             )}
           </button>

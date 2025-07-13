@@ -54,17 +54,24 @@ const CustomSlider: React.FC<Props> = ({ sliderRange }) => {
   return (
     <div className="bg-gray-100 px-4 py-1.5 text-sm font-bold w-60 relative">
       <button
+        aria-expanded={showSlider}
+        aria-controls="price-slider"
+        aria-label={showSlider ? "Close price slider" : "Open price slider"}
         data-id="slider-open-btn"
         className="flex w-full justify-between items-center cursor-pointer"
         onClick={() => setShowSlider((prev) => !prev)}
       >
-        <p className="block">{t("label")}</p>
+        <label htmlFor="price-slider" className="block">
+          {t("label")}
+        </label>
         <Image
           width={10}
           height={10}
           className="rotate-90"
           src="/svg/b9f50123-f337-49a6-b90e-bb3fdf52bbab.svg"
-          alt="arrow"
+          alt=""
+          aria-hidden="true"
+          role="presentation"
         />
       </button>
       {showSlider && (
@@ -89,6 +96,8 @@ const CustomSlider: React.FC<Props> = ({ sliderRange }) => {
               },
             }}
             getAriaLabel={() => "Price Range"}
+            id="price-slider"
+            aria-describedby="price-range-values"
             data-id="slider"
             value={value}
             min={minInitial}
@@ -97,9 +106,19 @@ const CustomSlider: React.FC<Props> = ({ sliderRange }) => {
             valueLabelDisplay="auto"
             disableSwap
           />
-          <div className="flex justify-between text-xs">
-            <span data-id="select-min">€{value[0]}.00</span>
-            <span data-id="select-max">€{value[1]}.00</span>
+          <div
+            className="flex justify-between text-xs"
+            id="price-range-values"
+            role="status"
+            aria-live="polite"
+            aria-label="Current price range"
+          >
+            <span data-id="select-min" aria-label={`Minimum: €${value[0]}`}>
+              €{value[0]}.00
+            </span>
+            <span data-id="select-max" aria-label={`Maximum: €${value[0]}`}>
+              €{value[1]}.00
+            </span>
           </div>
         </div>
       )}

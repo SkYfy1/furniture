@@ -34,9 +34,13 @@ const CustomSelect = <T extends FieldValues>({
           error && "border-red-400"
         )}
       >
-        <p className="text-sm font-semibold capitalize">{label}*</p>
-
+        <p className="text-sm font-semibold capitalize">
+          {label}
+          <span aria-hidden="true">*</span>
+        </p>
         <select
+          aria-invalid={!!error}
+          aria-describedby={error ? `${name}-error` : undefined}
           disabled={disabled}
           className="bg-gray-200/20 w-full rounded-xs focus:outline-none"
           id={name}
@@ -51,7 +55,14 @@ const CustomSelect = <T extends FieldValues>({
         </select>
       </label>
       {error && (
-        <span className="text-xs text-red-600 ml-3">{error.message}*</span>
+        <span
+          className="text-xs text-red-600 ml-3"
+          id={`${name}-error`}
+          aria-live="assertive"
+        >
+          {error.message}
+          <span aria-hidden="true">*</span>
+        </span>
       )}
     </div>
   );

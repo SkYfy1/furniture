@@ -25,6 +25,7 @@ const CustomSelect: React.FC = () => {
         name="orderBy"
         id="orderBy"
         data-id="select"
+        aria-label="Order by"
         defaultValue={searchParams.get("orderBy") ?? "NAME_ASC"}
         className="appearance-none w-full px-4 py-1.5 cursor-pointer"
       >
@@ -36,9 +37,11 @@ const CustomSelect: React.FC = () => {
       <Image
         width={10}
         height={10}
-        className=" rotate-90 absolute top-3 right-4"
+        className="rotate-90 absolute top-3 right-4"
         src="/svg/b9f50123-f337-49a6-b90e-bb3fdf52bbab.svg"
-        alt="arrow"
+        alt=""
+        aria-hidden="true"
+        role="presentation"
       />
     </div>
   );
