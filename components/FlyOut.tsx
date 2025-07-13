@@ -18,35 +18,54 @@ const FlyOut: React.FC<FlyOut> = ({ title, links }) => {
     setShowMore((prev) => !prev);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleChangeView();
+    }
+    if (e.key === "Escape") setShowMore(false);
+  };
+
   return (
     <li
       onMouseEnter={handleChangeView}
       onMouseLeave={handleChangeView}
       className="relative py-1"
     >
-      <span className="flex gap-3 items-center group hover:underline capitalize cursor-pointer">
+      <button
+        className="flex gap-3 items-center group hover:underline capitalize cursor-pointer"
+        onKeyDown={handleKeyDown}
+        aria-expanded={showMore}
+        aria-controls={`${title}-link menu`}
+        aria-haspopup="true"
+      >
         {t(`${title.toLowerCase()}.title` as "rooms.title")}
         <span
           className={cn(
             "group-hover:rotate-180 duration-150 border-t-8 border-x-5 border-x-transparent",
             showMore && "rotate-180"
           )}
+          aria-hidden="true"
         ></span>
-      </span>
+      </button>
       {showMore && (
-        <div className="absolute group top-7 left-0 flex flex-col space-y-3 py-6 w-[200px] bg-white border border-gray-200 rounded-md text-sm">
+        <ul
+          id={`${title}-link menu`}
+          className="flex flex-col absolute group w-[200px] top-7 left-0 space-y-3 py-6 bg-white border border-gray-200 rounded-md text-sm"
+        >
           {links.map((link, index) => {
             return (
-              <Link
-                key={link}
-                href={`/${title}/${link}`}
-                className="w-full hover:bg-gray-200 pl-6 py-2 capitalize"
-              >
-                {t(`${title}.tag${index + 1}` as `promotions.tag1`)}
-              </Link>
+              <li key={link}>
+                <Link
+                  href={`/${title}/${link}`}
+                  className="block pl-6 py-2 capitalize hover:bg-gray-200"
+                >
+                  {t(`${title}.tag${index + 1}` as `promotions.tag1`)}
+                </Link>
+              </li>
             );
           })}
-        </div>
+        </ul>
       )}
     </li>
   );
