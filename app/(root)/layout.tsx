@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React, { ReactNode } from "react";
 import CartSync from "@/components/Cart/CartSync";
+import Help from "@/components/HelpChat/Help";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -12,6 +13,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <SearchOverlay />
         <Header />
         <main className="mt-10 md:mt-18 flex-1">{children}</main>
+        <Help />
         <Footer />
       </div>
     </div>
