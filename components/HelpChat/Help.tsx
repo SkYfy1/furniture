@@ -9,7 +9,7 @@ import Chat from "./Chat";
 const Help = () => {
   const [showChat, setShowChat] = useState(false);
   return (
-    <aside className="w-[300] fixed bottom-2 right-2 flex flex-col">
+    <aside className="w-[350] fixed bottom-2 right-2 flex flex-col">
       <button
         className={cn(
           "cursor-pointer p-3 rounded-full bg-gray hover:bg-gray-200 duration-400 mx-2 self-end",

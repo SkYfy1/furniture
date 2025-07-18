@@ -2,50 +2,57 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Messages from "./Messages";
+import CommonQuestions from "./CommonQuestions";
 
 interface Props {
   handleClose: () => void;
 }
 
 const Chat: React.FC<Props> = ({ handleClose }) => {
-  //   const [ms, setMs] = useState([]);
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
 
-  const sendMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      setMessage("");
-      console.log("Sended!");
-    }
+  const sendMessage = (question: string, answer: string) => {
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", content: question },
+      { role: "assistant", content: answer },
+    ]);
+    setInput("");
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
   };
 
   return (
     <motion.div
       exit={{ opacity: 0, height: 0 }}
       initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: 400 }}
-      className="bg-gray w-full rounded-xl p-4 relative flex flex-col space-y-3"
+      animate={{ opacity: 1, height: 450 }}
+      className="bg-gray w-full rounded-xl py-4 relative flex flex-col space-y-3"
     >
       <button
-        className="absolute top-0 right-0 translate-y-1/2 -translate-x-1/2 cursor-pointer"
+        className="absolute top-0 right-0 translate-y-1/2 -translate-x-1/2 cursor-pointer z-30"
         onClick={handleClose}
       >
         <Image
           src="/svg/delete.svg"
-          height={20}
-          width={20}
+          height={25}
+          width={25}
           aria-hidden="true"
           alt=""
           role="presentation"
         />
       </button>
-      <div className="font-semibold tracking-wide">AI Assistant</div>
-      <Messages messages={[]} />
+      <div className="font-semibold tracking-wide pl-4 z-20">AI Assistant</div>
+      <Messages messages={messages} />
+      <CommonQuestions suggestions={input} selectQuestion={sendMessage} />
       <input
-        value={message}
-        onKeyDown={sendMessage}
-        onChange={(e) => setMessage(e.target.value)}
+        value={input}
+        onChange={handleInputChange}
         placeholder="Type any question..."
-        className="bg-white py-2 px-3 rounded-md outline-black focus:outline-1"
+        className="bg-white mx-4 py-2 px-3 rounded-md outline-black focus:outline-1"
       />
     </motion.div>
   );
