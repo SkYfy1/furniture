@@ -40,3 +40,40 @@ export const blackList = [
   "white",
   "blue",
 ];
+
+export const questionsData = [
+  {
+    id: 1,
+    question: "How to place an order?",
+    answer: "To place an order, add items to your cart and click 'Checkout'...",
+  },
+  {
+    id: 2,
+    question: "What payment methods do you accept?",
+    answer: "We accept credit cards, Crypto, and cash on delivery...",
+  },
+  {
+    id: 3,
+    question: "When will this item be back in stock?",
+    answer:
+      "We expect this item to be back in stock within 2-3 weeks. You can sign up for stock notifications to receive an email when it's available.",
+  },
+  {
+    id: 4,
+    question: "What delivery options are available?",
+    answer:
+      "We offer NP shipping (3-5 business days), MEEST shipping (1-2 business days), and Ukrposta shipping (8-14 business days).",
+  },
+  {
+    id: 5,
+    question: "Where is my order?",
+    answer:
+      "You can track your order status in your account or by using the tracking number sent to your email. For immediate assistance, please contact our customer service.",
+  },
+  {
+    id: 6,
+    question: "I need support",
+    answer:
+      "An assistant will connect with you shortly. Please wait while we transfer you to our support team.",
+  },
+];
