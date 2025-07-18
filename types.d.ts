@@ -4,6 +4,8 @@ type supportedLocale = "en" | "fr";
 
 type discountType = "PERCENTAGE" | "FIXED";
 
+type Role = "user" | "assistant";
+
 interface User {
   id: string;
   name: string;
@@ -14,6 +16,11 @@ interface AuthCredentials {
   name: string;
   email: string;
   password: string;
+}
+
+interface Message {
+  role: Role;
+  content: string;
 }
 
 interface Dimensions {
