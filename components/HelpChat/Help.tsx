@@ -18,6 +18,8 @@ const Help = () => {
         data-id="chat-open-btn"
         onClick={() => setShowChat((prev) => !prev)}
         aria-label="AI Help Chat"
+        aria-expanded={showChat}
+        aria-controls="chat-widget"
       >
         <Image
           src="/svg/help.svg"
