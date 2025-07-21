@@ -15,6 +15,7 @@ const Help = () => {
           "cursor-pointer p-3 rounded-full bg-gray hover:bg-gray-200 duration-400 mx-2 self-end",
           showChat && "hidden"
         )}
+        data-id="chat-open-btn"
         onClick={() => setShowChat((prev) => !prev)}
         aria-label="AI Help Chat"
       >

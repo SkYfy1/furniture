@@ -31,10 +31,12 @@ const Chat: React.FC<Props> = ({ handleClose }) => {
       initial={{ opacity: 0, height: 0 }}
       animate={{ opacity: 1, height: 450 }}
       className="bg-gray w-full rounded-xl py-4 relative flex flex-col space-y-3"
+      data-id="chat-block"
     >
       <button
         className="absolute top-0 right-0 translate-y-1/2 -translate-x-1/2 cursor-pointer z-30"
         onClick={handleClose}
+        data-id="chat-close-btn"
       >
         <Image
           src="/svg/delete.svg"

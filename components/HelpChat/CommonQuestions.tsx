@@ -16,7 +16,10 @@ const CommonQuestions: React.FC<Props> = ({ suggestions, selectQuestion }) => {
   if (!suggestion.length) return null;
 
   return (
-    <div className="flex flex-col gap-1 absolute bottom-13 left-0 w-full px-4 bg-white/10 backdrop-blur-xs h-full justify-end">
+    <div
+      className="flex flex-col gap-1 absolute bottom-13 left-0 w-full px-4 bg-white/10 backdrop-blur-xs h-full justify-end"
+      data-id="chat-questions"
+    >
       {suggestion.map((question) => (
         <div
           key={`question-${question.id}`}

@@ -20,6 +20,7 @@ const Messages: React.FC<Props> = ({ messages }) => {
     <div
       className="flex-col flex gap-2 text-sm overflow-y-auto flex-1 relative chat-scrollbar pl-4 pr-2"
       ref={ref}
+      data-id="chat-messages"
     >
       {!messages.length && (
         <div className="flex-1 absolute top-1/2 left-0 -translate-y-1/2 text-sm pl-6">
