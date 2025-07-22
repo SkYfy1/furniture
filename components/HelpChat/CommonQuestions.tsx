@@ -23,7 +23,7 @@ const CommonQuestions: React.FC<Props> = ({
 
   return (
     <div
-      className="flex flex-col gap-1 absolute bottom-13 left-0 w-full px-4 bg-white/10 backdrop-blur-xs h-full justify-end"
+      className="flex flex-col gap-1 absolute bottom-18 left-0 w-full px-4 bg-white/10 backdrop-blur-xs h-[80%] justify-end"
       data-id="chat-questions"
       id="suggestions-list"
     >
