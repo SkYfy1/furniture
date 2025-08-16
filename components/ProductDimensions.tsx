@@ -19,7 +19,7 @@ const ProductDimensions: React.FC<{ dimensions: Dimensions }> = async ({
           alt="arrow"
         />
       </summary>
-      <div className="flex flex-col pt-6">
+      <div className="flex flex-col pt-6 capitalize">
         <div className="bg-gray flex justify-between py-3 px-2">
           <p className="font-semibold">{t("width")}</p>
           <p>{dimensions.width}</p>

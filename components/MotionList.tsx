@@ -30,7 +30,7 @@ const MotionList: React.FC<Props> = ({ children, className }) => {
           left: -width,
           right: 0,
         }}
-        className={cn("flex gap-3 w-full justify-between", className)}
+        className={cn("flex gap-3 w-full", className)}
       >
         {children}
       </motion.div>
