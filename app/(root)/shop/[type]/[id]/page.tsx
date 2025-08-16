@@ -1,5 +1,6 @@
 import { auth } from "@/auth";
 import BuyBox from "@/components/BuyBox";
+import ImageInspect from "@/components/ImageInspect";
 import MotionList from "@/components/MotionList";
 import Product from "@/components/Product";
 import ProductDimensions from "@/components/ProductDimensions";
@@ -11,7 +12,6 @@ import {
 } from "@/lib/data/products";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -72,14 +72,10 @@ const Page: React.FC<Props> = async ({ params, searchParams }) => {
   return (
     <div className="stories-container mt-0">
       <div className="w-full overflow-hidden">
-        <div className="w-full h-[600] max-h-[1400] relative">
-          <Image
-            src={selectedItem?.imageUrl ?? product.imageUrl}
-            fill
-            className="object-contain"
-            alt={`${product.name}-image`}
-          />
-        </div>
+        <ImageInspect
+          image={selectedItem?.imageUrl ?? product.imageUrl}
+          name={`${product.name}-image`}
+        />
         <ProductDimensions dimensions={product.dimensions as Dimensions} />
         <div className="py-36">
           <h2 className="font-semibold pb-8">{t("more")}</h2>
