@@ -19,24 +19,24 @@ const ProductDimensions: React.FC<{ dimensions: Dimensions }> = async ({
           alt="arrow"
         />
       </summary>
-      <div className="flex flex-col pt-6 capitalize">
-        <div className="bg-gray flex justify-between py-3 px-2">
+      <ul className="flex flex-col pt-6 capitalize">
+        <li className="bg-gray flex justify-between py-3 px-2">
           <p className="font-semibold">{t("width")}</p>
           <p>{dimensions.width}</p>
-        </div>
-        <div className=" flex justify-between py-3 px-2">
+        </li>
+        <li className=" flex justify-between py-3 px-2">
           <p className="font-semibold">{t("height")}</p>
           <p>{dimensions.height}</p>
-        </div>
-        <div className="bg-gray flex justify-between py-3 px-2">
+        </li>
+        <li className="bg-gray flex justify-between py-3 px-2">
           <p className="font-semibold">{t("depth")}</p>
           <p>{dimensions.depth}</p>
-        </div>
-        <div className=" flex justify-between py-3 px-2">
+        </li>
+        <li className=" flex justify-between py-3 px-2">
           <p className="font-semibold">{t("weight")}</p>
           <p>{dimensions.weight}</p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </details>
   );
 };
