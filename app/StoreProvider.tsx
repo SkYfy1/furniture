@@ -1,23 +1,27 @@
 "use client";
 
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 import { Provider } from "react-redux";
 import { makeStore, AppStore } from "@/lib/store";
-import { initializeCart } from "@/lib/features/cartSlice";
+import { Persistor, persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const storeRef = useRef<AppStore>(undefined);
+  const persistRef = useRef<Persistor>(undefined);
+
   if (!storeRef.current) {
     storeRef.current = makeStore();
+    persistRef.current = persistStore(storeRef.current);
   }
 
-  useEffect(() => {
-    const jsonCart = window.localStorage.getItem("cart");
-    const cart = JSON.parse(jsonCart || "[]");
-    storeRef.current?.dispatch(initializeCart(cart));
-  }, []);
-
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return (
+    <Provider store={storeRef.current}>
+      <PersistGate loading={null} persistor={persistRef.current!}>
+        {children}
+      </PersistGate>
+    </Provider>
+  );
 };
 
 export default StoreProvider;
