@@ -3,6 +3,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import ProductAction from "./ProductAction";
 
 interface Props {
   data: Product | Variant;
@@ -16,6 +17,17 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
     : `/shop/${data.category.toLowerCase()}/${data.id}`;
 
   const t = useTranslations("ShopPage");
+
+  const payload = {
+    id: data.id,
+    name: name,
+    newPrice: data.discountedPrice ?? data.price,
+    oldPrice: data.price,
+    discount: data.discount ?? 0,
+    quantity: 1,
+    image: data.imageUrl,
+    available: data.availableQuantity,
+  };
 
   const notAvailable = data.availableQuantity === 0;
 
@@ -48,7 +60,7 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
   }
 
   return (
-    <Link href={link} className="flex flex-col pb-2 md:pb-2 h-[385]">
+    <Link href={link} className="flex flex-col pb-2 md:pb-2 h-[385] w-fit">
       <div className="h-[260] w-[160] sm:w-[180] xl:h-[300] xl:w-[230] 2xl:size-[285] relative">
         {data.discount && !notAvailable && (
           <div className="absolute -translate-x-1/4 translate-y-1/4 top-0 right-0 size-10 flex justify-center items-center bg-green-900 z-10 rounded-full text-xs text-white">
@@ -65,9 +77,12 @@ const Product: React.FC<Props> = ({ data, category, name }) => {
           alt="product-image"
         />
       </div>
-      <div className="px-1 py-0.5 mt-2">
-        <p>{name}</p>
-        {priceBlock}
+      <div className="px-1 py-0.5 mt-2 relative flex justify-between">
+        <div>
+          <p>{name}</p>
+          {priceBlock}
+        </div>
+        <ProductAction payload={payload} />
       </div>
     </Link>
   );
